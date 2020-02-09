@@ -64,7 +64,7 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
         int r;
         if(greatestDivisor==0){
             //found prime number
-            greatestDivisor = (numberOfZero+1)/2;
+            greatestDivisor = findGreatestDivisor(numberOfZero+1);
             r = (numberOfZero+1)/greatestDivisor;
         } else {
             r = numberOfZero/greatestDivisor;
@@ -80,6 +80,8 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                 }
             }
         }
+
+
         //transform List<Integer> into List<String>
         //delete zero elements
         Iterator<Integer> it = resultList.iterator();
@@ -101,14 +103,9 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
     }
 
     private static int findGreatestDivisor(int num){
-        int o = num % 2;
-        if(o==0){
-            return num/2;
-        }
-        int c = (int)num/2;
-        for(int i=c-1;i>1;i--){
+        for(int i=6;i>1;i--){
             if(num % i == 0){
-                return num/i;
+                return i;
             }
         }
         //the number is prime
@@ -161,7 +158,7 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                     i++;
                 }
             }
-            balancingProcedure((int)uk/2, resultList.subList(1, resultList.size()), 1);
+            balancingProcedure(uk/2, resultList.subList(1, resultList.size()), 1);
             //balancingProcedure((int)uk/2, resultList.subList(2, resultList.size()), 2);
         }
     }
