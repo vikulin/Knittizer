@@ -9,7 +9,10 @@ import android.widget.ExpandableListView;
 import org.vikulin.knittizer.adapter.PartialKnittingExpandableListAdapter;
 import org.vikulin.knittizer.model.PartialKnittingResult;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -38,8 +41,41 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
             for(int i=1;i<=phases-fractionalPhases;i++){
                 resultList.add(base);
             }
-            balancingProcedure(uk, resultList, 1);
-            List<String> resultString = zeroPhasesProcedure(resultList);
+            List<String> resultString = new ArrayList<>();
+            if(uk>0){
+                List<Integer> generatedList = createIntList(uk);
+                Collections.sort(generatedList, Collections.reverseOrder());
+                //tail(generatedList);
+                generatedList.addAll(0, createHeadIntList(uk));
+                int deltaU = sum(resultList) - sum(generatedList);
+                int deltaPhases = resultList.size() - generatedList.size();
+                if(deltaPhases>0) {
+                    int deltaPhase = Math.min(deltaPhases, deltaU/2);
+                    Integer[] array = new Integer[deltaPhase];
+                    Arrays.fill(array, 2);
+                    array[array.length-1]=1;
+                    generatedList.addAll(Arrays.asList(array));
+                }
+                deltaPhases = resultList.size() - generatedList.size();
+                if(deltaPhases>0){
+                    generatedList.add(1);
+                    deltaPhases--;
+                } else {
+                    resultString.add("ЧВ");
+                    PartialKnittingExpandableListAdapter adapter = new PartialKnittingExpandableListAdapter(this, resultString, resultList.size());
+                    resultListView.setAdapter(adapter);
+                    resultListView.expandGroup(0);
+                }
+                deltaU = sum(resultList) - sum(generatedList);
+                int n = deltaPhases/deltaU;
+                resultString.add(generatedList.toString());
+                resultString.add("ЧВ");
+                resultString.add(deltaU+"x1*"+n);
+            }
+            //balancingProcedure(uk, resultList, 1);
+            //List<String> resultString = zeroPhasesProcedure(resultList);
+
+
             PartialKnittingExpandableListAdapter adapter = new PartialKnittingExpandableListAdapter(this, resultString, resultList.size());
             resultListView.setAdapter(adapter);
             resultListView.expandGroup(0);
@@ -120,6 +156,60 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
             }
         }
         return i;
+    }
+
+    private static List<Integer> createIntList(int a){
+        List<Integer> list = new ArrayList<>();
+        if(a<4){
+            list.add(a);
+        } else {
+            if(a % 2==0){
+                int r = a/2;
+                List<Integer> listTmp = createIntList(r);
+                list.addAll(listTmp);
+                list.addAll(listTmp);
+            } else {
+                int r1 = a/2;
+                int r2 = r1+1;
+                list.addAll(createIntList(r1));
+                list.addAll(createIntList(r2));
+            }
+        }
+        return list;
+    }
+
+    private static List<Integer> createHeadIntList(int a){
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(a);
+        int i=2;
+        int r = a/2;
+        while(r>3) {
+            list.add(r);
+            i=2*i;
+            r = a/i;
+        };
+        return list;
+    }
+
+    private static void tail(List<Integer> list) {
+        int lastNumber = list.get(list.size()-1);
+        if(lastNumber==2) {
+            list.set(list.size()-1, 1);
+            list.add(1);
+        }
+        if(lastNumber==3) {
+            list.set(list.size()-1, 2);
+            list.add(1);
+        }
+    }
+
+    private static int sum(List<Integer> list){
+        int sum = 0;
+        Iterator<Integer> it = list.iterator();
+        while(it.hasNext()){
+            sum = sum + it.next();
+        }
+        return sum;
     }
 
     private void balancingProcedure(int uk, List<Integer> resultList, int subIndex) {
