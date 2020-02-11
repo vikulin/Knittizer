@@ -9,18 +9,20 @@ import android.widget.ExpandableListView;
 import org.vikulin.knittizer.adapter.PartialKnittingExpandableListAdapter;
 import org.vikulin.knittizer.model.PartialKnittingResult;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 
 public class PartialKnittingResultActivity extends AppCompatActivity {
 
     public static final String RES = "result";
-    public static final String UK  = "uk";
+    public static final String UN = "un";
+    public static final String U = "u";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,47 +32,47 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
         if (extras != null) {
             ExpandableListView resultListView = findViewById(R.id.resultList);
             PartialKnittingResult result = (PartialKnittingResult) extras.getSerializable(RES);
-            int uk = extras.getInt(UK, 0);
+            int un = extras.getInt(UN, 0);
+            int u = extras.getInt(U, 0);
             int base = result.getBase();
             int phases = result.getPhases();
-            int fractionalPhases = result.getFractionalPhases();
-            List<Integer> resultList = new ArrayList<>();
-            for(int i=1;i<=fractionalPhases;i++){
-                resultList.add(base+1);
-            }
-            for(int i=1;i<=phases-fractionalPhases;i++){
-                resultList.add(base);
-            }
+
             List<String> resultString = new ArrayList<>();
-            if(uk>0){
-                List<Integer> generatedList = createIntList(uk);
-                Collections.sort(generatedList, Collections.reverseOrder());
-                //tail(generatedList);
-                generatedList.addAll(0, createHeadIntList(uk));
-                int deltaU = sum(resultList) - sum(generatedList);
-                int deltaPhases = resultList.size() - generatedList.size();
-                if(deltaPhases>0) {
-                    int deltaPhase = Math.min(deltaPhases, deltaU/2);
-                    Integer[] array = new Integer[deltaPhase];
-                    Arrays.fill(array, 2);
-                    array[array.length-1]=1;
-                    generatedList.addAll(Arrays.asList(array));
+            List<Integer> resultList = new ArrayList<>();
+            if(un>0){
+
+                //int u = 34;
+                int d = un;
+                int phase = phases;
+
+                resultList.addAll(0, createHeadIntList(d));
+                for(int i=resultList.get(resultList.size()-1)-1;i>0;i--) {
+                    resultList.add(i);
                 }
-                deltaPhases = resultList.size() - generatedList.size();
-                if(deltaPhases>0){
-                    generatedList.add(1);
-                    deltaPhases--;
-                } else {
-                    resultString.add("ЧВ");
-                    PartialKnittingExpandableListAdapter adapter = new PartialKnittingExpandableListAdapter(this, resultString, resultList.size());
-                    resultListView.setAdapter(adapter);
-                    resultListView.expandGroup(0);
-                }
-                deltaU = sum(resultList) - sum(generatedList);
-                int n = deltaPhases/deltaU;
-                resultString.add(generatedList.toString());
+                System.out.println(resultList.toString());
+                int sum = sum(resultList);
+                //-2 give us 2 free stitches as result 2*(ph-list size)/deltaU = ph-list size
+                int deltaU = u-sum-2;
+                System.out.println(sum);
+                System.out.println(deltaU);
+                Set<Integer> set = run(deltaU, 4);
+                System.out.println(set.toString());
+                resultList.addAll(set);
+                Collections.sort(resultList, Collections.reverseOrder());
+                System.out.println(resultList.toString()+" ЧВ");
+                System.out.println("2x1*"+(phase-resultList.size()));
+                System.out.println(2*(phase-resultList.size())/(u-sum(resultList)));
+                resultString.add(resultList.toString());
                 resultString.add("ЧВ");
-                resultString.add(deltaU+"x1*"+n);
+                resultString.add("2x1*"+(phase-resultList.size()));
+            } else {
+                int fractionalPhases = result.getFractionalPhases();
+                for(int i=1;i<=fractionalPhases;i++){
+                    resultList.add(base+1);
+                }
+                for(int i=1;i<=phases-fractionalPhases;i++){
+                    resultList.add(base);
+                }
             }
             //balancingProcedure(uk, resultList, 1);
             //List<String> resultString = zeroPhasesProcedure(resultList);
@@ -84,123 +86,17 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
         }
     }
 
-    private List<String> zeroPhasesProcedure(List<Integer> resultList) {
-        //calculate number of zero elements;
-        int numberOfZero = findNumberOfElements(resultList,0);
-        if(numberOfZero==0){
-            List<String> result = new ArrayList<>();
-            for(int e:resultList){
-                result.add(String.valueOf(e));
-            }
-            //finish Partial Knitting
-            result.add(" ЧВ");
-            return result;
-        }
-        int greatestDivisor = findGreatestDivisor(numberOfZero);
-        int r;
-        if(greatestDivisor==0){
-            //found prime number
-            greatestDivisor = findGreatestDivisor(numberOfZero+1);
-            r = (numberOfZero+1)/greatestDivisor;
-        } else {
-            r = numberOfZero/greatestDivisor;
-        }
-        //reverse list iteration
-        int tmp = r;
-        for(int i = resultList.size()-1;i>1;i--){
-            if(resultList.get(i)>1){
-                resultList.set(i,resultList.get(i)-1);
-                tmp--;
-                if(tmp==0){
-                    break;
-                }
-            }
-        }
-
-
-        //transform List<Integer> into List<String>
-        //delete zero elements
-        Iterator<Integer> it = resultList.iterator();
-        while(it.hasNext()){
-            if(it.next()==0){
-                it.remove();
-            }
-        }
-        List<String> result = new ArrayList<>();
-        for(int e:resultList){
-            result.add(String.valueOf(e));
-        }
-        //finish Partial Knitting
-        result.add(" ЧВ");
-        //construct additional string
-        String additionalString = r+"x1*"+greatestDivisor;
-        result.add(additionalString);
-        return result;
-    }
-
-    private static int findGreatestDivisor(int num){
-        for(int i=6;i>1;i--){
-            if(num % i == 0){
-                return i;
-            }
-        }
-        //the number is prime
-        return 0;
-    }
-
-    private static int findNumberOfElements(List<Integer> resultList, int e){
-        int i=0;
-        for(int a:resultList){
-            if(a==e){
-                i++;
-            }
-        }
-        return i;
-    }
-
-    private static List<Integer> createIntList(int a){
-        List<Integer> list = new ArrayList<>();
-        if(a<4){
-            list.add(a);
-        } else {
-            if(a % 2==0){
-                int r = a/2;
-                List<Integer> listTmp = createIntList(r);
-                list.addAll(listTmp);
-                list.addAll(listTmp);
-            } else {
-                int r1 = a/2;
-                int r2 = r1+1;
-                list.addAll(createIntList(r1));
-                list.addAll(createIntList(r2));
-            }
-        }
-        return list;
-    }
-
     private static List<Integer> createHeadIntList(int a){
         List<Integer> list = new ArrayList<Integer>();
         list.add(a);
         int i=2;
         int r = a/2;
-        while(r>3) {
+        while(r>=3) {
             list.add(r);
             i=2*i;
             r = a/i;
         };
         return list;
-    }
-
-    private static void tail(List<Integer> list) {
-        int lastNumber = list.get(list.size()-1);
-        if(lastNumber==2) {
-            list.set(list.size()-1, 1);
-            list.add(1);
-        }
-        if(lastNumber==3) {
-            list.set(list.size()-1, 2);
-            list.add(1);
-        }
     }
 
     private static int sum(List<Integer> list){
@@ -212,45 +108,66 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
         return sum;
     }
 
-    private void balancingProcedure(int uk, List<Integer> resultList, int subIndex) {
-        if(uk>resultList.get(0)){
-            int delta = uk-resultList.get(0);
-            List<Integer> subList =  resultList.subList(subIndex, resultList.size());
-            int sum = 0;
-            for(int i:subList){
-                if(i>0) {
-                    sum += i;
-                }
-            }
-            delta = Math.min(sum, delta);
-            if(delta<=subList.size()) {
-                int i=0;
-                int counter = 0;
-                while(counter<delta) {
-                    int index = resultList.size() - 1 - i;
-                    if (resultList.get(index) > 0) {
-                        resultList.set(index, resultList.get(index) - 1);
-                        resultList.set(0, resultList.get(0) + 1);
-                        counter++;
-                    }
-                    i++;
-                }
-            } else {
-                int i=0;
-                int counter = 0;
-                while(counter<subList.size()) {
-                    int index = resultList.size() - 1 - i;
-                    if (resultList.get(index) > 0) {
-                        resultList.set(index, resultList.get(index) - 1);
-                        resultList.set(0, resultList.get(0) + 1);
-                        counter++;
-                    }
-                    i++;
-                }
-            }
-            balancingProcedure(uk/2, resultList.subList(1, resultList.size()), 1);
-            //balancingProcedure((int)uk/2, resultList.subList(2, resultList.size()), 2);
+    static void printSplit(Integer[] arr, int l){
+        for (int i=0; i<l; i++){
+            System.out.print(arr[i]+" ");
         }
+        System.out.println();
+    }
+
+
+    //find partitions
+    static int next(Integer[]arr, int l){
+        int i = l-1;
+        int sum=0;
+
+        do {
+            sum += arr[i--];
+        }  while (i>0 && arr[i-1] <= arr[i]);
+
+        arr[i]++;
+        l=i+sum;
+
+        for (int j=i+1; j<l; j++)
+            arr[j] = 1;
+
+        return l;
+    }
+
+    static Set<Integer> run(int n, int max){
+        int l=n;
+        Integer[] arr = new Integer[n];
+        Set<Integer> tmp = new HashSet<Integer>();
+        for (int i=0; i<n; i++) arr[i] = 1;
+        Set<Integer> converter = new HashSet<Integer>();
+        converter.addAll(Arrays.asList(arr));
+        if(tmp.size()<converter.size()) {
+            tmp.clear();
+            tmp.addAll(converter);
+        }
+        converter.clear();
+        printSplit(arr, n);
+        do {
+            l=next(arr, l);
+            converter.addAll(Arrays.asList(arr));
+            if(tmp.size()<converter.size() && allLessThen(converter, max)) {
+                tmp.clear();
+                tmp.addAll(converter);
+            }
+            converter.clear();
+            printSplit(arr, l);
+
+        } while (l>1);
+        return tmp;
+    }
+
+    static boolean allLessThen(Set<Integer> set, int max) {
+        for(int e:set) {
+            if(e>max) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

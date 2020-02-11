@@ -22,8 +22,8 @@ public class TwoSideCalculationActivity extends AppCompatActivity {
 
     public void calculate(View view) {
         EditText rowsEdit = findViewById(R.id.editRows);
-        EditText uNEdit = findViewById(R.id.editUN);
-        EditText uKEdit = findViewById(R.id.editUK);
+        EditText uNEdit = findViewById(R.id.editU);
+        EditText uKEdit = findViewById(R.id.editUN);
         if(uNEdit.length()==0){
             uNEdit.setError("Веедите число");
             return;
