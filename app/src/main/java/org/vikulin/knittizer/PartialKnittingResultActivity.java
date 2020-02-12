@@ -46,14 +46,20 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                 int phase = phases;
 
                 resultList.addAll(0, createHeadIntList(d));
+                int deltaU = 0;
                 for(int i=resultList.get(resultList.size()-1)-1;i>0;i--) {
+                    int sum = sum(resultList);
+                    int tmp = u-sum-2;
+
+                    if(tmp<0){
+                        break;
+                    }
+                    deltaU = tmp;
                     resultList.add(i);
                 }
                 System.out.println(resultList.toString());
-                int sum = sum(resultList);
+
                 //-2 give us 2 free stitches as result 2*(ph-list size)/deltaU = ph-list size
-                int deltaU = u-sum-2;
-                System.out.println(sum);
                 System.out.println(deltaU);
                 Set<Integer> set = run(deltaU, 4);
                 System.out.println(set.toString());
@@ -117,7 +123,7 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
 
 
     //find partitions
-    static int next(Integer[]arr, int l){
+    static int next(Integer[] arr, int l){
         int i = l-1;
         int sum=0;
 
@@ -135,6 +141,9 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
     }
 
     static Set<Integer> run(int n, int max){
+        if(n<=0){
+            return new HashSet();
+        }
         int l=n;
         Integer[] arr = new Integer[n];
         Set<Integer> tmp = new HashSet<Integer>();
