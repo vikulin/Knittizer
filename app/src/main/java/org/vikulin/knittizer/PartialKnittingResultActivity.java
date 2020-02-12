@@ -17,7 +17,8 @@ import java.util.List;
 public class PartialKnittingResultActivity extends AppCompatActivity {
 
     public static final String RES = "result";
-    public static final String UK  = "uk";
+    public static final String U = "u";
+    public static final String UN = "un";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
         if (extras != null) {
             ExpandableListView resultListView = findViewById(R.id.resultList);
             PartialKnittingResult result = (PartialKnittingResult) extras.getSerializable(RES);
-            int uk = extras.getInt(UK, 0);
+            int un = extras.getInt(UN, 0);
             int base = result.getBase();
             int phases = result.getPhases();
             int fractionalPhases = result.getFractionalPhases();
@@ -38,7 +39,7 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
             for(int i=1;i<=phases-fractionalPhases;i++){
                 resultList.add(base);
             }
-            balancingProcedure(uk, resultList, 1);
+            balancingProcedure(un, resultList, 1);
             List<String> resultString = zeroPhasesProcedure(resultList);
             PartialKnittingExpandableListAdapter adapter = new PartialKnittingExpandableListAdapter(this, resultString, resultList.size());
             resultListView.setAdapter(adapter);
