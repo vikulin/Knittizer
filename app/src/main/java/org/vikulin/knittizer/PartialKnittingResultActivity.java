@@ -11,6 +11,7 @@ import org.vikulin.knittizer.model.PartialKnittingResult;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -70,12 +71,18 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                         int e = resultList.get(index);
                         Set<Integer> add = run(e,4);
                         resultList.remove(index);
-                        resultList.addAll(index, add);
+                        if(u-sum(resultList)-sum(add)==0){
+                            resultList.add(index,e);
+                            break;
+                        } else {
+                            resultList.addAll(index, add);
+                        }
                     }
                 };
                 Collections.sort(resultList, Collections.reverseOrder());
                 System.out.println(resultList.toString()+" ЧВ");
                 System.out.println("2x1*"+(phase-resultList.size()));
+                //30-60-10
                 System.out.println(2*(phase-resultList.size())/(u-sum(resultList)));
                 resultString.add(resultList.toString());
                 resultString.add("ЧВ");
@@ -128,8 +135,8 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
     private static List<Integer> createHeadIntList(int a){
         List<Integer> list = new ArrayList<Integer>();
         list.add(a);
+        int i = 2;
         if(a<20) {
-            int i = 2;
             int r = a / 2;
             while (r >= 3) {
                 list.add(r);
@@ -137,7 +144,6 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                 r = a / i;
             }
         } else {
-            int i = 2;
             int r = a / 4;
             while (r >= 3) {
                 list.add(r);
@@ -148,7 +154,7 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
         return list;
     }
 
-    private static int sum(List<Integer> list){
+    private static int sum(Collection<Integer> list){
         int sum = 0;
         Iterator<Integer> it = list.iterator();
         while(it.hasNext()){
