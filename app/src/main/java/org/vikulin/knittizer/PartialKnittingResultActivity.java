@@ -64,6 +64,15 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                 Set<Integer> set = run(deltaU, 4);
                 System.out.println(set.toString());
                 resultList.addAll(set);
+                while(phase-resultList.size()>3){
+                    int index = getGreaterMinimal(1, resultList);
+                    if(index >= 0){
+                        int e = resultList.get(index);
+                        Set<Integer> add = run(e,4);
+                        resultList.remove(index);
+                        resultList.addAll(index, add);
+                    }
+                };
                 Collections.sort(resultList, Collections.reverseOrder());
                 System.out.println(resultList.toString()+" ЧВ");
                 System.out.println("2x1*"+(phase-resultList.size()));
@@ -90,6 +99,20 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
         } else {
             finish();
         }
+    }
+
+    private static int getGreaterMinimal(int n, List<Integer> resultList){
+        int i = -1;
+        int r = Integer.MAX_VALUE;
+        int index = -1;
+        for(int e:resultList){
+            i++;
+            if(e>n && e<r){
+                r = e;
+                index = i;
+            }
+        }
+        return index;
     }
 
     private static List<Integer> createHeadIntList(int a){
@@ -172,7 +195,7 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
 
     static boolean allLessThen(Set<Integer> set, int max) {
         for(int e:set) {
-            if(e>max) {
+            if(e>max && max!=0) {
                 return false;
             }
         }
