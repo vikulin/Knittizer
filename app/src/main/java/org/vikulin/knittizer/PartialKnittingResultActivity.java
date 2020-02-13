@@ -128,13 +128,23 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
     private static List<Integer> createHeadIntList(int a){
         List<Integer> list = new ArrayList<Integer>();
         list.add(a);
-        int i=2;
-        int r = a/2;
-        while(r>=3) {
-            list.add(r);
-            i=2*i;
-            r = a/i;
-        };
+        if(a<20) {
+            int i = 2;
+            int r = a / 2;
+            while (r >= 3) {
+                list.add(r);
+                i = 2 * i;
+                r = a / i;
+            }
+        } else {
+            int i = 2;
+            int r = a / 4;
+            while (r >= 3) {
+                list.add(r);
+                i = 2 * i;
+                r = a / i;
+            }
+        }
         return list;
     }
 
@@ -176,6 +186,11 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
     static Set<Integer> run(int n, int max){
         if(n<=0){
             return new HashSet();
+        }
+        if(n==1){
+            Set<Integer> set = new HashSet();
+            set.add(1);
+            return set;
         }
         int l=n;
         Integer[] arr = new Integer[n];
