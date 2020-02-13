@@ -64,7 +64,7 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                 Set<Integer> set = run(deltaU, 4);
                 System.out.println(set.toString());
                 resultList.addAll(set);
-                while(phase-resultList.size()>3){
+                while(phase-resultList.size() > 3 && findNumberOfElements(resultList, 1) < 4){
                     int index = getGreaterMinimal(1, resultList);
                     if(index >= 0){
                         int e = resultList.get(index);
@@ -99,6 +99,16 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
         } else {
             finish();
         }
+    }
+
+    private static int findNumberOfElements(List<Integer> resultList, int e){
+        int i=0;
+        for(int a:resultList){
+            if(a==e){
+                i++;
+            }
+        }
+        return i;
     }
 
     private static int getGreaterMinimal(int n, List<Integer> resultList){
