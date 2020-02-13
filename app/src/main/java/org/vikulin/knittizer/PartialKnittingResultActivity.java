@@ -1,10 +1,16 @@
 package org.vikulin.knittizer;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.widget.ExpandableListView;
+
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.LegendRenderer;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import org.vikulin.knittizer.adapter.PartialKnittingExpandableListAdapter;
 import org.vikulin.knittizer.model.PartialKnittingResult;
@@ -39,7 +45,7 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
             int phases = result.getPhases();
 
             List<String> resultString = new ArrayList<>();
-            List<Integer> resultList = new ArrayList<>();
+            ArrayList<Integer> resultList = new ArrayList<>();
             if(un>0){
 
                 //int u = 34;
@@ -103,6 +109,43 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
             PartialKnittingExpandableListAdapter adapter = new PartialKnittingExpandableListAdapter(this, resultString, resultList.size());
             resultListView.setAdapter(adapter);
             resultListView.expandGroup(0);
+
+
+            GraphView graph = (GraphView) findViewById(R.id.graph);
+            LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
+            series.appendData(new DataPoint(0,0), true, 1000);
+            series.appendData(new DataPoint(resultList.get(0),0), true, 1000);
+            int y=0;
+            int x=resultList.get(0);
+            for(int i=1;i<resultList.size();i++){
+                x += resultList.get(i);
+                y += 2;
+                System.out.println(x);
+                series.appendData(new DataPoint(x, y), true, 1000);
+            }
+            graph.setTitle("Схема: ↑ ряды, → петли");
+            series.setTitle("ЧВ");
+            int delta = phases-resultList.size();
+            LineGraphSeries<DataPoint> seriesDecker = new LineGraphSeries<DataPoint>();
+            seriesDecker.setTitle("Деккер");
+            seriesDecker.setDrawDataPoints(true);
+            seriesDecker.setColor(Color.BLUE);
+            seriesDecker.appendData(new DataPoint(x, y), true, 1000);
+            y += delta;
+            x += 1;
+            seriesDecker.appendData(new DataPoint(x, y), true, 1000);
+            y += delta;
+            x += 1;
+            seriesDecker.appendData(new DataPoint(x, y), true, 1000);
+            series.setDrawDataPoints(true);
+            series.setColor(Color.RED);
+            series.setDrawAsPath(true);
+            graph.getLegendRenderer().setVisible(true);
+            graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
+            graph.addSeries(series);
+            graph.addSeries(seriesDecker);
+            graph.getViewport().setYAxisBoundsManual(true);
+            graph.getViewport().setXAxisBoundsManual(true);
         } else {
             finish();
         }
