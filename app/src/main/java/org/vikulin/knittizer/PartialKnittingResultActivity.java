@@ -5,7 +5,10 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LegendRenderer;
@@ -92,7 +95,9 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                 System.out.println(2*(phase-resultList.size())/(u-sum(resultList)));
                 resultString.add(resultList.toString());
                 resultString.add("ЧВ");
-                resultString.add("2x1*"+(phase-resultList.size()));
+                if((phase-resultList.size())>5) {
+                    resultString.add("2x1*" + (phase - resultList.size()));
+                }
             } else {
                 int fractionalPhases = result.getFractionalPhases();
                 for(int i=1;i<=fractionalPhases;i++){
@@ -125,25 +130,29 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
             }
             graph.setTitle("Схема: ↑ ряды, → петли");
             series.setTitle("ЧВ");
+            graph.addSeries(series);
             int delta = phases-resultList.size();
-            LineGraphSeries<DataPoint> seriesDecker = new LineGraphSeries<DataPoint>();
-            seriesDecker.setTitle("Деккер");
-            seriesDecker.setDrawDataPoints(true);
-            seriesDecker.setColor(Color.BLUE);
-            seriesDecker.appendData(new DataPoint(x, y), true, 1000);
-            y += delta;
-            x += 1;
-            seriesDecker.appendData(new DataPoint(x, y), true, 1000);
-            y += delta;
-            x += 1;
-            seriesDecker.appendData(new DataPoint(x, y), true, 1000);
+            if(delta>5) {
+                LineGraphSeries<DataPoint> seriesDecker = new LineGraphSeries<DataPoint>();
+                seriesDecker.setTitle("Деккер");
+                seriesDecker.setDrawDataPoints(true);
+                seriesDecker.setColor(Color.BLUE);
+                seriesDecker.appendData(new DataPoint(x, y), true, 1000);
+                y += delta;
+                x += 1;
+                seriesDecker.appendData(new DataPoint(x, y), true, 1000);
+                y += delta;
+                x += 1;
+                seriesDecker.appendData(new DataPoint(x, y), true, 1000);
+                graph.addSeries(seriesDecker);
+            }
             series.setDrawDataPoints(true);
             series.setColor(Color.RED);
             series.setDrawAsPath(true);
             graph.getLegendRenderer().setVisible(true);
             graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
-            graph.addSeries(series);
-            graph.addSeries(seriesDecker);
+
+
             graph.getViewport().setYAxisBoundsManual(true);
             graph.getViewport().setXAxisBoundsManual(true);
         } else {
@@ -276,4 +285,7 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
         return true;
     }
 
+    public void onClick(View view) {
+        Toast.makeText(PartialKnittingResultActivity.this, "x="+" y=", Toast.LENGTH_LONG);
+    }
 }

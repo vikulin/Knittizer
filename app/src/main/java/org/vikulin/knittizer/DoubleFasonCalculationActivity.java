@@ -104,11 +104,19 @@ public class DoubleFasonCalculationActivity extends AppCompatActivity {
                 //System.out.println("Decimal Part: " + o.toPlainString());
                 if(intValue<rows && intValue>0 && a<=intValue/2 && o.compareTo(new BigDecimal(0.01))<0 && (intValue % a)==0 && ((rows-intValue)%b)==0 && (rows-intValue)/b>1){
                     TwoSidesResult object = new TwoSidesResult();
-                    object.setFirstNumber(intValue/a);
-                    object.setFirstRowPeriod(a);
-                    object.setSecondNumber((rows-intValue)/b);
-                    object.setSecondRowPeriod(b);
-                    object.setStartStitchLessEndStitch(isStartStitchLessEndStitch);
+                    if(a<b) {
+                        object.setFirstNumber(intValue / a);
+                        object.setFirstRowPeriod(a);
+                        object.setSecondNumber((rows - intValue) / b);
+                        object.setSecondRowPeriod(b);
+                        object.setStartStitchLessEndStitch(isStartStitchLessEndStitch);
+                    } else {
+                        object.setFirstNumber((rows - intValue) / b);
+                        object.setFirstRowPeriod(b);
+                        object.setSecondNumber(intValue / a);
+                        object.setSecondRowPeriod(a);
+                        object.setStartStitchLessEndStitch(isStartStitchLessEndStitch);
+                    }
                     resultList.add(object);
                 }
             }
