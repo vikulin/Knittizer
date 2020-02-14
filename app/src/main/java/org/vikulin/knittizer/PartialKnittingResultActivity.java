@@ -106,6 +106,8 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                 for(int i=1;i<=phases-fractionalPhases;i++){
                     resultList.add(base);
                 }
+                resultString.add(resultList.toString());
+                resultString.add("ЧВ");
             }
             //balancingProcedure(uk, resultList, 1);
             //List<String> resultString = zeroPhasesProcedure(resultList);
