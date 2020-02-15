@@ -18,6 +18,7 @@ public class OneSideCalculationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one_side_calculation);
+        getSupportActionBar().setTitle(R.string.one_side_menu);
     }
 
     public void calculate(View view) {

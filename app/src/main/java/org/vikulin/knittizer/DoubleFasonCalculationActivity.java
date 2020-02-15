@@ -18,6 +18,7 @@ public class DoubleFasonCalculationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_double_fason_calculation);
+        getSupportActionBar().setTitle(R.string.double_side);
     }
 
     public void calculate(View view) {

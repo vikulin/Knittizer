@@ -18,6 +18,7 @@ public class TwoSideCalculationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two_side_calculation);
+        getSupportActionBar().setTitle(R.string.two_side_menu);
     }
 
     public void calculate(View view) {
