@@ -33,4 +33,9 @@ public class MainMenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, PartialKnittingCalculationActivity.class);
         startActivity(intent);
     }
+
+    public void onSavedListActivity(View view) {
+        Intent intent = new Intent(this, SavedListActivity.class);
+        startActivity(intent);
+    }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.vikulin.knittizer">
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -8,20 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="org.vikulin.knittizer.PartialKnittingResultActivity"></activity>
-        <activity android:name="org.vikulin.knittizer.PartialKnittingCalculationActivity" />
-        <activity android:name="org.vikulin.knittizer.DoubleFasonCalculationActivity" />
-        <activity android:name="org.vikulin.knittizer.OneSideCalculationActivity" />
-        <activity android:name="org.vikulin.knittizer.TwoSideCalculationActivity"/>
-        <activity android:name="org.vikulin.knittizer.MainMenuActivity">
+        <activity android:name=".SavedListActivity"></activity>
+        <activity
+            android:name=".SavingActivity"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" />
+        <activity android:name=".PartialKnittingResultActivity" />
+        <activity android:name=".PartialKnittingCalculationActivity" />
+        <activity android:name=".DoubleFasonCalculationActivity" />
+        <activity android:name=".OneSideCalculationActivity" />
+        <activity android:name=".TwoSideCalculationActivity" />
+        <activity android:name=".MainMenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="org.vikulin.knittizer.ResultActivity"
+            android:name=".ResultActivity"
             android:label="@string/title_activity_result"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
+
 </manifest>

@@ -1,12 +1,12 @@
 package org.vikulin.knittizer;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
@@ -33,6 +33,7 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
     public static final String RES = "result";
     public static final String UN = "un";
     public static final String U = "u";
+    public static final int SAVE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,9 +110,6 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                 resultString.add(resultList.toString());
                 resultString.add("ЧВ");
             }
-            //balancingProcedure(uk, resultList, 1);
-            //List<String> resultString = zeroPhasesProcedure(resultList);
-
 
             PartialKnittingExpandableListAdapter adapter = new PartialKnittingExpandableListAdapter(this, resultString, resultList.size());
             resultListView.setAdapter(adapter);
@@ -153,7 +151,6 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
             series.setDrawAsPath(true);
             graph.getLegendRenderer().setVisible(true);
             graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
-
 
             graph.getViewport().setYAxisBoundsManual(true);
             graph.getViewport().setXAxisBoundsManual(true);
@@ -287,7 +284,14 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
         return true;
     }
 
-    public void onClick(View view) {
-        Toast.makeText(PartialKnittingResultActivity.this, "x="+" y=", Toast.LENGTH_LONG);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if (resultCode == RESULT_OK) {
+            Toast.makeText(this, "Сохранено", Toast.LENGTH_SHORT).show();
+        }
+        if (resultCode == RESULT_CANCELED) {
+            //nothing
+        }
     }
 }

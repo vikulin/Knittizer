@@ -17,4 +17,5 @@
     <string name="double_side">Двойная убавка или прибавка</string>
     <string name="partial_knitting">Частичное вязание</string>
     <string name="a_n">Единовременная убавка петель (C)</string>
+    <string name="save_name">Введите имя расчета</string>
 </resources>

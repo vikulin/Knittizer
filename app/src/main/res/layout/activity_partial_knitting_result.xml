@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".PartialKnittingResultActivity"
-    android:weightSum="12"
-    android:clickable="false">
+    android:weightSum="12">
 
     <ExpandableListView
         android:id="@+id/resultList"
@@ -16,7 +15,7 @@
         android:choiceMode="singleChoice"
         android:groupIndicator="@null"
         android:listSelector="#DDDDDD"
-        android:clickable="false"/>
+        android:focusable="true"/>
 
     <com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"

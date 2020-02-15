@@ -2,13 +2,18 @@ package org.vikulin.knittizer.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
+import org.vikulin.knittizer.PartialKnittingResultActivity;
 import org.vikulin.knittizer.R;
+import org.vikulin.knittizer.ResultActivity;
+import org.vikulin.knittizer.SavingActivity;
 import org.vikulin.knittizer.model.TwoSidesResult;
 
 import java.util.ArrayList;
@@ -107,15 +112,27 @@ public class ResultExpandableListAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
         ResultHolder holder;
+        final List<Integer> rows = (List<Integer>) getChild(groupPosition, childPosition);
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.list_rows_result, parent, false);
+            Button saveButton = (Button) convertView.findViewById(R.id.saveButton);
+
+            saveButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent((ResultActivity)context, SavingActivity.class);
+                    ArrayList<String> list = new ArrayList<String>();
+                    list.add(rows.toString());
+                    intent.putStringArrayListExtra(SavingActivity.RES, list);
+                    ((ResultActivity)context).startActivityForResult(intent, PartialKnittingResultActivity.SAVE);
+                }
+            });
             holder = new ResultHolder();
             holder.text = convertView.findViewById(R.id.text);
             convertView.setTag(holder);
         } else {
             holder = (ResultHolder) convertView.getTag();
         }
-        List<Integer> rows = (List<Integer>) getChild(groupPosition, childPosition);
+
 
         holder.text.setText(rows.toString());
         return convertView;
