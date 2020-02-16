@@ -125,7 +125,7 @@ public class DoubleFasonCalculationActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra(ResultActivity.RES, resultList);
         intent.putExtra(ResultActivity.START_FROM_ROW, startFromRow);
-        intent.putExtra(ResultActivity.NUMBER_OF_ROW_SERIES, 2);
+        intent.putExtra(ResultActivity.NUMBER_OF_ROW_SERIES, 1);
         startActivity(intent);
     }
 }

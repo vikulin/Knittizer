@@ -50,29 +50,25 @@ public class ResultExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        if(childPosition==0) {
-            List<Integer> rows = new ArrayList<>();
-            TwoSidesResult r = this.list.get(groupPosition);
-            int fr = r.getFirstRowPeriod();
-            int fn = r.getFirstNumber();
-            int rowNumber = startFromRow;
-            for (int i = 1; i <= fn; i++) {
-                rowNumber = rowNumber + fr;
-                rows.add(rowNumber);
-            }
-            return rows;
-        } else {
-            List<Integer> rows = new ArrayList<>();
-            TwoSidesResult r = this.list.get(groupPosition);
-            int fr = r.getSecondRowPeriod();
-            int fn = r.getSecondNumber();
-            int rowNumber = startFromRow + r.getFirstRowPeriod()*r.getFirstNumber();
-            for (int i = 1; i <= fn; i++) {
-                rowNumber = rowNumber + fr;
-                rows.add(rowNumber);
-            }
-            return rows;
+        List<Integer> rows = new ArrayList<>();
+        TwoSidesResult r = this.list.get(groupPosition);
+        int fr = r.getFirstRowPeriod();
+        int fn = r.getFirstNumber();
+        int rowNumber = startFromRow;
+        for (int i = 1; i <= fn; i++) {
+            rowNumber = rowNumber + fr;
+            rows.add(rowNumber);
         }
+
+        fr = r.getSecondRowPeriod();
+        fn = r.getSecondNumber();
+        rowNumber = startFromRow + r.getFirstRowPeriod()*r.getFirstNumber();
+        for (int i = 1; i <= fn; i++) {
+            rowNumber = rowNumber + fr;
+            rows.add(rowNumber);
+        }
+
+        return rows;
     }
 
     @Override
