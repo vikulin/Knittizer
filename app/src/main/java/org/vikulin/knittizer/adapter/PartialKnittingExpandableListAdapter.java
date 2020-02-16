@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.vikulin.knittizer.PartialKnittingResultActivity;
 import org.vikulin.knittizer.R;
