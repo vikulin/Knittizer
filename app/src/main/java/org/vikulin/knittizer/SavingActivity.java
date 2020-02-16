@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -18,7 +16,10 @@ public class SavingActivity extends Activity {
 
     public static final String RES = "result";
     public static final String ACTIVITY = "activity";
-    public static final String PARTIAL_KNITTING = "partial_knitting";
+    public static final int ONE_SIDE_KNITTING = 1;
+    public static final int TWO_SIDE_KNITTING = 2;
+    public static final int DOUBLE_KNITTING = 3;
+    public static final int PARTIAL_KNITTING = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,24 @@ public class SavingActivity extends Activity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             ArrayList<String> result = extras.getStringArrayList(RES);
-            String activity = extras.getString(ACTIVITY);
+            int activity = extras.getInt(ACTIVITY);
+            switch(activity) {
+                case ONE_SIDE_KNITTING :
+                    result.add(0, getResources().getString(R.string.one_side_menu));
+                    break;
+                case TWO_SIDE_KNITTING :
+                    result.add(0, getResources().getString(R.string.two_side_menu));
+                    break;
+                case DOUBLE_KNITTING :
+                    result.add(0, getResources().getString(R.string.double_side));
+                    break;
+                case PARTIAL_KNITTING :
+                    result.add(0, getResources().getString(R.string.partial_knitting));
+                    break;
+                // You can have any number of case statements.
+                default :
+                    // Statements
+            }
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
             EditText savedName = findViewById(R.id.saveName);
             if(savedName.length()==0){

@@ -14,6 +14,8 @@ import org.vikulin.knittizer.model.TwoSidesResult;
 
 import java.util.ArrayList;
 
+import static org.vikulin.knittizer.SavingActivity.ACTIVITY;
+
 public class ResultActivity extends AppCompatActivity {
 
     public static final String RES = "result";
@@ -36,7 +38,8 @@ public class ResultActivity extends AppCompatActivity {
             }
             int startFromRow = extras.getInt(START_FROM_ROW,0);
             int numberOfRowSeries = extras.getInt(NUMBER_OF_ROW_SERIES,1);
-            ResultExpandableListAdapter adapter = new ResultExpandableListAdapter(this, result, startFromRow, numberOfRowSeries);
+            int activity = extras.getInt(ACTIVITY);
+            ResultExpandableListAdapter adapter = new ResultExpandableListAdapter(this, result, startFromRow, numberOfRowSeries, activity);
             resultListView.setAdapter(adapter);
         } else {
             finish();

@@ -25,12 +25,14 @@ public class ResultExpandableListAdapter extends BaseExpandableListAdapter {
     private final Context context;
     private final int startFromRow;
     private final int numberOfRowSeries;
+    private final int activity;
 
-    public ResultExpandableListAdapter(final Context context, List<TwoSidesResult> list, int startFromRow, int numberOfRowSeries){
+    public ResultExpandableListAdapter(final Context context, List<TwoSidesResult> list, int startFromRow, int numberOfRowSeries, int activity){
         this.context = context;
         this.list = list;
         this.startFromRow = startFromRow;
         this.numberOfRowSeries = numberOfRowSeries;
+        this.activity = activity;
     }
 
     @Override
@@ -90,8 +92,7 @@ public class ResultExpandableListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int position, boolean b, View row, ViewGroup parent) {
         ResultHolder holder = null;
         TwoSidesResult r = this.list.get(position);
-        if(row == null)
-        {
+        if(row == null) {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
             row = inflater.inflate(R.layout.list_result, parent, false);
             holder = new ResultHolder();
@@ -105,20 +106,22 @@ public class ResultExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getChildView(final int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
         ResultHolder holder;
         final List<Integer> rows = (List<Integer>) getChild(groupPosition, childPosition);
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.list_rows_result, parent, false);
             Button saveButton = (Button) convertView.findViewById(R.id.saveButton);
-
             saveButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent((ResultActivity)context, SavingActivity.class);
-                    ArrayList<String> list = new ArrayList<String>();
+                    ArrayList<String> list = new ArrayList<>();
+                    TwoSidesResult r = ResultExpandableListAdapter.this.list.get(groupPosition);
+                    list.add(r.toString());
                     list.add(rows.toString());
                     intent.putStringArrayListExtra(SavingActivity.RES, list);
+                    intent.putExtra(SavingActivity.ACTIVITY, activity);
                     ((ResultActivity)context).startActivityForResult(intent, PartialKnittingResultActivity.SAVE);
                 }
             });
@@ -139,8 +142,7 @@ public class ResultExpandableListAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
-    static class ResultHolder
-    {
+    static class ResultHolder {
         TextView text;
     }
 }

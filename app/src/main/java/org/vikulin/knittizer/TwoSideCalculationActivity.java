@@ -86,6 +86,7 @@ public class TwoSideCalculationActivity extends AppCompatActivity {
             resultList.add(object);
             Intent intent = new Intent(this, ResultActivity.class);
             intent.putExtra(ResultActivity.RES, resultList);
+            intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.TWO_SIDE_KNITTING);
             intent.putExtra(ResultActivity.NUMBER_OF_ROW_SERIES, 1);
             startActivity(intent);
             return;
@@ -117,6 +118,7 @@ public class TwoSideCalculationActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra(ResultActivity.RES, resultList);
         intent.putExtra(ResultActivity.START_FROM_ROW, startFromRow);
+        intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.TWO_SIDE_KNITTING);
         intent.putExtra(ResultActivity.NUMBER_OF_ROW_SERIES, 1);
         startActivity(intent);
     }

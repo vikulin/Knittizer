@@ -8,14 +8,7 @@
     android:background="@color/ic_launcher_background"
     tools:context=".SavingActivity">
 
-        <ImageView
-            android:src="@mipmap/ic_launcher"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:scaleType="center"
-            android:background="@color/colorPrimary"
-            android:contentDescription="@string/app_name" />
-        <EditText
+    <EditText
             android:id="@+id/saveName"
             android:inputType="textEmailAddress"
             android:layout_width="match_parent"
