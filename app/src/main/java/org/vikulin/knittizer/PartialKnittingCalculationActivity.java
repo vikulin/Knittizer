@@ -15,6 +15,7 @@ public class PartialKnittingCalculationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partial_knitting_calculation);
+        getSupportActionBar().setTitle(R.string.partial_knitting);
     }
 
     public void calculate(View view) {

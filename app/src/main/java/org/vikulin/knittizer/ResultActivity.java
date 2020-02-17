@@ -1,14 +1,20 @@
 package org.vikulin.knittizer;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
+
 import org.vikulin.knittizer.adapter.ResultExpandableListAdapter;
 import org.vikulin.knittizer.model.TwoSidesResult;
 
 import java.util.ArrayList;
+
+import static org.vikulin.knittizer.SavingActivity.ACTIVITY;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -32,12 +38,23 @@ public class ResultActivity extends AppCompatActivity {
             }
             int startFromRow = extras.getInt(START_FROM_ROW,0);
             int numberOfRowSeries = extras.getInt(NUMBER_OF_ROW_SERIES,1);
-            ResultExpandableListAdapter adapter = new ResultExpandableListAdapter(this, result, startFromRow, numberOfRowSeries);
+            int activity = extras.getInt(ACTIVITY);
+            ResultExpandableListAdapter adapter = new ResultExpandableListAdapter(this, result, startFromRow, numberOfRowSeries, activity);
             resultListView.setAdapter(adapter);
         } else {
             finish();
         }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if (resultCode == RESULT_OK) {
+            Toast.makeText(this, "Сохранено", Toast.LENGTH_SHORT).show();
+        }
+        if (resultCode == RESULT_CANCELED) {
+            //nothing
+        }
     }
 
 }

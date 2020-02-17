@@ -18,12 +18,13 @@ public class TwoSideCalculationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two_side_calculation);
+        getSupportActionBar().setTitle(R.string.two_side_menu);
     }
 
     public void calculate(View view) {
         EditText rowsEdit = findViewById(R.id.editRows);
-        EditText uNEdit = findViewById(R.id.editUN);
-        EditText uKEdit = findViewById(R.id.editUK);
+        EditText uNEdit = findViewById(R.id.editU);
+        EditText uKEdit = findViewById(R.id.editUN);
         if(uNEdit.length()==0){
             uNEdit.setError("Веедите число");
             return;
@@ -85,7 +86,8 @@ public class TwoSideCalculationActivity extends AppCompatActivity {
             resultList.add(object);
             Intent intent = new Intent(this, ResultActivity.class);
             intent.putExtra(ResultActivity.RES, resultList);
-            intent.putExtra(ResultActivity.NUMBER_OF_ROW_SERIES, 2);
+            intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.TWO_SIDE_KNITTING);
+            intent.putExtra(ResultActivity.NUMBER_OF_ROW_SERIES, 1);
             startActivity(intent);
             return;
         }
@@ -116,7 +118,8 @@ public class TwoSideCalculationActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra(ResultActivity.RES, resultList);
         intent.putExtra(ResultActivity.START_FROM_ROW, startFromRow);
-        intent.putExtra(ResultActivity.NUMBER_OF_ROW_SERIES, 2);
+        intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.TWO_SIDE_KNITTING);
+        intent.putExtra(ResultActivity.NUMBER_OF_ROW_SERIES, 1);
         startActivity(intent);
     }
 }

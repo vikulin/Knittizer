@@ -2,8 +2,8 @@
     <string name="app_name">Knittizer</string>
     <string name="title_activity_result">Результат</string>
     <string name="a_b">Количество петель (A)</string>
-    <string name="n_a_b">Начальное количество петель (A или B)</string>
-    <string name="k_a_b">Конечное количество петель (A или B)</string>
+    <string name="n_a_b">Количество петель A</string>
+    <string name="k_a_b">Количество петель B</string>
     <string name="c_b">Количество рядов (B)</string>
     <string name="c_c">Количество рядов (C)</string>
     <string name="or">или</string>
@@ -11,10 +11,11 @@
     <string name="k_c">Конечный ряд</string>
     <string name="calculate">Подсчитать</string>
     <string name="description_two_side">Расчёт ритма убавок или прибавок в вязаном изделии</string>
-    <string name="description_two_side_schema">Схема для прибавок или убавок рукава</string>
-    <string name="two_side_menu">Убавки или прибавки с двух сторон</string>
-    <string name="one_side_menu">Убавки или прибавки с одной стороны</string>
-    <string name="double_side">Двойная \"фасонная\" убавка или прибавка</string>
+    <string name="description_two_side_schema">Схема для прибавок или убавок</string>
+    <string name="two_side_menu">Парные убавки или прибавки</string>
+    <string name="one_side_menu">Непарные убавки или прибавки</string>
+    <string name="double_side">Двойная убавка или прибавка</string>
     <string name="partial_knitting">Частичное вязание</string>
-    <string name="a_n">Начальное количество убавок (C)</string>
+    <string name="a_n">Единовременная убавка петель (C)</string>
+    <string name="save_name">Введите имя расчета</string>
 </resources>

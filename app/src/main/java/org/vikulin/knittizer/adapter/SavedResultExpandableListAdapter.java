@@ -1,53 +1,58 @@
 package org.vikulin.knittizer.adapter;
 
+import android.widget.BaseExpandableListAdapter;
+
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.vikulin.knittizer.PartialKnittingResultActivity;
 import org.vikulin.knittizer.R;
-import org.vikulin.knittizer.SavingActivity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdapter {
+public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter {
 
-    private final List<String> list;
+    private final Map<String, ?> map;
+    private final List<String> keys;
     private final Context context;
-    private final int phaseNumber;
 
-    public PartialKnittingExpandableListAdapter(final Context context, List<String> list, int phaseNumber){
+    public SavedResultExpandableListAdapter(final Context context, Map<String, ?> map){
         this.context = context;
-        this.list = list;
-        this.phaseNumber = phaseNumber;
+        this.map = map;
+        this.keys = new ArrayList<>(map.keySet());
     }
 
     @Override
     public int getGroupCount() {
-        return 1;
+        return this.keys.size();
     }
 
     @Override
     public int getChildrenCount(int i) {
-        return 1;
+        return ((Set<String>)map.get(this.keys.get(i))).size();
     }
 
     @Override
     public Object getGroup(int i) {
-        return this.list.get(i);
+        return this.keys.get(i);
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return this.list;
+        Set<String> savedResults = (Set<String>) map.get(this.keys.get(groupPosition));
+        if(savedResults!=null){
+            return new ArrayList<>(savedResults).get(childPosition);
+        } else {
+            return "";
+        }
     }
 
     @Override
@@ -68,6 +73,7 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
     @Override
     public View getGroupView(int position, boolean b, View row, ViewGroup parent) {
         ResultHolder holder = null;
+        String r = this.keys.get(position);
         if(row == null)
         {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
@@ -78,7 +84,7 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
         } else {
             holder = (ResultHolder)row.getTag();
         }
-        holder.text.setText("Всего фаз "+phaseNumber);
+        holder.text.setText(r.toString());
         return row;
     }
 
@@ -86,27 +92,16 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
         ResultHolder holder;
-        final ArrayList<String> rows = (ArrayList<String>) getChild(groupPosition, childPosition);
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.list_rows_result, parent, false);
-            Button saveButton = (Button) convertView.findViewById(R.id.saveButton);
-            saveButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent((PartialKnittingResultActivity)context, SavingActivity.class);
-                    intent.putStringArrayListExtra(SavingActivity.RES, rows);
-                    intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.PARTIAL_KNITTING);
-                    ((PartialKnittingResultActivity)context).startActivityForResult(intent, PartialKnittingResultActivity.SAVE);
-                }
-            });
+            convertView = LayoutInflater.from(context).inflate(R.layout.list_rows_saved_result, parent, false);
             holder = new ResultHolder();
             holder.text = convertView.findViewById(R.id.text);
             convertView.setTag(holder);
         } else {
             holder = (ResultHolder) convertView.getTag();
         }
-
-
-        holder.text.setText(TextUtils.join(", ", rows));
+        String row = (String)getChild(groupPosition, childPosition);
+        holder.text.setText(row);
         return convertView;
     }
 
@@ -115,7 +110,8 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
         return true;
     }
 
-    static class ResultHolder {
+    static class ResultHolder
+    {
         TextView text;
     }
 }

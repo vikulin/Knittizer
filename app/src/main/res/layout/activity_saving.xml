@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/ic_launcher_background"
+    tools:context=".SavingActivity">
+
+    <EditText
+            android:id="@+id/saveName"
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:hint="@string/save_name" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="10">
+            <Button
+                android:id="@+id/ok"
+                android:orientation="horizontal"
+                android:layout_weight="5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:background="@drawable/button_bg"
+                android:textColor="@color/ic_launcher_background"
+                android:drawablePadding="3dp"
+                android:text="Сохранить"
+                android:onClick="onSave"/>
+            <Button
+                android:id="@+id/cancel"
+                android:layout_weight="5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:background="@drawable/button_bg"
+                android:textColor="@color/ic_launcher_background"
+                android:drawablePadding="3dp"
+                android:text="Отменить"
+                android:onClick="onCancel"/>
+
+        </LinearLayout>
+    </LinearLayout>
