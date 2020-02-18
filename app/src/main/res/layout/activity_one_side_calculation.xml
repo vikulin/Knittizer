@@ -45,13 +45,13 @@
                 android:layout_marginTop="42dp"
                 android:text="@string/n_a_b"
                 android:textSize="16dp"
-                app:layout_constraintEnd_toStartOf="@+id/editU"
+                app:layout_constraintEnd_toStartOf="@+id/editW"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editU"
+                android:id="@+id/editW"
                 android:layout_width="50dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="44dp"
@@ -69,13 +69,13 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/k_a_b"
                 android:textSize="16dp"
-                app:layout_constraintEnd_toStartOf="@+id/editUN"
+                app:layout_constraintEnd_toStartOf="@+id/editH"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/A" />
 
             <EditText
-                android:id="@+id/editUN"
+                android:id="@+id/editH"
                 android:layout_width="50dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="44dp"
@@ -83,7 +83,7 @@
                 android:inputType="number"
                 android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editU" />
+                app:layout_constraintTop_toBottomOf="@+id/editW" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
                 android:inputType="number"
                 android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editUN" />
+                app:layout_constraintTop_toBottomOf="@+id/editH" />
 
             <EditText
                 android:id="@+id/editRowN"

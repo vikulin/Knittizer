@@ -23,8 +23,8 @@ public class OneSideCalculationActivity extends AppCompatActivity {
 
     public void calculate(View view) {
         EditText rowsEdit = findViewById(R.id.editRows);
-        EditText uNEdit = findViewById(R.id.editU);
-        EditText uKEdit = findViewById(R.id.editUN);
+        EditText uNEdit = findViewById(R.id.editW);
+        EditText uKEdit = findViewById(R.id.editH);
         if(uNEdit.length()==0){
             uNEdit.setError("Веедите число");
             return;

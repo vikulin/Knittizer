@@ -20,8 +20,8 @@ public class PartialKnittingCalculationActivity extends AppCompatActivity {
 
     public void calculate(View view) {
         EditText rowsEdit = findViewById(R.id.editRows);
-        EditText uEdit = findViewById(R.id.editU);
-        EditText uNEdit = findViewById(R.id.editUN);
+        EditText uEdit = findViewById(R.id.editW);
+        EditText uNEdit = findViewById(R.id.editH);
         if(rowsEdit.length()==0){
             rowsEdit.setError("Веедите число");
             return;

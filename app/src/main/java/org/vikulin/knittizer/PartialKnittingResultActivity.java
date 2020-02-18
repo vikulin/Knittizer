@@ -111,7 +111,7 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                 resultString.add("ЧВ");
             }
 
-            PartialKnittingExpandableListAdapter adapter = new PartialKnittingExpandableListAdapter(this, resultString, resultList.size());
+            PartialKnittingExpandableListAdapter adapter = new PartialKnittingExpandableListAdapter(this, resultString, "Всего фаз:"+resultList.size(), SAVE);
             resultListView.setAdapter(adapter);
             resultListView.expandGroup(0);
 
@@ -286,7 +286,7 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             Toast.makeText(this, "Сохранено", Toast.LENGTH_SHORT).show();
         }
