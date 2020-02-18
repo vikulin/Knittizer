@@ -25,7 +25,7 @@ import java.util.Set;
 
 public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter {
 
-    private final Map<String, ?> map;
+    private Map<String, ?> map;
     private List<String> keys;
     private final Context context;
 
@@ -119,6 +119,7 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
                                     } else {
                                         preferences.edit().putStringSet(r, set).apply();
                                     }
+                                    map = preferences.getAll();
                                     SavedResultExpandableListAdapter.this.keys = new ArrayList<>(map.keySet());
                                     SavedResultExpandableListAdapter.this.notifyDataSetChanged();
                                 }})
@@ -141,8 +142,7 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
         return true;
     }
 
-    static class ResultHolder
-    {
+    static class ResultHolder {
         TextView text;
     }
 }
