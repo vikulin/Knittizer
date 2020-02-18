@@ -37,6 +37,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/button">
+
+            <TextView
+                android:id="@+id/A"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:text="@string/n_a_b"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/editU"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <EditText
                 android:id="@+id/editU"
                 android:layout_width="50dp"
@@ -44,30 +57,50 @@
                 android:layout_marginStart="44dp"
                 android:layout_marginTop="32dp"
                 android:ems="10"
-                android:hint="@string/n_a_b"
                 android:inputType="number"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/B"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/k_a_b"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/editUN"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/A" />
+
             <EditText
                 android:id="@+id/editUN"
                 android:layout_width="50dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="44dp"
                 android:ems="10"
-                android:hint="@string/k_a_b"
                 android:inputType="number"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editU" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/c_c"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/editRows"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/B" />
             <EditText
                 android:id="@+id/editRows"
                 android:layout_width="50dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="44dp"
                 android:ems="10"
-                android:hint="@string/c_c"
                 android:inputType="number"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
