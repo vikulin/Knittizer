@@ -21,6 +21,6 @@
     <string name="a">Ширина</string>
     <string name="b">Высота</string>
     <string name="sample_calculate_menu">Расчёт образца</string>
-    <string name="an">Петли</string>
-    <string name="bn">Ряды</string>
+    <string name="an">Петли(A)</string>
+    <string name="bn">Ряды(B)</string>
 </resources>

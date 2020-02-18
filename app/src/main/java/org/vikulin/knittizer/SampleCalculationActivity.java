@@ -37,10 +37,29 @@ public class SampleCalculationActivity extends AppCompatActivity {
             editR.setError("Веедите число");
             return;
         }
-
+        int u = Integer.parseInt(editU.getText().toString());
+        double w = Double.parseDouble(editW.getText().toString());
+        int r = Integer.parseInt(editR.getText().toString());
+        double h = Double.parseDouble(editH.getText().toString());
+        if(u==0){
+            editU.setError("Веедите число > 0");
+            return;
+        }
+        if(w==0d){
+            editW.setError("Веедите число > 0");
+            return;
+        }
+        if(r==0){
+            editR.setError("Веедите число > 0");
+            return;
+        }
+        if(h==0d){
+            editH.setError("Веедите число > 0");
+            return;
+        }
         //calculate density
-        double densityW = Integer.parseInt(editU.getText().toString())/Double.parseDouble(editW.getText().toString());
-        double densityH = Integer.parseInt(editR.getText().toString())/Double.parseDouble(editH.getText().toString());
+        double densityW = u/w;
+        double densityH = r/h;
 
         Intent intent = new Intent(this, SampleResultActivity.class);
         intent.putExtra(SampleResultActivity.DW, densityW);
