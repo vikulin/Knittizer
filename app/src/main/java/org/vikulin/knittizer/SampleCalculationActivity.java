@@ -13,6 +13,7 @@ public class SampleCalculationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample_calculation);
+        getSupportActionBar().setTitle(R.string.sample_calculate_menu);
     }
 
     public void calculate(View view) {
