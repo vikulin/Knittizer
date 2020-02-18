@@ -18,6 +18,35 @@
         android:background="@drawable/button"
         android:clickable="true"
         android:weightSum="12"
+        android:onClick="onSampleCalculationActivity"
+        android:paddingRight="10dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:layout_weight="9"
+            android:src="@drawable/sample_icon"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/colorPrimaryText"
+            android:gravity="center_vertical"
+            android:textAlignment="gravity"
+            android:textSize="16dp"
+            android:textAllCaps="true"
+            android:layout_weight="3"
+            android:text="@string/sample_calculate_menu"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:background="@drawable/button"
+        android:clickable="true"
+        android:weightSum="12"
         android:onClick="onTwoSideCalculationActivity"
         android:paddingRight="10dp">
         <ImageView
@@ -27,7 +56,7 @@
             android:scaleType="fitCenter"
             android:layout_weight="9"
             android:src="@drawable/rukav_1"/>
-        <TextView android:id="@+id/main_generateWallet"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="sans-serif"
@@ -160,32 +189,6 @@
             android:textAllCaps="true"
             android:layout_weight="3"
             android:text="Избранное"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:background="@drawable/button"
-        android:clickable="true"
-        android:paddingRight="10dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            android:scaleType="fitCenter"/>
-        <TextView
-            android:id="@+id/main_viewTransactionList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/colorPrimaryText"
-            android:gravity="center_vertical"
-            android:textAlignment="gravity"
-            android:textSize="16dp"
-            android:textAllCaps="true"
-            android:text=""
             />
     </LinearLayout>
 </LinearLayout>

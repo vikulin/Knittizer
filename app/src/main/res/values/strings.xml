@@ -20,4 +20,5 @@
     <string name="save_name">Введите имя расчета</string>
     <string name="a">Ширина</string>
     <string name="b">Высота</string>
+    <string name="sample_calculate_menu">Расчёт образца</string>
 </resources>
