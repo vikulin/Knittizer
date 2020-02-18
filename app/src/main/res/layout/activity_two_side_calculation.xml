@@ -82,7 +82,7 @@
                 android:layout_marginStart="44dp"
                 android:ems="10"
                 android:inputType="number"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editU" />
 
@@ -103,7 +103,7 @@
                 android:layout_marginStart="44dp"
                 android:ems="10"
                 android:inputType="number"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editUN" />
 

@@ -2,10 +2,10 @@
     <string name="app_name">Knittizer</string>
     <string name="title_activity_result">Результат</string>
     <string name="a_b">Количество петель (A)</string>
-    <string name="n_a_b">A=</string>
-    <string name="k_a_b">B=</string>
+    <string name="n_a_b">A</string>
+    <string name="k_a_b">B</string>
     <string name="c_b">B</string>
-    <string name="c_c">C=</string>
+    <string name="c_c">C</string>
     <string name="or">или</string>
     <string name="n_c">Начальный ряд</string>
     <string name="k_c">Конечный ряд</string>
@@ -16,6 +16,6 @@
     <string name="one_side_menu">Непарные убавки или прибавки</string>
     <string name="double_side">Двойная убавка или прибавка</string>
     <string name="partial_knitting">Частичное вязание</string>
-    <string name="a_n">Единовременная убавка петель (C)</string>
+    <string name="a_n">единовременная убавка петель (C)</string>
     <string name="save_name">Введите имя расчета</string>
 </resources>
