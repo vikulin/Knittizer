@@ -68,7 +68,7 @@
                 android:scaleType="fitCenter"
                 android:layout_weight="9"
                 android:src="@drawable/rukav_1"/>
-            <TextView android:id="@+id/main_generateWallet"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif"
@@ -78,7 +78,8 @@
                 android:textSize="16dp"
                 android:textAllCaps="true"
                 android:layout_weight="3"
-                android:text="@string/two_side_menu"/>
+                android:text="@string/double_side"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -98,7 +99,6 @@
                 android:layout_weight="9"
                 android:src="@drawable/spinka_1"/>
             <TextView
-                android:id="@+id/main_sendEther"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif"
@@ -108,12 +108,9 @@
                 android:textSize="16dp"
                 android:textAllCaps="true"
                 android:layout_weight="3"
-                android:text="@string/one_side_menu"
-                />
+                android:text="@string/one_side_menu" />
         </LinearLayout>
-
     </LinearLayout>
-
     <LinearLayout
         android:layout_weight="1"
         android:layout_width="0dp"
@@ -142,20 +139,36 @@
                 android:scaleType="fitCenter"
                 android:layout_weight="9"
                 android:src="@drawable/rukav_1"/>
-            <TextView
-                android:id="@+id/main_sendEtherToEmail"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="sans-serif"
-                android:textColor="@color/colorPrimaryText"
-                android:gravity="center_vertical"
-                android:textAlignment="gravity"
-                android:textSize="16dp"
-                android:textAllCaps="true"
                 android:layout_weight="3"
-                android:text="@string/double_side"
-                />
+                android:gravity="center_vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:id="@+id/mainTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textAlignment="gravity"
+                        android:textSize="16dp"
+                        android:textAllCaps="true"
+                        android:text="@string/two_side_menu"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/mainTitle"
+                        android:text="''Фасонные''"/>
+
+                </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -174,7 +187,6 @@
                 android:layout_weight="9"
                 android:src="@drawable/partial_1"/>
             <TextView
-                android:id="@+id/main_receivePayment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif"
@@ -204,7 +216,6 @@
                 android:layout_weight="9"
                 android:src="@drawable/save_1"/>
             <TextView
-                android:id="@+id/main_deployContract"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif"

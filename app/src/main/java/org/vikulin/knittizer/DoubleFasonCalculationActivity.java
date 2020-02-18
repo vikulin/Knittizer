@@ -18,7 +18,7 @@ public class DoubleFasonCalculationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_double_fason_calculation);
-        getSupportActionBar().setTitle(R.string.double_side);
+        getSupportActionBar().setTitle(R.string.two_side_menu);
     }
 
     public void calculate(View view) {
@@ -86,7 +86,7 @@ public class DoubleFasonCalculationActivity extends AppCompatActivity {
             resultList.add(object);
             Intent intent = new Intent(this, ResultActivity.class);
             intent.putExtra(ResultActivity.RES, resultList);
-            intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.DOUBLE_KNITTING);
+            intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.TWO_SIDE_KNITTING);
             intent.putExtra(ResultActivity.NUMBER_OF_ROW_SERIES, 1);
             startActivity(intent);
             return;
