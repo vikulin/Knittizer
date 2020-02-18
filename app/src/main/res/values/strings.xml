@@ -18,4 +18,6 @@
     <string name="partial_knitting">Частичное вязание</string>
     <string name="a_n">единовременная убавка петель (C)</string>
     <string name="save_name">Введите имя расчета</string>
+    <string name="a">Ширина</string>
+    <string name="b">Высота</string>
 </resources>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".SampleCalculationActivity">
+    <LinearLayout
+        android:id="@+id/space"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_above="@id/button">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxHeight="280dp"
+            android:background="@color/cardview_light_background"
+            android:contentDescription="@string/description_two_side_schema"
+            android:src="@drawable/sample_1" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:onClick="calculate"
+        android:text="@string/calculate"
+        android:background="@drawable/button_bg"
+        android:textColor="@color/ic_launcher_background"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/button">
+
+            <TextView
+                android:id="@+id/A"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="42dp"
+                android:text="@string/a"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/editU"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editU"
+                android:layout_width="50dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:inputType="number"
+                android:textSize="16dp"
+                android:hint="см"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/B"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/b"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/editUN"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/A" />
+
+            <EditText
+                android:id="@+id/editUN"
+                android:layout_width="50dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="64dp"
+                android:ems="10"
+                android:inputType="number"
+                android:textSize="16dp"
+                android:hint="см"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editU" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</RelativeLayout>
