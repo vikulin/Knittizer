@@ -11,17 +11,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_above="@id/button">
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:maxHeight="300dp"
-
-        android:background="@color/cardview_light_background"
-        android:contentDescription="@string/description_two_side_schema"
-        android:src="@drawable/spinka_1" />
-</LinearLayout>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxHeight="280dp"
+            android:background="@color/cardview_light_background"
+            android:contentDescription="@string/description_two_side_schema"
+            android:src="@drawable/spinka_1" />
+    </LinearLayout>
     <Button
         android:id="@+id/button"
         android:layout_alignParentBottom="true"
@@ -38,76 +37,66 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/button">
-
             <EditText
                 android:id="@+id/editU"
-                android:layout_width="62dp"
+                android:layout_width="50dp"
                 android:layout_height="42dp"
-                android:layout_marginEnd="84dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="32dp"
                 android:ems="10"
                 android:hint="@string/n_a_b"
                 android:inputType="number"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <EditText
                 android:id="@+id/editUN"
-                android:layout_width="62dp"
+                android:layout_width="50dp"
                 android:layout_height="42dp"
-                android:layout_marginEnd="84dp"
+                android:layout_marginStart="44dp"
                 android:ems="10"
                 android:hint="@string/k_a_b"
                 android:inputType="number"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editU" />
 
             <EditText
                 android:id="@+id/editRows"
-                android:layout_width="62dp"
+                android:layout_width="50dp"
                 android:layout_height="42dp"
-                android:layout_marginEnd="84dp"
+                android:layout_marginStart="44dp"
                 android:ems="10"
                 android:hint="@string/c_c"
                 android:inputType="number"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editUN" />
 
             <EditText
                 android:id="@+id/editRowN"
                 android:layout_width="137dp"
                 android:layout_height="42dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginTop="74dp"
+                android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:hint="@string/n_c"
                 android:inputType="number"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/or" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/editRowK"
                 android:layout_width="137dp"
                 android:layout_height="42dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:hint="@string/k_c"
                 android:inputType="number"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editRowN"
-                 />
-
-            <TextView
-                android:id="@+id/or"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="84dp"
-                android:text="@string/or"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editRows" />
+                app:layout_constraintTop_toBottomOf="@+id/editRowN" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
