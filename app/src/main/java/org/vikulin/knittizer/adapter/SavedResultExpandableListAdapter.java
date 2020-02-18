@@ -1,5 +1,8 @@
 package org.vikulin.knittizer.adapter;
 
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.widget.BaseExpandableListAdapter;
 
 import android.app.Activity;
@@ -9,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import org.vikulin.knittizer.R;
 
@@ -21,7 +26,7 @@ import java.util.Set;
 public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter {
 
     private final Map<String, ?> map;
-    private final List<String> keys;
+    private List<String> keys;
     private final Context context;
 
     public SavedResultExpandableListAdapter(final Context context, Map<String, ?> map){
@@ -89,18 +94,44 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getChildView(final int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
         ResultHolder holder;
+        final String row = (String)getChild(groupPosition, childPosition);
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.list_rows_saved_result, parent, false);
+            Button deleteButton = convertView.findViewById(R.id.deleteButton);
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+
+                    new AlertDialog.Builder(context)
+                            .setTitle("Сообщение")
+                            .setMessage("Вы действительно желаете удалить это сохранение?")
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(((Activity)context).getBaseContext());
+                                    String r = SavedResultExpandableListAdapter.this.keys.get(groupPosition);
+                                    Set<String> set = preferences.getStringSet(r, new HashSet());
+                                    set.remove(row);
+                                    if(set.size()==0){
+                                        preferences.edit().remove(r).apply();
+                                    } else {
+                                        preferences.edit().putStringSet(r, set).apply();
+                                    }
+                                    SavedResultExpandableListAdapter.this.keys = new ArrayList<>(map.keySet());
+                                    SavedResultExpandableListAdapter.this.notifyDataSetChanged();
+                                }})
+                            .setNegativeButton(android.R.string.no, null).show();
+                }
+            });
             holder = new ResultHolder();
             holder.text = convertView.findViewById(R.id.text);
             convertView.setTag(holder);
         } else {
             holder = (ResultHolder) convertView.getTag();
         }
-        String row = (String)getChild(groupPosition, childPosition);
+
         holder.text.setText(row);
         return convertView;
     }
