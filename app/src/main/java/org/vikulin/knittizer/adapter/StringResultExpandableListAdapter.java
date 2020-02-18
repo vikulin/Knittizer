@@ -16,13 +16,13 @@ import org.vikulin.knittizer.SavingActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdapter {
+public class StringResultExpandableListAdapter extends BaseExpandableListAdapter {
 
     private final List<String> list;
     private final Context context;
     private final String groupTitle;
     private final int activity;
-    public PartialKnittingExpandableListAdapter(final Context context, List<String> list, String groupTitle, final int activity){
+    public StringResultExpandableListAdapter(final Context context, List<String> list, String groupTitle, final int activity){
         this.context = context;
         this.list = list;
         this.groupTitle = groupTitle;
@@ -93,7 +93,7 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
                 public void onClick(View v) {
                     Intent intent = new Intent(context, SavingActivity.class);
                     intent.putStringArrayListExtra(SavingActivity.RES, rows);
-                    intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.PARTIAL_KNITTING);
+                    intent.putExtra(SavingActivity.ACTIVITY, activity);
                     ((Activity)context).startActivityForResult(intent, activity);
                 }
             });

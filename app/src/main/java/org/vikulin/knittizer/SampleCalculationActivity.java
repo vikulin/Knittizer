@@ -39,7 +39,7 @@ public class SampleCalculationActivity extends AppCompatActivity {
 
         //calculate density
         double densityW = Integer.parseInt(editU.getText().toString())/Double.parseDouble(editW.getText().toString());
-        double densityH = Integer.parseInt(editH.getText().toString())/Double.parseDouble(editR.getText().toString());
+        double densityH = Integer.parseInt(editR.getText().toString())/Double.parseDouble(editH.getText().toString());
 
         Intent intent = new Intent(this, SampleResultActivity.class);
         intent.putExtra(SampleResultActivity.DW, densityW);

@@ -15,7 +15,7 @@ import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import org.vikulin.knittizer.adapter.PartialKnittingExpandableListAdapter;
+import org.vikulin.knittizer.adapter.StringResultExpandableListAdapter;
 import org.vikulin.knittizer.model.PartialKnittingResult;
 
 import java.util.ArrayList;
@@ -111,7 +111,7 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                 resultString.add("ЧВ");
             }
 
-            PartialKnittingExpandableListAdapter adapter = new PartialKnittingExpandableListAdapter(this, resultString, "Всего фаз:"+resultList.size(), SAVE);
+            StringResultExpandableListAdapter adapter = new StringResultExpandableListAdapter(this, resultString, "Всего фаз:"+resultList.size(), SAVE);
             resultListView.setAdapter(adapter);
             resultListView.expandGroup(0);
 

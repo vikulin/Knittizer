@@ -8,8 +8,7 @@ import android.os.Bundle;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
-import org.vikulin.knittizer.adapter.PartialKnittingExpandableListAdapter;
-import org.vikulin.knittizer.model.PartialKnittingResult;
+import org.vikulin.knittizer.adapter.StringResultExpandableListAdapter;
 
 import java.util.ArrayList;
 
@@ -30,9 +29,9 @@ public class SampleResultActivity extends AppCompatActivity {
             double dh = extras.getDouble(DH);
 
             ArrayList<String> resultString = new ArrayList<>();
-            resultString.add("Горизонтальная:"+String.format("%.2f", dw));
-            resultString.add("Вертикальная:"+String.format("%.2f", dh));
-            PartialKnittingExpandableListAdapter adapter = new PartialKnittingExpandableListAdapter(this, resultString, "Плотность образца", SAVE);
+            resultString.add(String.format("%.2f", dw)+"п/см");
+            resultString.add(String.format("%.2f", dh)+"р/см");
+            StringResultExpandableListAdapter adapter = new StringResultExpandableListAdapter(this, resultString, "Плотность образца", SAVE);
             resultListView.setAdapter(adapter);
             resultListView.expandGroup(0);
         } else {
