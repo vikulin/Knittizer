@@ -23,7 +23,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void onTwoSideCalculationActivity(View view) {
-        Intent intent = new Intent(this, TwoSideCalculationActivity.class);
+        Intent intent = new Intent(this, DoubleSideFasonCalculationActivity.class);
         startActivity(intent);
     }
 
@@ -33,7 +33,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void onDoubleFasonCalculationActivity(View view) {
-        Intent intent = new Intent(this, DoubleFasonCalculationActivity.class);
+        Intent intent = new Intent(this, TwoSideCalculationActivity.class);
         startActivity(intent);
     }
 
