@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
@@ -32,6 +34,7 @@ public class ResultActivity extends AppCompatActivity {
         if (extras != null) {
             ExpandableListView resultListView = findViewById(R.id.resultList);
             ArrayList<TwoSidesResult> result = (ArrayList<TwoSidesResult>) extras.getSerializable(RES);
+
             ArrayList<String> stringResults = new ArrayList<>();
             for(TwoSidesResult r:result){
                 stringResults.add(r.toString());
@@ -41,6 +44,7 @@ public class ResultActivity extends AppCompatActivity {
             int activity = extras.getInt(ACTIVITY);
             ResultExpandableListAdapter adapter = new ResultExpandableListAdapter(this, result, startFromRow, numberOfRowSeries, activity);
             resultListView.setAdapter(adapter);
+            System.out.println();
         } else {
             finish();
         }

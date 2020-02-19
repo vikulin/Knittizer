@@ -1,7 +1,5 @@
 package org.vikulin.knittizer;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +10,7 @@ import org.vikulin.knittizer.model.TwoSidesResult;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-public class DoubleSideFasonCalculationActivity extends AppCompatActivity {
+public class DoubleSideFasonCalculationActivity extends AlertActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +71,10 @@ public class DoubleSideFasonCalculationActivity extends AppCompatActivity {
 
         //}
         int u = (int)Math.abs(ur)/2;
+        if(u==0){
+            showAlertDialog(getResources().getString(R.string.error),getResources().getString(R.string.division_by_zero_error));
+            return;
+        }
         ArrayList<TwoSidesResult> resultList = new ArrayList<>();
         if(rows % u==0){
             //String result = "Убавлять в каждом "+(rows / u)+" ряду";

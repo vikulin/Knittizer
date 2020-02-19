@@ -7,7 +7,10 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
@@ -39,9 +42,11 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partial_knitting_result);
+        getSupportActionBar().setTitle(R.string.title_activity_result);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             ExpandableListView resultListView = findViewById(R.id.resultList);
+
             PartialKnittingResult result = (PartialKnittingResult) extras.getSerializable(RES);
             int un = extras.getInt(UN, 0);
             int u = extras.getInt(U, 0);
@@ -109,6 +114,11 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                 }
                 resultString.add(resultList.toString());
                 resultString.add(getResources().getString(R.string.pk));
+            }
+
+            if(resultList.size()==0){
+                resultListView.setVisibility(View.GONE);
+                return;
             }
 
             StringResultExpandableListAdapter adapter = new StringResultExpandableListAdapter(this, resultString, getResources().getString(R.string.total_phases)+":"+resultList.size(), SAVE);

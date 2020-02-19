@@ -1,13 +1,11 @@
 package org.vikulin.knittizer;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-public class SampleCalculationActivity extends AppCompatActivity {
+public class SampleCalculationActivity extends AlertActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +62,12 @@ public class SampleCalculationActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SampleResultActivity.class);
         intent.putExtra(SampleResultActivity.DW, densityW);
         intent.putExtra(SampleResultActivity.DH, densityH);
+        startActivity(intent);
+    }
+
+    public void help(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.SAMPLE_KNITTING);
         startActivity(intent);
     }
 }

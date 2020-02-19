@@ -10,6 +10,7 @@
     <string name="k_c">Конечный ряд</string>
     <string name="calculate">Подсчитать</string>
     <string name="description_two_side">Расчёт ритма убавок или прибавок в вязаном изделии</string>
+    <string name="sample_calculate_menu">Расчёт образца</string>
     <string name="description_two_side_schema">Схема для прибавок или убавок</string>
     <string name="two_side_menu">Фасонные убавки или прибавки</string>
     <string name="one_side_menu">Непарные убавки или прибавки</string>
@@ -19,7 +20,6 @@
     <string name="save_name">Введите имя расчета</string>
     <string name="a">Ширина</string>
     <string name="b">Высота</string>
-    <string name="sample_calculate_menu">Расчёт образца</string>
     <string name="an">Петли(A)</string>
     <string name="bn">Ряды(B)</string>
     <string name="delete">Удалить</string>
@@ -42,4 +42,10 @@
     <string name="favorites">Избранное</string>
     <string name="num">кол.</string>
     <string name="cm">см</string>
+    <string name="help">Справка</string>
+    <string name="about">О программе</string>
+    <string name="no_saved_results">Нет сохранённых результатов</string>
+    <string name="no_calculated_results">Нет результатов. Пожалуйста, проверьте правильность введённых данных.</string>
+    <string name="error">Ошибка</string>
+    <string name="division_by_zero_error">Дление на 0. Проверьте правильность данных.</string>
 </resources>

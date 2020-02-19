@@ -115,9 +115,9 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
                                     Set<String> set = preferences.getStringSet(r, new HashSet());
                                     set.remove(row);
                                     if(set.size()==0){
-                                        preferences.edit().remove(r).apply();
+                                        preferences.edit().remove(r).commit();
                                     } else {
-                                        preferences.edit().putStringSet(r, set).apply();
+                                        preferences.edit().putStringSet(r, set).commit();
                                     }
                                     map = preferences.getAll();
                                     SavedResultExpandableListAdapter.this.keys = new ArrayList<>(map.keySet());

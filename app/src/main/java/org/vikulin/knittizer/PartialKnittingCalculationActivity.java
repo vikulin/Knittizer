@@ -1,7 +1,5 @@
 package org.vikulin.knittizer;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +7,7 @@ import android.widget.EditText;
 
 import org.vikulin.knittizer.model.PartialKnittingResult;
 
-public class PartialKnittingCalculationActivity extends AppCompatActivity {
+public class PartialKnittingCalculationActivity extends AlertActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +39,10 @@ public class PartialKnittingCalculationActivity extends AppCompatActivity {
             return;
         }
         int phases = rows/2-((rows+1)%2);
+        if(phases==0){
+            showAlertDialog(getResources().getString(R.string.error),getResources().getString(R.string.division_by_zero_error));
+            return;
+        }
         Double fullNumber = new Double(u)/new Double(phases);
         int base = fullNumber.intValue();
         double fractional = fullNumber - base;
