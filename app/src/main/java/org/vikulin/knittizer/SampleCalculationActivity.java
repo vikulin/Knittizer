@@ -22,19 +22,19 @@ public class SampleCalculationActivity extends AppCompatActivity {
         EditText editU = findViewById(R.id.editU);
         EditText editR = findViewById(R.id.editR);
         if(editW.length()==0){
-            editW.setError("Веедите число");
+            editW.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
         if(editH.length()==0){
-            editH.setError("Веедите число");
+            editH.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
         if(editU.length()==0){
-            editU.setError("Веедите число");
+            editU.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
         if(editR.length()==0){
-            editR.setError("Веедите число");
+            editR.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
         int u = Integer.parseInt(editU.getText().toString());
@@ -42,19 +42,19 @@ public class SampleCalculationActivity extends AppCompatActivity {
         int r = Integer.parseInt(editR.getText().toString());
         double h = Double.parseDouble(editH.getText().toString());
         if(u==0){
-            editU.setError("Веедите число > 0");
+            editU.setError(getResources().getString(R.string.zero_value_error));
             return;
         }
         if(w==0d){
-            editW.setError("Веедите число > 0");
+            editW.setError(getResources().getString(R.string.zero_value_error));
             return;
         }
         if(r==0){
-            editR.setError("Веедите число > 0");
+            editR.setError(getResources().getString(R.string.zero_value_error));
             return;
         }
         if(h==0d){
-            editH.setError("Веедите число > 0");
+            editH.setError(getResources().getString(R.string.zero_value_error));
             return;
         }
         //calculate density

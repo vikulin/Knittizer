@@ -23,16 +23,16 @@ public class PartialKnittingCalculationActivity extends AppCompatActivity {
         EditText uEdit = findViewById(R.id.editW);
         EditText uNEdit = findViewById(R.id.editH);
         if(rowsEdit.length()==0){
-            rowsEdit.setError("Веедите число");
+            rowsEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
         if(uEdit.length()==0){
-            uEdit.setError("Веедите число");
+            uEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
         int rows = Integer.parseInt(rowsEdit.getText().toString());
         if(rows==0){
-            rowsEdit.setError("Веедите число > 0");
+            rowsEdit.setError(getResources().getString(R.string.zero_value_error));
             return;
         }
         int u = Integer.parseInt(uEdit.getText().toString());

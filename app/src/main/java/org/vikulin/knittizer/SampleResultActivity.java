@@ -29,9 +29,9 @@ public class SampleResultActivity extends AppCompatActivity {
             double dh = extras.getDouble(DH);
 
             ArrayList<String> resultString = new ArrayList<>();
-            resultString.add(String.format("%.2f", dw)+"п/см");
-            resultString.add(String.format("%.2f", dh)+"р/см");
-            StringResultExpandableListAdapter adapter = new StringResultExpandableListAdapter(this, resultString, "Плотность образца", SAVE);
+            resultString.add(String.format("%.2f", dw)+getResources().getString(R.string.w_density));
+            resultString.add(String.format("%.2f", dh)+getResources().getString(R.string.h_density));
+            StringResultExpandableListAdapter adapter = new StringResultExpandableListAdapter(this, resultString, getResources().getString(R.string.sample_density), SAVE);
             resultListView.setAdapter(adapter);
             resultListView.expandGroup(0);
         } else {
@@ -42,7 +42,7 @@ public class SampleResultActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            Toast.makeText(this, "Сохранено", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.save_done), Toast.LENGTH_SHORT).show();
         }
         if (resultCode == RESULT_CANCELED) {
             //nothing

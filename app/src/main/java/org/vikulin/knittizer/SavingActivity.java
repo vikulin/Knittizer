@@ -62,7 +62,7 @@ public class SavingActivity extends Activity {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
             EditText savedName = findViewById(R.id.saveName);
             if(savedName.length()==0){
-                savedName.setError("Введите имя");
+                savedName.setError(getResources().getString(R.string.empty_name_error));
                 return;
             }
             Set<String> set = preferences.getStringSet(savedName.getText().toString(), new LinkedHashSet());

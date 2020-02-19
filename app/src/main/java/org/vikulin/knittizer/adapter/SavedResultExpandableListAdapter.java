@@ -105,8 +105,8 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
                 public void onClick(View v) {
 
                     new AlertDialog.Builder(context)
-                            .setTitle("Сообщение")
-                            .setMessage("Вы действительно желаете удалить это сохранение?")
+                            .setTitle(context.getResources().getString(R.string.dialog_title))
+                            .setMessage(context.getResources().getString(R.string.confirm_delete))
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {

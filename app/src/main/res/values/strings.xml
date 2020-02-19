@@ -25,4 +25,18 @@
     <string name="bn">Ряды(B)</string>
     <string name="delete">Удалить</string>
     <string name="save">Сохранить</string>
+    <string name="confirm_delete">Вы действительно желаете удалить это сохранение?</string>
+    <string name="dialog_title">Сообщение</string>
+    <string name="empty_value_error">Веедите число</string>
+    <string name="equal_rows_error">Номера рядов не могут быть одинковыми</string>
+    <string name="zero_value_error"><![CDATA[Веедите число > 0]]></string>
+    <string name="empty_name_error">Введите имя</string>
+    <string name="sample_density">Плотность образца</string>
+    <string name="w_density">п/см</string>
+    <string name="h_density">р/см</string>
+    <string name="save_done">Сохранено</string>
+    <string name="total_phases">Всего фаз</string>
+    <string name="decker">Деккер</string>
+    <string name="pk">ЧВ</string>
+    <string name="pk_graph_title">Схема: ↑ ряды, → петли</string>
 </resources>

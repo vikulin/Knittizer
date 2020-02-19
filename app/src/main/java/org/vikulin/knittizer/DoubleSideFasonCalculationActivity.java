@@ -26,27 +26,27 @@ public class DoubleSideFasonCalculationActivity extends AppCompatActivity {
         EditText uNEdit = findViewById(R.id.editW);
         EditText uKEdit = findViewById(R.id.editH);
         if(uNEdit.length()==0){
-            uNEdit.setError("Веедите число");
+            uNEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
         if(uKEdit.length()==0){
-            uKEdit.setError("Веедите число");
+            uKEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
         EditText rowNEdit = findViewById(R.id.editRowN);
         EditText rowKEdit = findViewById(R.id.editRowK);
         if(!(rowNEdit.length()>0 && rowKEdit.length()>0) && rowsEdit.length()==0){
             if(rowNEdit.length()==0){
-                rowNEdit.setError("Введите число");
+                rowNEdit.setError(getResources().getString(R.string.empty_value_error));
                 return;
             }
             if(rowKEdit.length()==0){
-                rowKEdit.setError("Введите число");
+                rowKEdit.setError(getResources().getString(R.string.empty_value_error));
                 return;
             }
         }
         if(rowNEdit.length()==0 && rowKEdit.length()==0 && rowsEdit.length()==0){
-            rowsEdit.setError("Введите число");
+            rowsEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
         int rows = 0;
@@ -56,8 +56,8 @@ public class DoubleSideFasonCalculationActivity extends AppCompatActivity {
             int r2 = Integer.parseInt(rowKEdit.getText().toString());
             rows = Math.abs(r1-r2);
             if(r1==r2){
-                rowNEdit.setError("Номера рядов не могут быть одинковыми");
-                rowKEdit.setError("Номера рядов не могут быть одинковыми");
+                rowNEdit.setError(getResources().getString(R.string.equal_rows_error));
+                rowKEdit.setError(getResources().getString(R.string.equal_rows_error));
                 return;
             }
             startFromRow = Math.min(r1,r2);
