@@ -33,7 +33,7 @@
                 android:background="@drawable/button_bg"
                 android:textColor="@color/ic_launcher_background"
                 android:drawablePadding="3dp"
-                android:text="Сохранить"
+                android:text="@string/save"
                 android:onClick="onSave"/>
             <Button
                 android:id="@+id/cancel"
@@ -45,7 +45,7 @@
                 android:background="@drawable/button_bg"
                 android:textColor="@color/ic_launcher_background"
                 android:drawablePadding="3dp"
-                android:text="Отменить"
+                android:text="@string/cancel"
                 android:onClick="onCancel"/>
 
         </LinearLayout>

@@ -24,6 +24,7 @@
     <string name="bn">Ряды(B)</string>
     <string name="delete">Удалить</string>
     <string name="save">Сохранить</string>
+    <string name="cancel">Отменить</string>
     <string name="confirm_delete">Вы действительно желаете удалить это сохранение?</string>
     <string name="dialog_title">Сообщение</string>
     <string name="empty_value_error">Веедите число</string>

@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:maxHeight="280dp"
-            android:background="@color/cardview_light_background"
+            android:background="@color/ic_launcher_background"
             android:contentDescription="@string/description_two_side_schema"
             android:src="@drawable/rukav_1" />
     </LinearLayout>
@@ -36,8 +36,8 @@
         android:layout_height="wrap_content">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/button">
+            android:layout_height="wrap_content"
+            >
 
             <TextView
                 android:id="@+id/A"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="42dp"
                 android:text="@string/n_a_b"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/editW"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -59,9 +59,10 @@
                 android:layout_marginTop="32dp"
                 android:ems="10"
                 android:inputType="number"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/B"
@@ -69,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/k_a_b"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/editH"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -82,16 +83,17 @@
                 android:layout_marginStart="44dp"
                 android:ems="10"
                 android:inputType="number"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editW" />
+                app:layout_constraintTop_toBottomOf="@+id/editW"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/c_c"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/editRows"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -103,9 +105,10 @@
                 android:layout_marginStart="44dp"
                 android:ems="10"
                 android:inputType="number"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editH" />
+                app:layout_constraintTop_toBottomOf="@+id/editH"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/editRowN"
@@ -116,9 +119,10 @@
                 android:ems="10"
                 android:hint="@string/n_c"
                 android:inputType="number"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/editRowK"
@@ -128,9 +132,10 @@
                 android:ems="10"
                 android:hint="@string/k_c"
                 android:inputType="number"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editRowN" />
+                app:layout_constraintTop_toBottomOf="@+id/editRowN"
+                android:importantForAutofill="no" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
