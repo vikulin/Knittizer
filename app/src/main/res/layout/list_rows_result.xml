@@ -6,25 +6,24 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:padding="10dp"
-    android:weightSum="12"
+    android:weightSum="18"
     android:background="@android:color/transparent">
 
     <TextView android:id="@+id/text"
-        android:layout_weight="7"
+        android:layout_weight="12"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
         android:textStyle="normal"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textColor="@color/colorPrimary"
         android:paddingTop="5dp"
+        android:paddingRight="5dp"
         android:paddingBottom="5dp"/>
 
     <Button
         android:id="@+id/saveButton"
-        android:layout_weight="5"
+        android:layout_weight="6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="5dp"
@@ -32,6 +31,6 @@
         android:background="@drawable/button_bg"
         android:textColor="@color/ic_launcher_background"
         android:drawablePadding="3dp"
-        android:text="Сохранить" />
+        android:text="@string/save" />
 
 </LinearLayout>

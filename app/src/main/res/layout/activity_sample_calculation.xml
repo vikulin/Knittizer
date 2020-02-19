@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".TwoSideCalculationActivity">
+    tools:context=".SampleCalculationActivity">
     <LinearLayout
         android:id="@+id/space"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_above="@id/button">
-
         <ImageView
             android:id="@+id/imageView"
+            android:paddingLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:maxHeight="280dp"
+            android:maxHeight="250dp"
             android:background="@color/cardview_light_background"
             android:contentDescription="@string/description_two_side_schema"
-            android:src="@drawable/rukav_1" />
+            android:src="@drawable/sample_1" />
     </LinearLayout>
     <Button
         android:id="@+id/button"
@@ -44,22 +44,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="42dp"
-                android:text="@string/n_a_b"
+                android:text="@string/a"
                 android:textSize="16dp"
                 app:layout_constraintEnd_toStartOf="@+id/editW"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/editW"
-                android:layout_width="50dp"
-                android:layout_height="42dp"
-                android:layout_marginStart="44dp"
-                android:layout_marginTop="32dp"
-                android:ems="10"
-                android:inputType="number"
-                android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,70 +56,85 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/k_a_b"
+                android:text="@string/b"
                 android:textSize="16dp"
                 app:layout_constraintEnd_toStartOf="@+id/editH"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/A" />
 
-            <EditText
-                android:id="@+id/editH"
-                android:layout_width="50dp"
-                android:layout_height="42dp"
-                android:layout_marginStart="44dp"
-                android:ems="10"
-                android:inputType="number"
-                android:textSize="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editW" />
-
             <TextView
+                android:id="@+id/AN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/c_c"
+                android:text="@string/an"
                 android:textSize="16dp"
-                app:layout_constraintEnd_toStartOf="@+id/editRows"
+                app:layout_constraintEnd_toStartOf="@+id/editU"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/B" />
+                app:layout_constraintTop_toBottomOf="@id/B"/>
+
             <EditText
-                android:id="@+id/editRows"
+                android:id="@+id/editU"
                 android:layout_width="50dp"
                 android:layout_height="42dp"
-                android:layout_marginStart="44dp"
+                android:layout_marginStart="76dp"
                 android:ems="10"
+                android:hint="кол."
                 android:inputType="number"
                 android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editH" />
 
             <EditText
-                android:id="@+id/editRowN"
-                android:layout_width="137dp"
+                android:id="@+id/editW"
+                android:layout_width="50dp"
                 android:layout_height="42dp"
-                android:layout_marginTop="72dp"
-                android:layout_marginEnd="4dp"
+                android:layout_marginStart="76dp"
+                android:layout_marginTop="32dp"
                 android:ems="10"
-                android:hint="@string/n_c"
+                android:hint="см"
                 android:inputType="number"
                 android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editRowK"
-                android:layout_width="137dp"
+                android:id="@+id/editH"
+                android:layout_width="50dp"
                 android:layout_height="42dp"
-                android:layout_marginEnd="4dp"
+                android:layout_marginStart="76dp"
                 android:ems="10"
-                android:hint="@string/k_c"
+                android:hint="см"
                 android:inputType="number"
                 android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editRowN" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editW" />
 
+            <EditText
+                android:id="@+id/editR"
+                android:layout_width="50dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="76dp"
+                android:ems="10"
+                android:hint="кол."
+                android:inputType="number"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editU" />
+
+            <TextView
+                android:id="@+id/BA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/bn"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/editR"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/AN" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

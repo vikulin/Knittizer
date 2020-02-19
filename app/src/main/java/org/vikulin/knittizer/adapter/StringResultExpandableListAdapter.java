@@ -10,24 +10,23 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-
-import org.vikulin.knittizer.PartialKnittingResultActivity;
 import org.vikulin.knittizer.R;
 import org.vikulin.knittizer.SavingActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdapter {
+public class StringResultExpandableListAdapter extends BaseExpandableListAdapter {
 
     private final List<String> list;
     private final Context context;
-    private final int phaseNumber;
-
-    public PartialKnittingExpandableListAdapter(final Context context, List<String> list, int phaseNumber){
+    private final String groupTitle;
+    private final int activity;
+    public StringResultExpandableListAdapter(final Context context, List<String> list, String groupTitle, final int activity){
         this.context = context;
         this.list = list;
-        this.phaseNumber = phaseNumber;
+        this.groupTitle = groupTitle;
+        this.activity = activity;
     }
 
     @Override
@@ -78,7 +77,7 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
         } else {
             holder = (ResultHolder)row.getTag();
         }
-        holder.text.setText("Всего фаз "+phaseNumber);
+        holder.text.setText(groupTitle);
         return row;
     }
 
@@ -89,13 +88,13 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
         final ArrayList<String> rows = (ArrayList<String>) getChild(groupPosition, childPosition);
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.list_rows_result, parent, false);
-            Button saveButton = (Button) convertView.findViewById(R.id.saveButton);
+            Button saveButton = convertView.findViewById(R.id.saveButton);
             saveButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent((PartialKnittingResultActivity)context, SavingActivity.class);
+                    Intent intent = new Intent(context, SavingActivity.class);
                     intent.putStringArrayListExtra(SavingActivity.RES, rows);
-                    intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.PARTIAL_KNITTING);
-                    ((PartialKnittingResultActivity)context).startActivityForResult(intent, PartialKnittingResultActivity.SAVE);
+                    intent.putExtra(SavingActivity.ACTIVITY, activity);
+                    ((Activity)context).startActivityForResult(intent, activity);
                 }
             });
             holder = new ResultHolder();

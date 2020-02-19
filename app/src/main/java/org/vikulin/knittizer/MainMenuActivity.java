@@ -23,7 +23,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void onTwoSideCalculationActivity(View view) {
-        Intent intent = new Intent(this, TwoSideCalculationActivity.class);
+        Intent intent = new Intent(this, DoubleSideFasonCalculationActivity.class);
         startActivity(intent);
     }
 
@@ -33,7 +33,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void onDoubleFasonCalculationActivity(View view) {
-        Intent intent = new Intent(this, DoubleFasonCalculationActivity.class);
+        Intent intent = new Intent(this, TwoSideCalculationActivity.class);
         startActivity(intent);
     }
 
@@ -44,6 +44,11 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void onSavedListActivity(View view) {
         Intent intent = new Intent(this, SavedListActivity.class);
+        startActivity(intent);
+    }
+
+    public void onSampleCalculationActivity(View view) {
+        Intent intent = new Intent(this, SampleCalculationActivity.class);
         startActivity(intent);
     }
 }

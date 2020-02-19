@@ -20,6 +20,7 @@ public class SavingActivity extends Activity {
     public static final int TWO_SIDE_KNITTING = 2;
     public static final int DOUBLE_KNITTING = 3;
     public static final int PARTIAL_KNITTING = 4;
+    public static final int SAMPLE_KNITTING = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,9 @@ public class SavingActivity extends Activity {
                 case PARTIAL_KNITTING :
                     result.add(0, getResources().getString(R.string.partial_knitting));
                     break;
+                case SAMPLE_KNITTING :
+                    result.add(0, getResources().getString(R.string.sample_calculate_menu));
+                    break;
                 // You can have any number of case statements.
                 default :
                     // Statements
@@ -58,7 +62,7 @@ public class SavingActivity extends Activity {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
             EditText savedName = findViewById(R.id.saveName);
             if(savedName.length()==0){
-                savedName.setError("Введите имя");
+                savedName.setError(getResources().getString(R.string.empty_name_error));
                 return;
             }
             Set<String> set = preferences.getStringSet(savedName.getText().toString(), new LinkedHashSet());

@@ -12,41 +12,41 @@ import org.vikulin.knittizer.model.TwoSidesResult;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-public class DoubleFasonCalculationActivity extends AppCompatActivity {
+public class DoubleSideFasonCalculationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_double_fason_calculation);
+        setContentView(R.layout.activity_double_side_calculation);
         getSupportActionBar().setTitle(R.string.double_side);
     }
 
     public void calculate(View view) {
         EditText rowsEdit = findViewById(R.id.editRows);
-        EditText uNEdit = findViewById(R.id.editU);
-        EditText uKEdit = findViewById(R.id.editUN);
+        EditText uNEdit = findViewById(R.id.editW);
+        EditText uKEdit = findViewById(R.id.editH);
         if(uNEdit.length()==0){
-            uNEdit.setError("Веедите число");
+            uNEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
         if(uKEdit.length()==0){
-            uKEdit.setError("Веедите число");
+            uKEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
         EditText rowNEdit = findViewById(R.id.editRowN);
         EditText rowKEdit = findViewById(R.id.editRowK);
         if(!(rowNEdit.length()>0 && rowKEdit.length()>0) && rowsEdit.length()==0){
             if(rowNEdit.length()==0){
-                rowNEdit.setError("Введите число");
+                rowNEdit.setError(getResources().getString(R.string.empty_value_error));
                 return;
             }
             if(rowKEdit.length()==0){
-                rowKEdit.setError("Введите число");
+                rowKEdit.setError(getResources().getString(R.string.empty_value_error));
                 return;
             }
         }
         if(rowNEdit.length()==0 && rowKEdit.length()==0 && rowsEdit.length()==0){
-            rowsEdit.setError("Введите число");
+            rowsEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
         int rows = 0;
@@ -56,8 +56,8 @@ public class DoubleFasonCalculationActivity extends AppCompatActivity {
             int r2 = Integer.parseInt(rowKEdit.getText().toString());
             rows = Math.abs(r1-r2);
             if(r1==r2){
-                rowNEdit.setError("Номера рядов не могут быть одинковыми");
-                rowKEdit.setError("Номера рядов не могут быть одинковыми");
+                rowNEdit.setError(getResources().getString(R.string.equal_rows_error));
+                rowKEdit.setError(getResources().getString(R.string.equal_rows_error));
                 return;
             }
             startFromRow = Math.min(r1,r2);
@@ -67,12 +67,12 @@ public class DoubleFasonCalculationActivity extends AppCompatActivity {
         int ur = Integer.parseInt(uNEdit.getText().toString())-Integer.parseInt(uKEdit.getText().toString());
         boolean isStartStitchLessEndStitch = ur<0;
         //if(ur<0){
-        //Прибавки
+            //Прибавки
         //} else {
-        //Убавки
+            //Убавки
 
         //}
-        int u = (int)Math.abs(ur)/4;
+        int u = (int)Math.abs(ur)/2;
         ArrayList<TwoSidesResult> resultList = new ArrayList<>();
         if(rows % u==0){
             //String result = "Убавлять в каждом "+(rows / u)+" ряду";
@@ -106,19 +106,11 @@ public class DoubleFasonCalculationActivity extends AppCompatActivity {
                 //System.out.println("Decimal Part: " + o.toPlainString());
                 if(intValue<rows && intValue>0 && a<=intValue/2 && o.compareTo(new BigDecimal(0.01))<0 && (intValue % a)==0 && ((rows-intValue)%b)==0 && (rows-intValue)/b>1){
                     TwoSidesResult object = new TwoSidesResult();
-                    if(a<b) {
-                        object.setFirstNumber(intValue / a);
-                        object.setFirstRowPeriod(a);
-                        object.setSecondNumber((rows - intValue) / b);
-                        object.setSecondRowPeriod(b);
-                        object.setStartStitchLessEndStitch(isStartStitchLessEndStitch);
-                    } else {
-                        object.setFirstNumber((rows - intValue) / b);
-                        object.setFirstRowPeriod(b);
-                        object.setSecondNumber(intValue / a);
-                        object.setSecondRowPeriod(a);
-                        object.setStartStitchLessEndStitch(isStartStitchLessEndStitch);
-                    }
+                    object.setFirstNumber(intValue/a);
+                    object.setFirstRowPeriod(a);
+                    object.setSecondNumber((rows-intValue)/b);
+                    object.setSecondRowPeriod(b);
+                    object.setStartStitchLessEndStitch(isStartStitchLessEndStitch);
                     resultList.add(object);
                 }
             }
@@ -126,7 +118,7 @@ public class DoubleFasonCalculationActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra(ResultActivity.RES, resultList);
         intent.putExtra(ResultActivity.START_FROM_ROW, startFromRow);
-        intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.DOUBLE_KNITTING);
+        intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.TWO_SIDE_KNITTING);
         intent.putExtra(ResultActivity.NUMBER_OF_ROW_SERIES, 1);
         startActivity(intent);
     }

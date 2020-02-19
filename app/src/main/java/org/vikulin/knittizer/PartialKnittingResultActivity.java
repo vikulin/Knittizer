@@ -15,7 +15,7 @@ import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import org.vikulin.knittizer.adapter.PartialKnittingExpandableListAdapter;
+import org.vikulin.knittizer.adapter.StringResultExpandableListAdapter;
 import org.vikulin.knittizer.model.PartialKnittingResult;
 
 import java.util.ArrayList;
@@ -95,7 +95,7 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                 //30-60-10
                 System.out.println(2*(phase-resultList.size())/(u-sum(resultList)));
                 resultString.add(resultList.toString());
-                resultString.add("ЧВ");
+                resultString.add(getResources().getString(R.string.pk));
                 if((phase-resultList.size())>5) {
                     resultString.add("2x1*" + (phase - resultList.size()));
                 }
@@ -108,10 +108,10 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                     resultList.add(base);
                 }
                 resultString.add(resultList.toString());
-                resultString.add("ЧВ");
+                resultString.add(getResources().getString(R.string.pk));
             }
 
-            PartialKnittingExpandableListAdapter adapter = new PartialKnittingExpandableListAdapter(this, resultString, resultList.size());
+            StringResultExpandableListAdapter adapter = new StringResultExpandableListAdapter(this, resultString, getResources().getString(R.string.total_phases)+":"+resultList.size(), SAVE);
             resultListView.setAdapter(adapter);
             resultListView.expandGroup(0);
 
@@ -128,13 +128,13 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
                 System.out.println(x);
                 series.appendData(new DataPoint(x, y), true, 1000);
             }
-            graph.setTitle("Схема: ↑ ряды, → петли");
-            series.setTitle("ЧВ");
+            graph.setTitle(getResources().getString(R.string.pk_graph_title));
+            series.setTitle(getResources().getString(R.string.pk));
             graph.addSeries(series);
             int delta = phases-resultList.size();
             if(delta>5) {
                 LineGraphSeries<DataPoint> seriesDecker = new LineGraphSeries<DataPoint>();
-                seriesDecker.setTitle("Деккер");
+                seriesDecker.setTitle(getResources().getString(R.string.decker));
                 seriesDecker.setDrawDataPoints(true);
                 seriesDecker.setColor(Color.BLUE);
                 seriesDecker.appendData(new DataPoint(x, y), true, 1000);
@@ -286,9 +286,9 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            Toast.makeText(this, "Сохранено", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.save_done), Toast.LENGTH_SHORT).show();
         }
         if (resultCode == RESULT_CANCELED) {
             //nothing
