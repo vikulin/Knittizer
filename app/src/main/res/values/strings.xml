@@ -39,4 +39,6 @@
     <string name="pk">ЧВ</string>
     <string name="pk_graph_title">Схема: ↑ ряды, → петли</string>
     <string name="favorites">Избранное</string>
+    <string name="num">кол.</string>
+    <string name="cm">см</string>
 </resources>
