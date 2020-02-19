@@ -19,14 +19,15 @@
         android:clickable="true"
         android:weightSum="12"
         android:onClick="onSampleCalculationActivity"
-        android:paddingRight="10dp">
+        android:focusable="true">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:layout_weight="9"
-            android:src="@drawable/sample_icon"/>
+            android:src="@drawable/sample_icon"
+            android:contentDescription="@string/sample_calculate_menu" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -34,7 +35,7 @@
             android:textColor="@color/colorPrimaryText"
             android:gravity="center_vertical"
             android:textAlignment="gravity"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textAllCaps="true"
             android:layout_weight="3"
             android:text="@string/sample_calculate_menu"/>
@@ -48,14 +49,15 @@
         android:clickable="true"
         android:weightSum="12"
         android:onClick="onTwoSideCalculationActivity"
-        android:paddingRight="10dp">
+        android:focusable="true">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:layout_weight="9"
-            android:src="@drawable/rukav_1"/>
+            android:src="@drawable/rukav_1"
+            android:contentDescription="@string/double_side" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -63,7 +65,7 @@
             android:textColor="@color/colorPrimaryText"
             android:gravity="center_vertical"
             android:textAlignment="gravity"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textAllCaps="true"
             android:layout_weight="3"
             android:text="@string/double_side"
@@ -78,14 +80,15 @@
         android:clickable="true"
         android:weightSum="12"
         android:onClick="onOneSideCalculationActivity"
-        android:paddingRight="10dp">
+        android:focusable="true">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:layout_weight="9"
-            android:src="@drawable/spinka_1"/>
+            android:src="@drawable/spinka_1"
+            android:contentDescription="@string/one_side_menu" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -93,7 +96,7 @@
             android:textColor="@color/colorPrimaryText"
             android:gravity="center_vertical"
             android:textAlignment="gravity"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textAllCaps="true"
             android:layout_weight="3"
             android:text="@string/one_side_menu"
@@ -108,14 +111,15 @@
         android:clickable="true"
         android:weightSum="12"
         android:onClick="onDoubleFasonCalculationActivity"
-        android:paddingRight="10dp">
+        android:focusable="true">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:layout_weight="9"
-            android:src="@drawable/rukav_1"/>
+            android:src="@drawable/rukav_1"
+            android:contentDescription="@string/two_side_menu" />
         <TextView
             android:id="@+id/mainTitle"
             android:layout_width="match_parent"
@@ -124,7 +128,7 @@
             android:textColor="@color/colorPrimaryText"
             android:gravity="center_vertical"
             android:textAlignment="gravity"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textAllCaps="true"
             android:layout_weight="3"
             android:text="@string/two_side_menu"/>
@@ -139,14 +143,15 @@
         android:clickable="true"
         android:weightSum="12"
         android:onClick="onPartialKnittingCalculationActivity"
-        android:paddingRight="10dp">
+        android:focusable="true">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:layout_weight="9"
-            android:src="@drawable/partial_1"/>
+            android:src="@drawable/partial_1"
+            android:contentDescription="@string/partial_knitting" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -154,7 +159,7 @@
             android:textColor="@color/colorPrimaryText"
             android:gravity="center_vertical"
             android:textAlignment="gravity"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textAllCaps="true"
             android:layout_weight="3"
             android:text="@string/partial_knitting"
@@ -167,15 +172,15 @@
         android:orientation="horizontal"
         android:background="@drawable/button"
         android:weightSum="12"
-        android:onClick="onSavedListActivity"
-        android:paddingRight="10dp">
+        android:onClick="onSavedListActivity">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:layout_weight="9"
-            android:src="@drawable/save_1"/>
+            android:src="@drawable/save_1"
+            android:contentDescription="@string/favorites" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -183,10 +188,10 @@
             android:textColor="@color/colorPrimaryText"
             android:gravity="center_vertical"
             android:textAlignment="gravity"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textAllCaps="true"
             android:layout_weight="3"
-            android:text="Избранное"
+            android:text="@string/favorites"
             />
     </LinearLayout>
 </LinearLayout>
