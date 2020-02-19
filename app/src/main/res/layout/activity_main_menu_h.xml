@@ -8,7 +8,8 @@
     android:choiceMode="singleChoice"
     android:divider="@color/colorDelimiter"
     android:dividerHeight="1dp"
-    android:background="#fff">
+    android:background="#fff"
+    android:baselineAligned="false">
 
     <LinearLayout
         android:layout_weight="1"
@@ -30,7 +31,7 @@
             android:clickable="true"
             android:weightSum="12"
             android:onClick="onSampleCalculationActivity"
-            android:paddingRight="10dp"
+            android:paddingEnd="10dp"
             android:focusable="true">
             <ImageView
                 android:layout_width="wrap_content"
@@ -62,7 +63,7 @@
             android:clickable="true"
             android:weightSum="12"
             android:onClick="onTwoSideCalculationActivity"
-            android:paddingRight="10dp"
+            android:paddingEnd="10dp"
             android:focusable="true">
             <ImageView
                 android:layout_width="wrap_content"
@@ -94,7 +95,7 @@
             android:clickable="true"
             android:weightSum="12"
             android:onClick="onOneSideCalculationActivity"
-            android:paddingRight="10dp"
+            android:paddingEnd="10dp"
             android:focusable="true">
             <ImageView
                 android:layout_width="wrap_content"
@@ -137,7 +138,7 @@
             android:clickable="true"
             android:weightSum="12"
             android:onClick="onDoubleFasonCalculationActivity"
-            android:paddingRight="10dp"
+            android:paddingEnd="10dp"
             android:focusable="true">
             <ImageView
                 android:layout_width="wrap_content"
@@ -170,7 +171,7 @@
             android:clickable="true"
             android:weightSum="12"
             android:onClick="onPartialKnittingCalculationActivity"
-            android:paddingRight="10dp"
+            android:paddingEnd="10dp"
             android:focusable="true">
             <ImageView
                 android:layout_width="wrap_content"
@@ -201,7 +202,7 @@
             android:background="@drawable/button"
             android:weightSum="12"
             android:onClick="onSavedListActivity"
-            android:paddingRight="10dp">
+            android:paddingEnd="10dp">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
