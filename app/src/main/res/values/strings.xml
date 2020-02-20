@@ -17,7 +17,7 @@
     <string name="double_side">Двойная убавка или прибавка</string>
     <string name="partial_knitting">Частичное вязание</string>
     <string name="a_n">единовременная убавка петель (C)</string>
-    <string name="save_name">Введите имя расчета</string>
+    <string name="save_name">Введите имя расчёта</string>
     <string name="a">Ширина</string>
     <string name="b">Высота</string>
     <string name="an">Петли(A)</string>

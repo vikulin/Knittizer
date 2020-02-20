@@ -44,7 +44,10 @@ public class ResultActivity extends AppCompatActivity {
             int activity = extras.getInt(ACTIVITY);
             ResultExpandableListAdapter adapter = new ResultExpandableListAdapter(this, result, startFromRow, numberOfRowSeries, activity);
             resultListView.setAdapter(adapter);
-            System.out.println();
+            if(adapter.getGroupCount()==0){
+                resultListView.setVisibility(View.GONE);
+                findViewById(R.id.emptyListMessage).setVisibility(View.VISIBLE87);
+            }
         } else {
             finish();
         }
