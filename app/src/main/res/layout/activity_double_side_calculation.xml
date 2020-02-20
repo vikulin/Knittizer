@@ -60,6 +60,7 @@
                 android:ems="10"
                 android:inputType="number"
                 android:textSize="16dp"
+                android:hint="@string/u"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -83,6 +84,7 @@
                 android:ems="10"
                 android:inputType="number"
                 android:textSize="16dp"
+                android:hint="@string/u"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editW" />
 
@@ -104,6 +106,7 @@
                 android:ems="10"
                 android:inputType="number"
                 android:textSize="16dp"
+                android:hint="@string/r"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editH" />
 

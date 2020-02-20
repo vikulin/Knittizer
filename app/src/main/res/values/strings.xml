@@ -48,4 +48,7 @@
     <string name="no_calculated_results">Нет результатов. Пожалуйста, проверьте правильность введённых данных.</string>
     <string name="error">Ошибка</string>
     <string name="division_by_zero_error">Дление на 0. Проверьте правильность данных.</string>
+    <string name="saved_calculations">Расчёты</string>
+    <string name="u">петли</string>
+    <string name="r">ряды</string>
 </resources>

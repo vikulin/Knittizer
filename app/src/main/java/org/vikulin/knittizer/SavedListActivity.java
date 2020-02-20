@@ -17,6 +17,7 @@ public class SavedListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_result);
+        getSupportActionBar().setTitle(R.string.saved_calculations);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
         Map<String, ?> allSavedData = preferences.getAll();
         SavedResultExpandableListAdapter adapter = new SavedResultExpandableListAdapter(this, allSavedData);
