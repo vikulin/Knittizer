@@ -46,7 +46,7 @@ public class ResultActivity extends AppCompatActivity {
             resultListView.setAdapter(adapter);
             if(adapter.getGroupCount()==0){
                 resultListView.setVisibility(View.GONE);
-                findViewById(R.id.emptyListMessage).setVisibility(View.VISIBLE87);
+                findViewById(R.id.emptyListMessage).setVisibility(View.VISIBLE);
             }
         } else {
             finish();
