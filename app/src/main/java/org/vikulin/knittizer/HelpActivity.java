@@ -50,7 +50,6 @@ public class HelpActivity extends AlertActivity {
                     try {
                         base64 = Base64.encodeToString(sampleHtml.getBytes("UTF-8"), Base64.DEFAULT);
                         help.loadData(base64, "text/html; charset=utf-8", "base64");
-                        //help.loadDataWithBaseURL(random(), sampleHtml, "text/html; charset=utf-8", "base64", null);
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     } catch (Exception ex){
