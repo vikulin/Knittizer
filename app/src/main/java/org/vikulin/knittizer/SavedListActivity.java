@@ -1,11 +1,11 @@
 package org.vikulin.knittizer;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.ExpandableListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.vikulin.knittizer.adapter.SavedResultExpandableListAdapter;
 

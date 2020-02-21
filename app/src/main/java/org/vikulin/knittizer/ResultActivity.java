@@ -2,14 +2,13 @@ package org.vikulin.knittizer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import android.view.View;
-import android.widget.ExpandableListView;
-import android.widget.Toast;
 
 import org.vikulin.knittizer.adapter.ResultExpandableListAdapter;
 import org.vikulin.knittizer.model.TwoSidesResult;
