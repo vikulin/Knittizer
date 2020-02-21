@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".DoubleSideFasonCalculationActivity">
+    tools:context=".DoubleSideCalculationActivity">
     <LinearLayout
         android:id="@+id/space"
         android:layout_width="match_parent"
@@ -140,6 +140,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/editRowN"
                 android:importantForAutofill="no" />
 
+            <ImageButton
+                android:id="@+id/helpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:contentDescription="@string/help"
+                android:onClick="help"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/help" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

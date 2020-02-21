@@ -24,35 +24,37 @@ public class HelpActivity extends AlertActivity {
             help.setLayoutParams(lp);
             ll.addView(help);
             int activity = extras.getInt(SavingActivity.ACTIVITY);
-            switch (activity) {
-                case SavingActivity.ONE_SIDE_KNITTING:
-                    setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.one_side_menu).toLowerCase());
-                    break;
-                case SavingActivity.TWO_SIDE_KNITTING:
-                    setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.two_side_menu).toLowerCase());
-                    break;
-                case SavingActivity.DOUBLE_KNITTING:
-                    setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.double_side).toLowerCase());
-                    break;
-                case SavingActivity.PARTIAL_KNITTING:
-                    setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.partial_knitting).toLowerCase());
-                    break;
-                case SavingActivity.SAMPLE_KNITTING:
-                    setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.sample_calculate_menu).toLowerCase());
-                    String base64 = null;
-                    try {
+            String base64 = null;
+            try {
+                switch (activity) {
+                    case SavingActivity.ONE_SIDE_KNITTING:
+                        setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.one_side_menu).toLowerCase());
+                        base64 = Base64.encodeToString(readResource(R.raw.one_side_knitting), Base64.DEFAULT);
+                        break;
+                    case SavingActivity.TWO_SIDE_KNITTING:
+                        setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.two_side_menu).toLowerCase());
+                        base64 = Base64.encodeToString(readResource(R.raw.two_side_fason_knitting), Base64.DEFAULT);
+                        break;
+                    case SavingActivity.DOUBLE_KNITTING:
+                        setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.double_side).toLowerCase());
+                        base64 = Base64.encodeToString(readResource(R.raw.double_knitting), Base64.DEFAULT);
+                        break;
+                    case SavingActivity.PARTIAL_KNITTING:
+                        setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.partial_knitting).toLowerCase());
+                        base64 = Base64.encodeToString(readResource(R.raw.partial_knitting), Base64.DEFAULT);
+                        break;
+                    case SavingActivity.SAMPLE_KNITTING:
+                        setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.sample_calculate_menu).toLowerCase());
                         base64 = Base64.encodeToString(readResource(R.raw.sample_html), Base64.DEFAULT);
-                        help.loadData(base64, "text/html; charset=utf-8", "base64");
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    } catch (Exception ex){
-                        ex.printStackTrace();
-                    }
-                    break;
-                // You can have any number of case statements.
-                default:
-                    // Statements
+                        break;
+                    // You can have any number of case statements.
+                    default:
+                        // Statements
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            help.loadData(base64, "text/html; charset=utf-8", "base64");
         } else {
             finish();
         }

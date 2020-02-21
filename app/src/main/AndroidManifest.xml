@@ -19,9 +19,9 @@
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity android:name=".PartialKnittingResultActivity" />
         <activity android:name=".PartialKnittingCalculationActivity" />
-        <activity android:name=".TwoSideCalculationActivity" />
+        <activity android:name=".TwoSideFasonCalculationActivity" />
         <activity android:name=".OneSideCalculationActivity" />
-        <activity android:name=".DoubleSideFasonCalculationActivity" />
+        <activity android:name=".DoubleSideCalculationActivity" />
         <activity android:name=".MainMenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -63,4 +63,10 @@ public class PartialKnittingCalculationActivity extends AlertActivity {
         }
         startActivity(intent);
     }
+
+    public void help(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.PARTIAL_KNITTING);
+        startActivity(intent);
+    }
 }

@@ -131,4 +131,10 @@ public class OneSideCalculationActivity extends AlertActivity {
         intent.putExtra(ResultActivity.NUMBER_OF_ROW_SERIES, 1);
         startActivity(intent);
     }
+
+    public void help(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.ONE_SIDE_KNITTING);
+        startActivity(intent);
+    }
 }

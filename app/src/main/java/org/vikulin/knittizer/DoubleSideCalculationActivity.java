@@ -10,7 +10,7 @@ import org.vikulin.knittizer.model.TwoSidesResult;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-public class DoubleSideFasonCalculationActivity extends AlertActivity {
+public class DoubleSideCalculationActivity extends AlertActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +122,12 @@ public class DoubleSideFasonCalculationActivity extends AlertActivity {
         intent.putExtra(ResultActivity.START_FROM_ROW, startFromRow);
         intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.TWO_SIDE_KNITTING);
         intent.putExtra(ResultActivity.NUMBER_OF_ROW_SERIES, 1);
+        startActivity(intent);
+    }
+
+    public void help(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.DOUBLE_KNITTING);
         startActivity(intent);
     }
 }
