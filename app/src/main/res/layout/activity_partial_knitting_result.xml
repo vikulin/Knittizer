@@ -13,13 +13,23 @@
         android:groupIndicator="@null"
         android:listSelector="#DDDDDD"
         android:focusable="true"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true">
 
-    <com.jjoe64.graphview.GraphView
+    </ExpandableListView>
+
+    <FrameLayout
+        android:id="@+id/space"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/resultList">
+
+    </FrameLayout>
+
+        <com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_below="@id/resultList"
+        android:layout_below="@id/space"
         android:id="@+id/graph" />
 
 </RelativeLayout>

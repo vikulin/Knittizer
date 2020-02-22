@@ -159,8 +159,9 @@ public class PartialKnittingResultActivity extends AlertActivity {
             int delta = phases-resultList.size();
             if(delta>5) {
                 LineGraphSeries<DataPoint> seriesDecker = new LineGraphSeries<DataPoint>();
+                seriesDecker.setBackgroundColor(Color.RED);
                 seriesDecker.setTitle(getResources().getString(R.string.decker));
-                seriesDecker.setDrawDataPoints(true);
+                //seriesDecker.setDrawDataPoints(true);
                 seriesDecker.setColor(Color.BLUE);
                 seriesDecker.appendData(new DataPoint(x, y), true, 1000);
                 y += delta;
@@ -171,9 +172,10 @@ public class PartialKnittingResultActivity extends AlertActivity {
                 seriesDecker.appendData(new DataPoint(x, y), true, 1000);
                 graph.addSeries(seriesDecker);
             }
-            series.setDrawDataPoints(true);
+            //series.setDrawDataPoints(true);
             series.setColor(Color.RED);
-            series.setDrawAsPath(true);
+            series.setBackgroundColor(Color.BLUE);
+            //series.setDrawAsPath(true);
             graph.getLegendRenderer().setVisible(true);
             graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
 
