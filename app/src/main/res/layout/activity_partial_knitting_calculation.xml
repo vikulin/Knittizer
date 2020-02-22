@@ -71,13 +71,13 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/k_a_b"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/editH"
+                app:layout_constraintEnd_toStartOf="@+id/editRows"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/A" />
 
             <EditText
-                android:id="@+id/editH"
+                android:id="@+id/editRows"
                 android:layout_width="50dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="44dp"
@@ -94,13 +94,13 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/c_c"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/editRows"
+                app:layout_constraintEnd_toStartOf="@+id/editH"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/B" />
 
             <EditText
-                android:id="@+id/editRows"
+                android:id="@+id/editH"
                 android:layout_width="190dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="44dp"
@@ -109,7 +109,7 @@
                 android:textSize="16sp"
                 android:hint="@string/a_n"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editH"
+                app:layout_constraintTop_toBottomOf="@+id/editRows"
                 android:importantForAutofill="no" />
 
             <ImageButton

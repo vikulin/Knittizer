@@ -8,7 +8,7 @@
     <string name="c_c">C</string>
     <string name="n_c">Начальный ряд</string>
     <string name="k_c">Конечный ряд</string>
-    <string name="calculate">Подсчитать</string>
+    <string name="calculate">Расчёт</string>
     <string name="description_two_side">Расчёт ритма убавок или прибавок в вязаном изделии</string>
     <string name="sample_calculate_menu">Расчёт образца</string>
     <string name="description_two_side_schema">Схема для прибавок или убавок</string>
