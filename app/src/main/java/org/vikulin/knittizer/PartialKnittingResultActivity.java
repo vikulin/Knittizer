@@ -3,12 +3,15 @@ package org.vikulin.knittizer;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.LayoutDirection;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LegendRenderer;
@@ -28,12 +31,16 @@ import java.util.List;
 import java.util.Set;
 
 
-public class PartialKnittingResultActivity extends AppCompatActivity {
+public class PartialKnittingResultActivity extends AlertActivity {
 
     public static final String RES = "result";
     public static final String UN = "un";
     public static final String U = "u";
     public static final int SAVE = 1;
+    public static final String ROWS = "rows";
+
+    private float dw = 3.0f;
+    private float dh = 3.5f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +53,8 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
 
             PartialKnittingResult result = (PartialKnittingResult) extras.getSerializable(RES);
             int un = extras.getInt(UN, 0);
-            int u = extras.getInt(U, 0);
+            final int u = extras.getInt(U, 0);
+            final int rows = extras.getInt(ROWS, 0);
             int base = result.getBase();
             int phases = result.getPhases();
 
@@ -123,11 +131,21 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
             resultListView.expandGroup(0);
 
 
-            GraphView graph = (GraphView) findViewById(R.id.graph);
+            final GraphView graph = findViewById(R.id.graph);
+            graph.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    //PartialKnittingResultActivity.this.showAlertDialog("Touched",motionEvent.toString());
+                    return false;
+                }
+            });
             LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
-            series.appendData(new DataPoint(0,0), true, 1000);
-            series.appendData(new DataPoint(resultList.get(0),0), true, 1000);
             int y=0;
+            series.appendData(new DataPoint(0,y), true, 1000);
+            if(un==0){
+                y=2;
+            }
+            series.appendData(new DataPoint(resultList.get(0),y), true, 1000);
             int x=resultList.get(0);
             for(int i=1;i<resultList.size();i++){
                 x += resultList.get(i);
@@ -161,6 +179,32 @@ public class PartialKnittingResultActivity extends AppCompatActivity {
 
             graph.getViewport().setYAxisBoundsManual(true);
             graph.getViewport().setXAxisBoundsManual(true);
+
+            graph.post(new Runnable() {
+                @Override
+                public void run() {
+                    int w = graph.getWidth();
+                    float h = graph.getHeight();
+                    //RelativeLayout.LayoutParams lpNew = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, h);
+                    //graph.setLayoutParams(lpNew);
+                    //graph.setScaleX(1);
+                    //graph.setScaleY(dw/dh);
+                    double maxX = graph.getViewport().getMaxX(true);
+                    double maxY = graph.getViewport().getMaxY(true);
+
+                    if(maxX>maxY){
+                        maxY=maxX;
+                        graph.getViewport().setMaxY(maxX);
+                    }
+                    if(maxY>maxX){
+                        maxX = maxY;
+                        graph.getViewport().setMaxX(maxY);
+                    }
+                    //maxY = graph.getViewport().getMaxY(true);
+                    //1.5 is a layout scale modification
+                    graph.getViewport().setMaxY(maxY*(dh/dw)*(h/w));
+                }
+            });
         } else {
             finish();
         }

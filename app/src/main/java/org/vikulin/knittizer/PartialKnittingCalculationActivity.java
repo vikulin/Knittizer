@@ -18,14 +18,14 @@ public class PartialKnittingCalculationActivity extends AlertActivity {
 
     public void calculate(View view) {
         EditText rowsEdit = findViewById(R.id.editRows);
-        EditText uEdit = findViewById(R.id.editW);
-        EditText uNEdit = findViewById(R.id.editH);
+        EditText wEdit = findViewById(R.id.editW);
+        EditText rEdit = findViewById(R.id.editH);
         if(rowsEdit.length()==0){
             rowsEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
-        if(uEdit.length()==0){
-            uEdit.setError(getResources().getString(R.string.empty_value_error));
+        if(wEdit.length()==0){
+            wEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
         int rows = Integer.parseInt(rowsEdit.getText().toString());
@@ -33,9 +33,9 @@ public class PartialKnittingCalculationActivity extends AlertActivity {
             rowsEdit.setError(getResources().getString(R.string.zero_value_error));
             return;
         }
-        int u = Integer.parseInt(uEdit.getText().toString());
+        int u = Integer.parseInt(wEdit.getText().toString());
         if(u==0){
-            uEdit.setError("Веедите число > 0");
+            wEdit.setError("Веедите число > 0");
             return;
         }
         int phases = rows/2-((rows+1)%2);
@@ -57,8 +57,9 @@ public class PartialKnittingCalculationActivity extends AlertActivity {
         Intent intent = new Intent(this, PartialKnittingResultActivity.class);
         intent.putExtra(PartialKnittingResultActivity.RES, result);
         intent.putExtra(PartialKnittingResultActivity.U, u);
-        if(uNEdit.length()>0) {
-            int un = Integer.parseInt(uNEdit.getText().toString());
+        intent.putExtra(PartialKnittingResultActivity.ROWS, rows);
+        if(rEdit.length()>0) {
+            int un = Integer.parseInt(rEdit.getText().toString());
             intent.putExtra(PartialKnittingResultActivity.UN, un);
         }
         startActivity(intent);
