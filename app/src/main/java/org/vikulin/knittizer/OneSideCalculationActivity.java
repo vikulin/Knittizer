@@ -2,10 +2,12 @@ package org.vikulin.knittizer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 
-import org.vikulin.knittizer.model.TwoSidesResult;
+import org.vikulin.knittizer.model.TwoPartsResult;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,6 +19,53 @@ public class OneSideCalculationActivity extends AlertActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one_side_calculation);
         getSupportActionBar().setTitle(R.string.one_side_menu);
+        final EditText rowNEdit = findViewById(R.id.editRowN);
+        final EditText rowKEdit = findViewById(R.id.editRowK);
+        final EditText rowsEdit = findViewById(R.id.editRows);
+        rowNEdit.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(final Editable editable) {
+                if(editable.length()>0){
+                    if(rowKEdit.length()>0){
+                        int r1 = Integer.parseInt(rowKEdit.getText().toString());
+                        int r2 = Integer.parseInt(editable.toString());
+                        int rows = Math.abs(r1-r2);
+                        rowsEdit.setText(rows+"");
+                    }
+                }
+            }
+        });
+        rowKEdit.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(final Editable editable) {
+                if(editable.length()>0){
+                    if(rowNEdit.length()>0){
+                        int r1 = Integer.parseInt(rowNEdit.getText().toString());
+                        int r2 = Integer.parseInt(editable.toString());
+                        int rows = Math.abs(r1-r2);
+                        rowsEdit.setText(rows+"");
+                    }
+                }
+            }
+        });
     }
 
     public void calculate(View view) {
@@ -74,27 +123,36 @@ public class OneSideCalculationActivity extends AlertActivity {
             showAlertDialog(getResources().getString(R.string.error),getResources().getString(R.string.division_by_zero_error));
             return;
         }
-        ArrayList<TwoSidesResult> resultList = new ArrayList<>();
+        ArrayList<TwoPartsResult> resultList = new ArrayList<>();
         if(rows % u==0){
             //String result = "Убавлять в каждом "+(rows / u)+" ряду";
 
-            TwoSidesResult object = new TwoSidesResult();
+            TwoPartsResult object = new TwoPartsResult();
             object.setFirstNumber(u);
             object.setFirstRowPeriod(rows / u);
             object.setSecondNumber(u);
             object.setSecondRowPeriod(rows / u);
+            if(object.getFirstRowPeriod()==1){
+                object.setFirstNumber(object.getFirstNumber()/4);
+                object.setFirstRowPeriod(2);
+                object.setFirstStitchesNumber(2);
+                object.setSecondNumber(object.getSecondNumber()/4);
+                object.setSecondRowPeriod(2);
+                object.setSecondStitchesNumber(2);
+            }
             object.setStartStitchLessEndStitch(isStartStitchLessEndStitch);
             resultList.add(object);
             Intent intent = new Intent(this, ResultActivity.class);
             intent.putExtra(ResultActivity.RES, resultList);
+            intent.putExtra(ResultActivity.START_FROM_ROW, startFromRow);
             intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.ONE_SIDE_KNITTING);
             intent.putExtra(ResultActivity.NUMBER_OF_ROW_SERIES, 1);
             startActivity(intent);
             return;
         }
 
-        for(int a=3;a<rows;a++){
-            for(int b=2;b<rows;b++){
+        for(int a=2;a<rows;a++){
+            for(int b=1;b<rows;b++){
                 if(a==b){
                     continue;
                 }
@@ -106,7 +164,7 @@ public class OneSideCalculationActivity extends AlertActivity {
                 //System.out.println("Integer Part: " + intValue);
                 //System.out.println("Decimal Part: " + o.toPlainString());
                 if(intValue<rows && intValue>0 && a<=intValue/2 && o.compareTo(new BigDecimal(0.01))<0 && (intValue % a)==0 && ((rows-intValue)%b)==0 && (rows-intValue)/b>1){
-                    TwoSidesResult object = new TwoSidesResult();
+                    TwoPartsResult object = new TwoPartsResult();
                     if(a<b) {
                         object.setFirstNumber(intValue / a);
                         object.setFirstRowPeriod(a);
@@ -119,6 +177,11 @@ public class OneSideCalculationActivity extends AlertActivity {
                         object.setSecondNumber(intValue / a);
                         object.setSecondRowPeriod(a);
                         object.setStartStitchLessEndStitch(isStartStitchLessEndStitch);
+                    }
+                    if(object.getFirstRowPeriod()==1){
+                        object.setFirstNumber(object.getFirstNumber()/2);
+                        object.setFirstRowPeriod(2);
+                        object.setFirstStitchesNumber(2);
                     }
                     resultList.add(object);
                 }

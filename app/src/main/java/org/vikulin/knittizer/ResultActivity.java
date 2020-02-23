@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import org.vikulin.knittizer.adapter.ResultExpandableListAdapter;
-import org.vikulin.knittizer.model.TwoSidesResult;
+import org.vikulin.knittizer.model.TwoPartsResult;
 
 import java.util.ArrayList;
 
@@ -32,10 +32,10 @@ public class ResultActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             ExpandableListView resultListView = findViewById(R.id.resultList);
-            ArrayList<TwoSidesResult> result = (ArrayList<TwoSidesResult>) extras.getSerializable(RES);
+            ArrayList<TwoPartsResult> result = (ArrayList<TwoPartsResult>) extras.getSerializable(RES);
 
             ArrayList<String> stringResults = new ArrayList<>();
-            for(TwoSidesResult r:result){
+            for(TwoPartsResult r:result){
                 stringResults.add(r.toString());
             }
             int startFromRow = extras.getInt(START_FROM_ROW,0);
