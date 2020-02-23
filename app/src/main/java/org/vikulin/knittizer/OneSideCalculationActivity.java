@@ -133,10 +133,10 @@ public class OneSideCalculationActivity extends AlertActivity {
             object.setSecondNumber(u);
             object.setSecondRowPeriod(rows / u);
             if(object.getFirstRowPeriod()==1){
-                object.setFirstNumber(object.getFirstNumber()/4);
+                object.setFirstNumber(object.getFirstNumber()/2);
                 object.setFirstRowPeriod(2);
                 object.setFirstStitchesNumber(2);
-                object.setSecondNumber(object.getSecondNumber()/4);
+                object.setSecondNumber(object.getSecondNumber()/2);
                 object.setSecondRowPeriod(2);
                 object.setSecondStitchesNumber(2);
             }
