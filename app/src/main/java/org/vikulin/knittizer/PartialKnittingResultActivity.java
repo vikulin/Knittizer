@@ -107,7 +107,8 @@ public class PartialKnittingResultActivity extends AlertActivity {
                 resultString.add(resultList.toString());
                 resultString.add(getResources().getString(R.string.pk));
                 if((phase-resultList.size())>5) {
-                    resultString.add("2x1*" + (phase - resultList.size()));
+                    int delta = (phase - resultList.size());
+                    resultString.add("2 раза по 1 петле в каждом "+delta+" ряду (2x1*" +delta+")");
                 }
             } else {
                 int fractionalPhases = result.getFractionalPhases();
