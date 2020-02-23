@@ -20,22 +20,22 @@ public class PartialKnittingCalculationActivity extends AlertActivity {
         EditText rowsEdit = findViewById(R.id.editRows);
         EditText wEdit = findViewById(R.id.editW);
         EditText rEdit = findViewById(R.id.editH);
-        if(rowsEdit.length()==0){
-            rowsEdit.setError(getResources().getString(R.string.empty_value_error));
-            return;
-        }
         if(wEdit.length()==0){
             wEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
-        int rows = Integer.parseInt(rowsEdit.getText().toString());
-        if(rows==0){
-            rowsEdit.setError(getResources().getString(R.string.zero_value_error));
+        if(rowsEdit.length()==0){
+            rowsEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
         int u = Integer.parseInt(wEdit.getText().toString());
         if(u==0){
             wEdit.setError("Веедите число > 0");
+            return;
+        }
+        int rows = Integer.parseInt(rowsEdit.getText().toString());
+        if(rows==0){
+            rowsEdit.setError(getResources().getString(R.string.zero_value_error));
             return;
         }
         int phases = rows/2-((rows+1)%2);
