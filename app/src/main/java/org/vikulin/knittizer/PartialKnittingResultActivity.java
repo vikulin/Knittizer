@@ -38,6 +38,7 @@ public class PartialKnittingResultActivity extends AlertActivity {
     public static final String U = "u";
     public static final int SAVE = 1;
     public static final String ROWS = "rows";
+    public static final String START_FROM_ROW = "start_from_row";
 
     private float dw = 3.0f;
     private float dh = 3.5f;
@@ -55,6 +56,7 @@ public class PartialKnittingResultActivity extends AlertActivity {
             int un = extras.getInt(UN, 0);
             final int u = extras.getInt(U, 0);
             final int rows = extras.getInt(ROWS, 0);
+            int startFromRow = extras.getInt(START_FROM_ROW,0);
             int base = result.getBase();
             int phases = result.getPhases();
 
@@ -100,15 +102,21 @@ public class PartialKnittingResultActivity extends AlertActivity {
                     }
                 };
                 Collections.sort(resultList, Collections.reverseOrder());
-                System.out.println(resultList.toString()+" ЧВ");
                 System.out.println("2x1*"+(phase-resultList.size()));
                 //30-60-10
                 System.out.println(2*(phase-resultList.size())/(u-sum(resultList)));
-                resultString.add(resultList.toString());
+                for(int i:resultList) {
+                    startFromRow += 2;
+                    resultString.add(startFromRow+"x"+i);
+                }
                 resultString.add(getResources().getString(R.string.pk));
                 if((phase-resultList.size())>5) {
                     int delta = (phase - resultList.size());
-                    resultString.add("2 раза по 1 петле в каждом "+delta+" ряду (2x1*" +delta+")");
+                    startFromRow += delta;
+                    resultString.add(startFromRow+"x1");
+                    startFromRow += delta;
+                    resultString.add(startFromRow+"x1");
+                    resultString.add(getResources().getString(R.string.dekker_stitches)+" "+delta+" "+getResources().getString(R.string.in_row)+ " (2x1*" +delta+")");
                 }
             } else {
                 int fractionalPhases = result.getFractionalPhases();

@@ -115,6 +115,31 @@
                 app:layout_constraintTop_toBottomOf="@+id/editRows"
                 android:importantForAutofill="no" />
 
+            <EditText
+                android:id="@+id/editRowN"
+                android:layout_width="125dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="104dp"
+                android:ems="10"
+                android:hint="@string/n_c"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editRowK"
+                android:layout_width="125dp"
+                android:layout_height="42dp"
+                android:ems="10"
+                android:hint="@string/k_c"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editRowN" />
+
             <ImageButton
                 android:id="@+id/helpButton"
                 android:layout_width="wrap_content"
