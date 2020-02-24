@@ -20,8 +20,8 @@
     <FrameLayout
         android:id="@+id/space"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@+id/resultList">
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true">
 
     </FrameLayout>
 

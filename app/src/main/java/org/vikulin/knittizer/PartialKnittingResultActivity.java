@@ -62,6 +62,7 @@ public class PartialKnittingResultActivity extends AlertActivity {
 
             List<String> resultString = new ArrayList<>();
             ArrayList<Integer> resultList = new ArrayList<>();
+            int s;
             if(un>0){
 
                 //int u = 34;
@@ -105,19 +106,19 @@ public class PartialKnittingResultActivity extends AlertActivity {
                 System.out.println("2x1*"+(phase-resultList.size()));
                 //30-60-10
                 System.out.println(2*(phase-resultList.size())/(u-sum(resultList)));
+                s = startFromRow;
                 for(int i:resultList) {
-                    startFromRow += 2;
-                    resultString.add(startFromRow+"x"+i);
+                    s += 2;
+                    resultString.add(s+"x"+i);
                 }
                 resultString.add(getResources().getString(R.string.pk));
                 if((phase-resultList.size())>5) {
                     int delta = (phase - resultList.size());
                     resultString.add(getResources().getString(R.string.dekker_stitches)+" "+delta+" "+getResources().getString(R.string.in_row)+ " (2x1*" +delta+")");
-                    startFromRow += delta;
-                    resultString.add(startFromRow+"x1");
-                    startFromRow += delta;
-                    resultString.add(startFromRow+"x1");
-
+                    s += delta;
+                    resultString.add(s+"x1");
+                    s += delta;
+                    resultString.add(s+"x1");
                 }
             } else {
                 int fractionalPhases = result.getFractionalPhases();
@@ -127,6 +128,7 @@ public class PartialKnittingResultActivity extends AlertActivity {
                 for(int i=1;i<=phases-fractionalPhases;i++){
                     resultList.add(base);
                 }
+                s = resultList.size()*2;
                 resultString.add(resultList.toString());
                 resultString.add(getResources().getString(R.string.pk));
             }
@@ -150,10 +152,10 @@ public class PartialKnittingResultActivity extends AlertActivity {
                 }
             });
             LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
-            int y=0;
+            int y=startFromRow;
             series.appendData(new DataPoint(0,y), true, 1000);
             if(un==0){
-                y=2;
+                y=startFromRow+2;
             }
             series.appendData(new DataPoint(resultList.get(0),y), true, 1000);
             int x=resultList.get(0);
@@ -195,6 +197,7 @@ public class PartialKnittingResultActivity extends AlertActivity {
             graph.getViewport().setYAxisBoundsManual(true);
             graph.getViewport().setXAxisBoundsManual(true);
 
+            final int finalS = s;
             graph.post(new Runnable() {
                 @Override
                 public void run() {
