@@ -92,7 +92,7 @@ public class OneSideCalculationActivity extends AlertActivity {
                 return;
             }
         }
-        if(rowNEdit.length()==0 && rowKEdit.length()==0){
+        if(rowsEdit.length()==0){
             rowsEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
         }

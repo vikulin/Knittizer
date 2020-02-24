@@ -99,11 +99,10 @@ public class PartialKnittingCalculationActivity extends AlertActivity {
                 return;
             }
         }
-        if(rowNEdit.length()==0 && rowKEdit.length()==0){
+        if(rowsEdit.length()==0){
             rowsEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
-
         int startFromRow = 0;
         if(rowNEdit.length()>0 || rowKEdit.length()>0){
             int r1 = Integer.parseInt(rowNEdit.getText().toString());

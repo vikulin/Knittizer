@@ -112,11 +112,12 @@ public class PartialKnittingResultActivity extends AlertActivity {
                 resultString.add(getResources().getString(R.string.pk));
                 if((phase-resultList.size())>5) {
                     int delta = (phase - resultList.size());
-                    startFromRow += delta;
-                    resultString.add(startFromRow+"x1");
-                    startFromRow += delta;
-                    resultString.add(startFromRow+"x1");
                     resultString.add(getResources().getString(R.string.dekker_stitches)+" "+delta+" "+getResources().getString(R.string.in_row)+ " (2x1*" +delta+")");
+                    startFromRow += delta;
+                    resultString.add(startFromRow+"x1");
+                    startFromRow += delta;
+                    resultString.add(startFromRow+"x1");
+
                 }
             } else {
                 int fractionalPhases = result.getFractionalPhases();
