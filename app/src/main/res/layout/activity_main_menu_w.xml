@@ -39,7 +39,7 @@
             android:textAllCaps="true"
             android:layout_weight="3"
             android:text="@string/sample_calculate_menu"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:layout_marginBottom="1dp"
             android:background="@color/gray"/>
     </LinearLayout>
@@ -71,7 +71,7 @@
             android:textAllCaps="true"
             android:layout_weight="3"
             android:text="@string/double_side"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:layout_marginBottom="1dp"
             android:background="@color/gray"/>
     </LinearLayout>
@@ -103,7 +103,7 @@
             android:textAllCaps="true"
             android:layout_weight="3"
             android:text="@string/one_side_menu"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:layout_marginBottom="1dp"
             android:background="@color/gray"/>
     </LinearLayout>
@@ -136,7 +136,7 @@
             android:textAllCaps="true"
             android:layout_weight="3"
             android:text="@string/two_side_menu"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:layout_marginBottom="1dp"
             android:background="@color/gray"/>
 
@@ -169,7 +169,7 @@
             android:textAllCaps="true"
             android:layout_weight="3"
             android:text="@string/partial_knitting"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:layout_marginBottom="1dp"
             android:background="@color/gray"/>
     </LinearLayout>
@@ -199,7 +199,7 @@
             android:textAllCaps="true"
             android:layout_weight="3"
             android:text="@string/favorites"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:background="@color/gray"/>
     </LinearLayout>
 </LinearLayout>
