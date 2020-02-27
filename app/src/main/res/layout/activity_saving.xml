@@ -24,7 +24,6 @@
             android:layout_height="match_parent"
             android:weightSum="10">
             <Button
-                android:id="@+id/ok"
                 android:orientation="horizontal"
                 android:layout_weight="5"
                 android:layout_width="0dp"
@@ -39,7 +38,6 @@
                 android:textAllCaps="true"
                 style="?android:attr/borderlessButtonStyle" />
             <Button
-                android:id="@+id/cancel"
                 android:layout_weight="5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

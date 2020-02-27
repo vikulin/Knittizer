@@ -14,7 +14,6 @@
         android:layout_above="@id/button">
 
         <ImageView
-            android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -48,7 +47,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
             <TextView
-                android:id="@+id/A"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/n_a_b"
@@ -75,7 +73,6 @@
                 android:importantForAutofill="no" />
 
             <TextView
-                android:id="@+id/B"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/k_a_b"
@@ -153,7 +150,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/editRowN" />
 
             <ImageButton
-                android:id="@+id/helpButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/ic_launcher_background"
@@ -164,7 +160,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/help" />
             <TextView
-                android:id="@+id/helperText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/a_n_optional"

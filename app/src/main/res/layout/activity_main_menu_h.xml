@@ -142,7 +142,6 @@
                 android:src="@drawable/rukav_1"
                 android:contentDescription="@string/two_side_menu" />
             <TextView
-                android:id="@+id/mainTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif"
