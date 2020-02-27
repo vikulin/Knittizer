@@ -1,3 +1,9 @@
 <resources>
+    <dimen name="text_size">16sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fields_merging_start">76dp</dimen>
+    <dimen name="fields_merging_end">16dp</dimen>
+    <dimen name="short_fields_merging_start">44dp</dimen>
+    <dimen name="row_fields_size">125dp</dimen>
+    <dimen name="long_field_size">195dp</dimen>
 </resources>
