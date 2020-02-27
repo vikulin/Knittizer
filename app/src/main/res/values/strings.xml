@@ -1,15 +1,12 @@
 <resources>
     <string name="app_name">Knittizer</string>
     <string name="title_activity_result">Результат</string>
-    <string name="a_b">Количество петель (A)</string>
     <string name="n_a_b">A</string>
     <string name="k_a_b">B</string>
-    <string name="c_b">B</string>
     <string name="c_c">C</string>
     <string name="n_c">Начальный ряд</string>
     <string name="k_c">Конечный ряд</string>
     <string name="calculate">Расчёт</string>
-    <string name="description_two_side">Расчёт ритма убавок или прибавок в вязаном изделии</string>
     <string name="sample_calculate_menu">Расчёт образца</string>
     <string name="description_two_side_schema">Схема для прибавок или убавок</string>
     <string name="two_side_menu">Фасонная убавка или прибавка</string>
@@ -43,8 +40,6 @@
     <string name="num">кол.</string>
     <string name="cm">см</string>
     <string name="help">Справка</string>
-    <string name="about">О программе</string>
-    <string name="no_saved_results">Нет сохранённых результатов</string>
     <string name="no_calculated_results">Нет результатов. Пожалуйста, проверьте правильность введённых данных.</string>
     <string name="error">Ошибка</string>
     <string name="division_by_zero_error">Дление на 0. Проверьте правильность данных.</string>
