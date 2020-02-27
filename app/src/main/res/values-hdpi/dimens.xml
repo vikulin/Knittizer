@@ -6,4 +6,5 @@
     <dimen name="short_fields_merging_start">25dp</dimen>
     <dimen name="row_fields_size">114dp</dimen>
     <dimen name="long_field_size">175dp</dimen>
+    <dimen name="short_fields_size">40dp</dimen>
 </resources>
