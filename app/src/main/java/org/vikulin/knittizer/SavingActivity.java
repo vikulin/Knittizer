@@ -65,7 +65,7 @@ public class SavingActivity extends Activity {
                 savedName.setError(getResources().getString(R.string.empty_name_error));
                 return;
             }
-            Set<String> set = preferences.getStringSet(savedName.getText().toString(), new LinkedHashSet());
+            Set<String> set = preferences.getStringSet(savedName.getText().toString(), new LinkedHashSet<String>());
             set.add(result.toString());
             preferences.edit().putStringSet(savedName.getText().toString(), set).apply();
             Intent intent = new Intent();

@@ -3,12 +3,9 @@ package org.vikulin.knittizer;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.LayoutDirection;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -311,10 +308,10 @@ public class PartialKnittingResultActivity extends AlertActivity {
 
     static Set<Integer> run(int n, int max){
         if(n<=0){
-            return new HashSet();
+            return new HashSet<>();
         }
         if(n==1){
-            Set<Integer> set = new HashSet();
+            Set<Integer> set = new HashSet<>();
             set.add(1);
             return set;
         }
