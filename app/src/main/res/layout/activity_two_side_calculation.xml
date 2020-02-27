@@ -129,7 +129,7 @@
                 android:hint="@string/n_c"
                 android:inputType="number"
                 android:textSize="@dimen/text_size"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="55dp"
                 app:layout_constraintStart_toStartOf="@+id/view"
                 app:layout_constraintTop_toTopOf="parent"
                 android:importantForAutofill="no" />
@@ -142,7 +142,7 @@
                 android:hint="@string/k_c"
                 android:inputType="number"
                 android:textSize="@dimen/text_size"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="55dp"
                 app:layout_constraintStart_toStartOf="@+id/view"
                 app:layout_constraintTop_toBottomOf="@+id/editRowN"
                 android:importantForAutofill="no" />
