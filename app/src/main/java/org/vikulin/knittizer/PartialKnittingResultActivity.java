@@ -1,19 +1,12 @@
 package org.vikulin.knittizer;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.LegendRenderer;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
 import org.vikulin.knittizer.adapter.StringResultExpandableListAdapter;
 import org.vikulin.knittizer.model.PartialKnittingResult;
@@ -36,9 +29,6 @@ public class PartialKnittingResultActivity extends AlertActivity {
     public static final int SAVE = 1;
     public static final String ROWS = "rows";
     public static final String START_FROM_ROW = "start_from_row";
-
-    private float dw = 3.0f;
-    private float dh = 3.5f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,83 +134,6 @@ public class PartialKnittingResultActivity extends AlertActivity {
             resultListView.setAdapter(adapter);
             resultListView.expandGroup(0);
 
-
-            final GraphView graph = findViewById(R.id.graph);
-            graph.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View view, MotionEvent motionEvent) {
-                    //PartialKnittingResultActivity.this.showAlertDialog("Touched",motionEvent.toString());
-                    return false;
-                }
-            });
-            LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
-            int y=startFromRow;
-            series.appendData(new DataPoint(0,y), true, 1000);
-            if(un==0){
-                y=startFromRow+2;
-            }
-            series.appendData(new DataPoint(resultList.get(0),y), true, 1000);
-            int x=resultList.get(0);
-            for(int i=1;i<resultList.size();i++){
-                x += resultList.get(i);
-                y += 2;
-                System.out.println(x);
-                series.appendData(new DataPoint(x, y), true, 1000);
-            }
-            graph.setTitle(getResources().getString(R.string.pk_graph_title));
-            series.setTitle(getResources().getString(R.string.pk));
-            graph.addSeries(series);
-            int delta = phases-resultList.size();
-            if(delta>5) {
-                LineGraphSeries<DataPoint> seriesDecker = new LineGraphSeries<DataPoint>();
-                seriesDecker.setTitle(getResources().getString(R.string.decker));
-                //seriesDecker.setDrawDataPoints(true);
-                seriesDecker.setBackgroundColor(Color.rgb(187, 62, 45));
-                seriesDecker.setColor(Color.rgb(151, 19, 56));
-                seriesDecker.setDrawBackground(true);
-                seriesDecker.appendData(new DataPoint(x, y), true, 1000);
-                y += delta;
-                x += 1;
-                seriesDecker.appendData(new DataPoint(x, y), true, 1000);
-                y += delta;
-                x += 1;
-                seriesDecker.appendData(new DataPoint(x, y), true, 1000);
-                graph.addSeries(seriesDecker);
-            }
-            //series.setDrawDataPoints(true);
-            series.setBackgroundColor(Color.rgb(255, 141, 46));
-            series.setColor(Color.rgb(255, 125, 56));
-
-            series.setDrawBackground(true);
-            //series.setDrawAsPath(true);
-            graph.getLegendRenderer().setVisible(true);
-            graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
-
-            graph.getViewport().setYAxisBoundsManual(true);
-            graph.getViewport().setXAxisBoundsManual(true);
-
-            final int finalS = s;
-            graph.post(new Runnable() {
-                @Override
-                public void run() {
-                    int w = graph.getWidth();
-                    float h = graph.getHeight();
-                    //RelativeLayout.LayoutParams lpNew = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, h);
-                    //graph.setLayoutParams(lpNew);
-                    //graph.setScaleX(1);
-                    //graph.setScaleY(dw/dh);
-                    double maxX = graph.getViewport().getMaxX(true);
-                    double maxY = graph.getViewport().getMaxY(true);
-
-                    if(maxX>maxY){
-                        maxY=maxX;
-                        graph.getViewport().setMaxY(maxX);
-                    }
-                    //maxY = graph.getViewport().getMaxY(true);
-                    //1.5 is a layout scale modification
-                    graph.getViewport().setMaxY(maxY*(dh/dw)*(h/w));
-                }
-            });
         } else {
             finish();
         }
