@@ -102,13 +102,18 @@ public class PartialKnittingResultActivity extends AlertActivity {
                 Collections.sort(resultList, Collections.reverseOrder());
                 System.out.println("2x1*"+(phase-resultList.size()));
                 //30-60-10
-                System.out.println(2*(phase-resultList.size())/(u-sum(resultList)));
-                s = startFromRow;
+                //System.out.println(2*(phase-resultList.size())/(u-sum(resultList)));
                 for(int i:resultList) {
-                    s += 2;
-                    resultString.add(s+"x"+i);
+                    resultString.add(i+"");
                 }
                 resultString.add(getResources().getString(R.string.pk));
+                resultString.add("\n\n"+getResources().getString(R.string.r_do)+":");
+                s = startFromRow;
+                for(int i:resultList) {
+                    resultString.add(s+"x"+i);
+                    s += 2;
+                }
+
                 if((phase-resultList.size())>5) {
                     int delta = (phase - resultList.size());
                     resultString.add(getResources().getString(R.string.dekker_stitches)+" "+delta+" "+getResources().getString(R.string.in_row)+ " (2x1*" +delta+")");
@@ -210,10 +215,6 @@ public class PartialKnittingResultActivity extends AlertActivity {
                     if(maxX>maxY){
                         maxY=maxX;
                         graph.getViewport().setMaxY(maxX);
-                    }
-                    if(maxY>maxX){
-                        maxX = maxY;
-                        graph.getViewport().setMaxX(maxY);
                     }
                     //maxY = graph.getViewport().getMaxY(true);
                     //1.5 is a layout scale modification

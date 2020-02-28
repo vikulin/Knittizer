@@ -86,20 +86,6 @@ public class TwoPartsResult implements Serializable {
         if(isStartStitchLessEndStitch) {
             if(firstNumber==secondNumber && firstRowPeriod==secondRowPeriod) {
                 if(firstStitchesNumber>1) {
-                    return "Прибавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду по "+firstStitchesNumber+" петли";
-                } else {
-                    return "Прибавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду";
-                }
-            } else {
-                if(firstStitchesNumber>1) {
-                    return "Прибавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду по "+firstStitchesNumber+" петли и " + secondNumber + " раз в каждом " + secondRowPeriod + " ряду по "+secondStitchesNumber+" петле";
-                } else {
-                    return "Прибавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду и " + secondNumber + " раз в каждом " + secondRowPeriod + " ряду";
-                }
-            }
-        } else {
-            if(firstNumber==secondNumber && firstRowPeriod==secondRowPeriod) {
-                if(firstStitchesNumber>1) {
                     return "Убавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду по "+firstStitchesNumber+" петли";
                 } else {
                     return "Убавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду";
@@ -109,6 +95,20 @@ public class TwoPartsResult implements Serializable {
                     return "Убавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду по "+firstStitchesNumber+" петли и " + secondNumber + " раз в каждом " + secondRowPeriod + " ряду по "+secondStitchesNumber+" петле";
                 } else {
                     return "Убавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду и " + secondNumber + " раз в каждом " + secondRowPeriod + " ряду";
+                }
+            }
+        } else {
+            if(firstNumber==secondNumber && firstRowPeriod==secondRowPeriod) {
+                if(firstStitchesNumber>1) {
+                    return "Прибавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду по "+firstStitchesNumber+" петли";
+                } else {
+                    return "Прибавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду";
+                }
+            } else {
+                if(firstStitchesNumber>1) {
+                    return "Прибавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду по "+firstStitchesNumber+" петли и " + secondNumber + " раз в каждом " + secondRowPeriod + " ряду по "+secondStitchesNumber+" петле";
+                } else {
+                    return "Прибавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду и " + secondNumber + " раз в каждом " + secondRowPeriod + " ряду";
                 }
             }
         }

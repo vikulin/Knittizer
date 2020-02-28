@@ -46,6 +46,7 @@
     <string name="saved_calculations">Расчёты</string>
     <string name="u">петли</string>
     <string name="r">ряды</string>
+    <string name="r_do">убавить(прибавить) в указанных рядах</string>
     <string name="a_n_optional">*необязательно</string>
     <string name="dekker_stitches">2 раза по 1 петле в каждом</string>
     <string name="in_row">ряду</string>
