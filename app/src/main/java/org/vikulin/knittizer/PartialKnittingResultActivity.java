@@ -8,7 +8,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import org.vikulin.knittizer.adapter.StringResultExpandableListAdapter;
+import org.vikulin.knittizer.adapter.PartialKnittingExpandableListAdapter;
+import org.vikulin.knittizer.model.PartialKnittingBaseData;
 import org.vikulin.knittizer.model.PartialKnittingResult;
 
 import java.util.ArrayList;
@@ -38,8 +39,7 @@ public class PartialKnittingResultActivity extends AlertActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             ExpandableListView resultListView = findViewById(R.id.resultList);
-
-            PartialKnittingResult result = (PartialKnittingResult) extras.getSerializable(RES);
+            PartialKnittingBaseData result = (PartialKnittingBaseData) extras.getSerializable(RES);
             int un = extras.getInt(UN, 0);
             final int u = extras.getInt(U, 0);
             final int rows = extras.getInt(ROWS, 0);
@@ -50,8 +50,8 @@ public class PartialKnittingResultActivity extends AlertActivity {
             List<String> resultString = new ArrayList<>();
             ArrayList<Integer> resultList = new ArrayList<>();
             int s;
+            PartialKnittingResult pkResult = new PartialKnittingResult();
             if(un>0){
-
                 //int u = 34;
                 int d = un;
                 int phase = phases;
@@ -94,30 +94,38 @@ public class PartialKnittingResultActivity extends AlertActivity {
                 //30-60-10
                 //System.out.println(2*(phase-resultList.size())/(u-sum(resultList)));
                 for(int i:resultList) {
+                    pkResult.addPartialKnittingStitch(i+"");
                     resultString.add(i+"");
                 }
                 resultString.add(getResources().getString(R.string.pk));
                 resultString.add("\n\n"+getResources().getString(R.string.r_do)+":");
                 s = startFromRow;
                 for(int i:resultList) {
+                    pkResult.addPartialKnittingRow(s+"");
                     resultString.add(s+"x"+i);
                     s += 2;
                 }
 
                 if((phase-resultList.size())>5) {
                     int delta = (phase - resultList.size());
-                    resultString.add(getResources().getString(R.string.dekker_stitches)+" "+delta+" "+getResources().getString(R.string.in_row)+ " (2x1*" +delta+")");
+                    resultString.add(getResources().getString(R.string.decker_stitches)+" "+delta+" "+getResources().getString(R.string.in_row)+ " (2x1*" +delta+")");
                     s += delta;
+                    pkResult.addDeckerRow(s+"");
+                    pkResult.addDeckerKnittingStitch("1");
                     resultString.add(s+"x1");
                     s += delta;
+                    pkResult.addDeckerRow(s+"");
+                    pkResult.addDeckerKnittingStitch("1");
                     resultString.add(s+"x1");
                 }
             } else {
                 int fractionalPhases = result.getFractionalPhases();
                 for(int i=1;i<=fractionalPhases;i++){
+                    pkResult.addPartialKnittingStitch(new Integer(base+1).toString());
                     resultList.add(base+1);
                 }
                 for(int i=1;i<=phases-fractionalPhases;i++){
+                    pkResult.addPartialKnittingStitch(new Integer(base).toString());
                     resultList.add(base);
                 }
                 s = resultList.size()*2;
@@ -130,7 +138,7 @@ public class PartialKnittingResultActivity extends AlertActivity {
                 return;
             }
 
-            StringResultExpandableListAdapter adapter = new StringResultExpandableListAdapter(this, resultString, getResources().getString(R.string.total_phases)+":"+resultList.size(), SAVE);
+            PartialKnittingExpandableListAdapter adapter = new PartialKnittingExpandableListAdapter(this, pkResult, getResources().getString(R.string.total_phases)+":"+resultList.size(), SAVE);
             resultListView.setAdapter(adapter);
             resultListView.expandGroup(0);
 

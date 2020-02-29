@@ -48,6 +48,7 @@
     <string name="r">ряды</string>
     <string name="r_do">убавить(прибавить) в указанных рядах</string>
     <string name="a_n_optional">*необязательно</string>
-    <string name="dekker_stitches">2 раза по 1 петле в каждом</string>
+    <string name="decker_stitches">2 раза по 1 петле в каждом</string>
     <string name="in_row">ряду</string>
+    <string name="s_do">убавить(прибавить) указанное количество петель</string>
 </resources>

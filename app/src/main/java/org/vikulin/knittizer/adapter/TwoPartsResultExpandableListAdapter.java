@@ -19,7 +19,7 @@ import org.vikulin.knittizer.model.TwoPartsResult;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultExpandableListAdapter extends BaseExpandableListAdapter {
+public class TwoPartsResultExpandableListAdapter extends BaseExpandableListAdapter {
 
     private final List<TwoPartsResult> list;
     private final Context context;
@@ -27,7 +27,7 @@ public class ResultExpandableListAdapter extends BaseExpandableListAdapter {
     private final int numberOfRowSeries;
     private final int activity;
 
-    public ResultExpandableListAdapter(final Context context, List<TwoPartsResult> list, int startFromRow, int numberOfRowSeries, int activity){
+    public TwoPartsResultExpandableListAdapter(final Context context, List<TwoPartsResult> list, int startFromRow, int numberOfRowSeries, int activity){
         this.context = context;
         this.list = list;
         this.startFromRow = startFromRow;
@@ -125,7 +125,7 @@ public class ResultExpandableListAdapter extends BaseExpandableListAdapter {
                 public void onClick(View v) {
                     Intent intent = new Intent((ResultActivity)context, SavingActivity.class);
                     ArrayList<String> list = new ArrayList<>();
-                    TwoPartsResult r = ResultExpandableListAdapter.this.list.get(groupPosition);
+                    TwoPartsResult r = TwoPartsResultExpandableListAdapter.this.list.get(groupPosition);
                     list.add(r.toString());
                     list.add(rows.toString());
                     intent.putStringArrayListExtra(SavingActivity.RES, list);

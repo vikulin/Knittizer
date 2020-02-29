@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.vikulin.knittizer.adapter.ResultExpandableListAdapter;
+import org.vikulin.knittizer.adapter.TwoPartsResultExpandableListAdapter;
 import org.vikulin.knittizer.model.TwoPartsResult;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class ResultActivity extends AppCompatActivity {
             int startFromRow = extras.getInt(START_FROM_ROW,0);
             int numberOfRowSeries = extras.getInt(NUMBER_OF_ROW_SERIES,1);
             int activity = extras.getInt(ACTIVITY);
-            ResultExpandableListAdapter adapter = new ResultExpandableListAdapter(this, result, startFromRow, numberOfRowSeries, activity);
+            TwoPartsResultExpandableListAdapter adapter = new TwoPartsResultExpandableListAdapter(this, result, startFromRow, numberOfRowSeries, activity);
             resultListView.setAdapter(adapter);
             if(adapter.getGroupCount()==0){
                 resultListView.setVisibility(View.GONE);

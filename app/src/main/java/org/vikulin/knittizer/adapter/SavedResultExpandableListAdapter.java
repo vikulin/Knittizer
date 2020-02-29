@@ -41,7 +41,7 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
 
     @Override
     public int getChildrenCount(int i) {
-        return ((Set<String>)map.get(this.keys.get(i))).size();
+        return 1;
     }
 
     @Override
@@ -51,9 +51,9 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        Set<String> savedResults = (Set<String>) map.get(this.keys.get(groupPosition));
+        String savedResults = map.get(this.keys.get(groupPosition)).toString();
         if(savedResults!=null){
-            return new ArrayList<>(savedResults).get(childPosition);
+            return savedResults;
         } else {
             return "";
         }
@@ -111,13 +111,7 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
                                 public void onClick(DialogInterface dialog, int whichButton) {
                                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(((Activity)context).getBaseContext());
                                     String r = SavedResultExpandableListAdapter.this.keys.get(groupPosition);
-                                    Set<String> set = preferences.getStringSet(r, new HashSet());
-                                    set.remove(row);
-                                    if(set.size()==0){
-                                        preferences.edit().remove(r).commit();
-                                    } else {
-                                        preferences.edit().putStringSet(r, set).commit();
-                                    }
+                                    preferences.edit().remove(r).commit();
                                     map = preferences.getAll();
                                     SavedResultExpandableListAdapter.this.keys = new ArrayList<>(map.keySet());
                                     SavedResultExpandableListAdapter.this.notifyDataSetChanged();

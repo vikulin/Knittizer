@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:padding="10dp"
+    android:weightSum="18"
+    android:background="@android:color/transparent">
+
+    <RelativeLayout
+        android:layout_weight="12"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp">
+        <TextView android:id="@+id/pkTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textStyle="normal"
+            android:textSize="15sp"
+            android:textColor="@color/colorPrimaryText"
+            android:paddingLeft="1dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/partial_knitting"/>
+        <TextView android:id="@+id/pkStitchesHelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textStyle="normal"
+            android:textSize="13sp"
+            android:textColor="@color/colorDelimiter"
+            android:padding="3dp"
+            android:layout_below="@+id/pkTitle"
+            android:text="@string/s_do"/>
+        <TextView android:id="@+id/pkStitchesList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textStyle="normal"
+            android:textSize="13sp"
+            android:textColor="@color/colorPrimaryText"
+            android:padding="3dp"
+            android:layout_below="@+id/pkStitchesHelp"
+            android:text=""/>
+        <TextView android:id="@+id/pkRowHelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textStyle="normal"
+            android:textSize="13sp"
+            android:textColor="@color/colorDelimiter"
+            android:padding="3dp"
+            android:layout_below="@+id/pkStitchesList"
+            android:text="@string/r_do"/>
+        <TextView android:id="@+id/pkRows"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textStyle="normal"
+            android:textSize="13sp"
+            android:textColor="@color/colorPrimaryText"
+            android:padding="3dp"
+            android:layout_below="@+id/pkRowHelp"
+            android:text=""/>
+
+    </RelativeLayout>
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_weight="6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        android:background="@drawable/button_bg"
+        android:textColor="@color/ic_launcher_background"
+        android:drawablePadding="3dp"
+        android:text="@string/save" />
+
+</LinearLayout>

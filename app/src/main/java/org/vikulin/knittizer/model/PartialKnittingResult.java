@@ -1,37 +1,49 @@
 package org.vikulin.knittizer.model;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class PartialKnittingResult implements Serializable {
+public class PartialKnittingResult {
 
-    private int phases;
+    //partial knitting list
+    List<String> partialKnittingStitchesList = new ArrayList<>();
 
-    private int fractionalPhases;
+    List<String> deckerKnittingStitchesList = new ArrayList<>();
 
-    private int base;
+    List<String> partialKnittingRowsList = new ArrayList<>();
 
-    public int getPhases() {
-        return phases;
+    List<String> deckerRowsList = new ArrayList<>();
+
+    public List<String> getPartialKnittingStitchesList() {
+        return partialKnittingStitchesList;
     }
 
-    public void setPhases(int phases) {
-        this.phases = phases;
+    public void addPartialKnittingStitch(String partialKnittingStitch) {
+        this.partialKnittingStitchesList.add(partialKnittingStitch);
     }
 
-    public int getFractionalPhases() {
-        return fractionalPhases;
+    public List<String> getDeckerKnittingStitchesList() {
+        return deckerKnittingStitchesList;
     }
 
-    public void setFractionalPhases(int fractionalPhases) {
-        this.fractionalPhases = fractionalPhases;
+    public void addDeckerKnittingStitch(String deckerKnittingStitch) {
+        this.deckerKnittingStitchesList.add(deckerKnittingStitch);
     }
 
-    public int getBase() {
-        return base;
+    public List<String> getPartialKnittingRowsList() {
+        return partialKnittingRowsList;
     }
 
-    public void setBase(int base) {
-        this.base = base;
+    public void addPartialKnittingRow(String partialKnittingRow) {
+        this.partialKnittingRowsList.add(partialKnittingRow);
+    }
+
+    public List<String> getDeckerRowsList() {
+        return deckerRowsList;
+    }
+
+    public void addDeckerRow(String deckerRow) {
+        this.deckerRowsList.add(deckerRow);
     }
 
 }

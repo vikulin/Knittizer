@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ResultActivity"
-    tools:showIn="@layout/activity_result">
+    tools:context=".ResultActivity">
 
     <ExpandableListView
         android:id="@+id/resultList"
@@ -15,7 +14,6 @@
         android:choiceMode="singleChoice"
         android:groupIndicator="@null"
         android:listSelector="#DDDDDD">
-
     </ExpandableListView>
 
     <TextView

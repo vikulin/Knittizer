@@ -7,7 +7,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 
-import org.vikulin.knittizer.model.PartialKnittingResult;
+import org.vikulin.knittizer.model.PartialKnittingBaseData;
 
 public class PartialKnittingCalculationActivity extends AlertActivity {
 
@@ -128,7 +128,7 @@ public class PartialKnittingCalculationActivity extends AlertActivity {
         double d = phases*fractional;
         int fractionalPhase = (int)Math.round(d);
 
-        PartialKnittingResult result = new PartialKnittingResult();
+        PartialKnittingBaseData result = new PartialKnittingBaseData();
         result.setBase(base);
         result.setPhases(phases);
         result.setFractionalPhases(fractionalPhase);
