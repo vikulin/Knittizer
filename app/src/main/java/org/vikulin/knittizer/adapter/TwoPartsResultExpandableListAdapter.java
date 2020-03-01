@@ -140,8 +140,6 @@ public class TwoPartsResultExpandableListAdapter extends BaseExpandableListAdapt
         } else {
             holder = (ResultHolder) convertView.getTag();
         }
-
-
         holder.text.setText(TextUtils.join(", ", rows));
         return convertView;
     }
