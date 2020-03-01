@@ -18,19 +18,16 @@ import org.vikulin.knittizer.SavingActivity;
 import org.vikulin.knittizer.model.PartialKnittingResult;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdapter {
 
     private final PartialKnittingResult list;
     private final Context context;
     private final String groupTitle;
-    private final int activity;
-    public PartialKnittingExpandableListAdapter(final Context context, PartialKnittingResult list, String groupTitle, final int activity){
+    public PartialKnittingExpandableListAdapter(final Context context, PartialKnittingResult list, String groupTitle){
         this.context = context;
         this.list = list;
         this.groupTitle = groupTitle;
-        this.activity = activity;
     }
 
     @Override
@@ -97,14 +94,16 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
                 public void onClick(View v) {
                     Intent intent = new Intent(context, SavingActivity.class);
                     Gson gson = new Gson();
-                    intent.putExtra(SavingActivity.RES, gson.toJson(result));
-                    intent.putExtra(SavingActivity.ACTIVITY, activity);
-                    ((Activity)context).startActivityForResult(intent, activity);
+                    ArrayList<String> r = new ArrayList();
+                    r.add(gson.toJson(result));
+                    intent.putStringArrayListExtra(SavingActivity.RES, r);
+                    intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.PARTIAL_KNITTING);
+                    ((Activity)context).startActivityForResult(intent, SavingActivity.PARTIAL_KNITTING);
                 }
             });
             holder = new PkResultHolder();
-            holder.pkStitchesList = convertView.findViewById(R.id.pkStitchesList);
-            holder.pkRows = convertView.findViewById(R.id.pkRows);
+            holder.pkStitchesList = convertView.findViewById(R.id.list1);
+            holder.pkRows = convertView.findViewById(R.id.list2);
             convertView.setTag(holder);
         } else {
             holder = (PkResultHolder) convertView.getTag();

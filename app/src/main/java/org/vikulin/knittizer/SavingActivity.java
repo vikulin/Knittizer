@@ -8,6 +8,8 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -39,35 +41,20 @@ public class SavingActivity extends Activity {
         if (extras != null) {
             ArrayList<String> result = extras.getStringArrayList(RES);
             int activity = extras.getInt(ACTIVITY);
-            switch(activity) {
-                case ONE_SIDE_KNITTING :
-                    result.add(0, getResources().getString(R.string.one_side_menu));
-                    break;
-                case TWO_SIDE_KNITTING :
-                    result.add(0, getResources().getString(R.string.two_side_menu));
-                    break;
-                case DOUBLE_KNITTING :
-                    result.add(0, getResources().getString(R.string.double_side));
-                    break;
-                case PARTIAL_KNITTING :
-                    result.add(0, getResources().getString(R.string.partial_knitting));
-                    break;
-                case SAMPLE_KNITTING :
-                    result.add(0, getResources().getString(R.string.sample_calculate_menu));
-                    break;
-                // You can have any number of case statements.
-                default :
-                    // Statements
-            }
+            result.add(0, activity+"");//getResources().getString(R.string.one_side_menu)
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
             EditText savedName = findViewById(R.id.saveName);
             if(savedName.length()==0){
                 savedName.setError(getResources().getString(R.string.empty_name_error));
                 return;
             }
-            Set<String> set = preferences.getStringSet(savedName.getText().toString(), new LinkedHashSet<String>());
-            set.add(result.toString());
-            preferences.edit().putStringSet(savedName.getText().toString(), set).apply();
+            String value = preferences.getString(savedName.getText().toString(), null);
+            if(value!=null){
+                savedName.setError(getResources().getString(R.string.existing_name_error));
+                return;
+            }
+            Gson gson = new Gson();
+            preferences.edit().putString(savedName.getText().toString(), gson.toJson(result)).apply();
             Intent intent = new Intent();
             setResult(RESULT_OK, intent);
             finish();

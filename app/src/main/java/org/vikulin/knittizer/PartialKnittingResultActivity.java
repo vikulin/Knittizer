@@ -27,7 +27,6 @@ public class PartialKnittingResultActivity extends AlertActivity {
     public static final String RES = "result";
     public static final String UN = "un";
     public static final String U = "u";
-    public static final int SAVE = 1;
     public static final String ROWS = "rows";
     public static final String START_FROM_ROW = "start_from_row";
 
@@ -47,7 +46,6 @@ public class PartialKnittingResultActivity extends AlertActivity {
             int base = result.getBase();
             int phases = result.getPhases();
 
-            List<String> resultString = new ArrayList<>();
             ArrayList<Integer> resultList = new ArrayList<>();
             int s;
             PartialKnittingResult pkResult = new PartialKnittingResult();
@@ -61,7 +59,6 @@ public class PartialKnittingResultActivity extends AlertActivity {
                 for(int i=resultList.get(resultList.size()-1)-1;i>0;i--) {
                     int sum = sum(resultList);
                     int tmp = u-sum-2;
-
                     if(tmp<0){
                         break;
                     }
@@ -69,7 +66,6 @@ public class PartialKnittingResultActivity extends AlertActivity {
                     resultList.add(i);
                 }
                 System.out.println(resultList.toString());
-
                 //-2 give us 2 free stitches as result 2*(ph-list size)/deltaU = ph-list size
                 System.out.println(deltaU);
                 Set<Integer> set = run(deltaU, 4);
@@ -95,28 +91,21 @@ public class PartialKnittingResultActivity extends AlertActivity {
                 //System.out.println(2*(phase-resultList.size())/(u-sum(resultList)));
                 for(int i:resultList) {
                     pkResult.addPartialKnittingStitch(i+"");
-                    resultString.add(i+"");
                 }
-                resultString.add(getResources().getString(R.string.pk));
-                resultString.add("\n\n"+getResources().getString(R.string.r_do)+":");
                 s = startFromRow;
                 for(int i:resultList) {
                     pkResult.addPartialKnittingRow(s+"");
-                    resultString.add(s+"x"+i);
                     s += 2;
                 }
-
                 if((phase-resultList.size())>5) {
                     int delta = (phase - resultList.size());
-                    resultString.add(getResources().getString(R.string.decker_stitches)+" "+delta+" "+getResources().getString(R.string.in_row)+ " (2x1*" +delta+")");
+                    //resultString.add(getResources().getString(R.string.decker_stitches)+" "+delta+" "+getResources().getString(R.string.in_row)+ " (2x1*" +delta+")");
                     s += delta;
                     pkResult.addDeckerRow(s+"");
                     pkResult.addDeckerKnittingStitch("1");
-                    resultString.add(s+"x1");
                     s += delta;
                     pkResult.addDeckerRow(s+"");
                     pkResult.addDeckerKnittingStitch("1");
-                    resultString.add(s+"x1");
                 }
             } else {
                 int fractionalPhases = result.getFractionalPhases();
@@ -129,19 +118,14 @@ public class PartialKnittingResultActivity extends AlertActivity {
                     resultList.add(base);
                 }
                 s = resultList.size()*2;
-                resultString.add(resultList.toString());
-                resultString.add(getResources().getString(R.string.pk));
             }
-
             if(resultList.size()==0){
                 resultListView.setVisibility(View.GONE);
                 return;
             }
-
-            PartialKnittingExpandableListAdapter adapter = new PartialKnittingExpandableListAdapter(this, pkResult, getResources().getString(R.string.total_phases)+":"+resultList.size(), SAVE);
+            PartialKnittingExpandableListAdapter adapter = new PartialKnittingExpandableListAdapter(this, pkResult, getResources().getString(R.string.total_phases)+":"+resultList.size());
             resultListView.setAdapter(adapter);
             resultListView.expandGroup(0);
-
         } else {
             finish();
         }

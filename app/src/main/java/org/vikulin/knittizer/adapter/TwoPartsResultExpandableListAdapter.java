@@ -3,6 +3,7 @@ package org.vikulin.knittizer.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,17 +121,17 @@ public class TwoPartsResultExpandableListAdapter extends BaseExpandableListAdapt
         final List<Integer> rows = (List<Integer>) getChild(groupPosition, childPosition);
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.list_rows_result, parent, false);
-            Button saveButton = (Button) convertView.findViewById(R.id.saveButton);
+            Button saveButton = convertView.findViewById(R.id.saveButton);
             saveButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent((ResultActivity)context, SavingActivity.class);
+                    Intent intent = new Intent(context, SavingActivity.class);
                     ArrayList<String> list = new ArrayList<>();
                     TwoPartsResult r = TwoPartsResultExpandableListAdapter.this.list.get(groupPosition);
                     list.add(r.toString());
                     list.add(rows.toString());
                     intent.putStringArrayListExtra(SavingActivity.RES, list);
                     intent.putExtra(SavingActivity.ACTIVITY, activity);
-                    ((ResultActivity)context).startActivityForResult(intent, PartialKnittingResultActivity.SAVE);
+                    ((ResultActivity)context).startActivityForResult(intent, activity);
                 }
             });
             holder = new ResultHolder();
@@ -141,7 +142,7 @@ public class TwoPartsResultExpandableListAdapter extends BaseExpandableListAdapt
         }
 
 
-        holder.text.setText(rows.toString());
+        holder.text.setText(TextUtils.join(", ", rows));
         return convertView;
     }
 
