@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
@@ -16,6 +16,18 @@
         android:textSize="15sp"
         android:textColor="@color/colorPrimaryText"
         android:paddingTop="5dp"
+        android:paddingBottom="2dp"
+        android:clickable="false"
+        android:focusable="false"/>
+
+    <TextView android:id="@+id/group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textStyle="normal"
+        android:textSize="13sp"
+        android:textColor="@color/colorGroupHelp"
+        android:paddingTop="2dp"
         android:paddingBottom="5dp"
         android:clickable="false"
         android:focusable="false"/>

@@ -87,21 +87,47 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
     }
 
     @Override
-    public View getGroupView(int position, boolean b, View row, ViewGroup parent) {
+    public View getGroupView(int position, boolean b, View view, ViewGroup parent) {
         GroupHolder holder = null;
-        String r = this.keys.get(position);
-        if(row == null)
+        String name = this.keys.get(position);
+        if(view == null)
         {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-            row = inflater.inflate(R.layout.list_result, parent, false);
+            view = inflater.inflate(R.layout.list_result, parent, false);
             holder = new GroupHolder();
-            holder.text = row.findViewById(R.id.text);
-            row.setTag(holder);
+            holder.text = view.findViewById(R.id.text);
+            holder.group = view.findViewById(R.id.group);
+            view.setTag(holder);
         } else {
-            holder = (GroupHolder)row.getTag();
+            holder = (GroupHolder)view.getTag();
         }
-        holder.text.setText(r);
-        return row;
+
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<String>>(){}.getType();
+        List<String> child = gson.fromJson((String)getChild(position, 0), listType);
+        int activity = Integer.parseInt(child.get(0));
+        switch (activity) {
+            case ONE_SIDE_KNITTING:
+                holder.group.setText(R.string.one_side_menu);
+                break;
+            case TWO_SIDE_KNITTING:
+                holder.group.setText(R.string.two_side_menu);
+                break;
+            case DOUBLE_KNITTING:
+                holder.group.setText(R.string.double_knitting);
+                break;
+            case PARTIAL_KNITTING:
+                holder.group.setText(R.string.partial_knitting);
+                break;
+            case SAMPLE_KNITTING:
+                holder.group.setText(R.string.sample_calculate_menu);
+                break;
+            // You can have any number of case statements.
+            default:
+                // Statements
+        }
+        holder.text.setText(name);
+        return view;
     }
 
     @Override
@@ -131,7 +157,6 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
                     }
                 });
                 holder = new ChildHolder();
-                holder.title = convertView.findViewById(R.id.title);
                 holder.help1 = convertView.findViewById(R.id.help1);
                 holder.list1 = convertView.findViewById(R.id.list1);
                 holder.help2 = convertView.findViewById(R.id.help2);
@@ -143,13 +168,12 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
             Gson gson = new Gson();
             Type listType = new TypeToken<ArrayList<String>>(){}.getType();
             List<String> row = gson.fromJson((String)getChild(groupPosition, childPosition), listType);
-            int activity = Integer.parseInt(row.get(0));
             String r = row.get(1);
             TwoPartsResult twoPartsResult = null;
             List<String> rows = null;
+            int activity = Integer.parseInt(row.get(0));
             switch (activity) {
                 case ONE_SIDE_KNITTING:
-                    holder.title.setText(R.string.one_side_menu);
                     twoPartsResult = gson.fromJson(r, TwoPartsResult.class);
                     rows = (List<String>) TwoPartsResultExpandableListAdapter.getRows(twoPartsResult, twoPartsResult.getStartFromRow());
                     holder.help1.setText(twoPartsResult.toString());
@@ -157,7 +181,6 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
                     holder.help2.setVisibility(View.GONE);
                     break;
                 case TWO_SIDE_KNITTING:
-                    holder.title.setText(R.string.two_side_menu);
                     twoPartsResult = gson.fromJson(r, TwoPartsResult.class);
                     rows = (List<String>) TwoPartsResultExpandableListAdapter.getRows(twoPartsResult, twoPartsResult.getStartFromRow());
                     holder.help1.setText(twoPartsResult.toString());
@@ -165,7 +188,6 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
                     holder.help2.setVisibility(View.GONE);
                     break;
                 case DOUBLE_KNITTING:
-                    holder.title.setText(R.string.double_knitting);
                     twoPartsResult = gson.fromJson(r, TwoPartsResult.class);
                     rows = (List<String>) TwoPartsResultExpandableListAdapter.getRows(twoPartsResult, twoPartsResult.getStartFromRow());
                     holder.help1.setText(twoPartsResult.toString());
@@ -173,14 +195,12 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
                     holder.help2.setVisibility(View.GONE);
                     break;
                 case PARTIAL_KNITTING:
-                    holder.title.setText(R.string.partial_knitting);
                     PartialKnittingResult pkResult = gson.fromJson(r, PartialKnittingResult.class);
                     holder.list1.setText(TextUtils.join(", ", pkResult.getPartialKnittingStitchesList()));
                     holder.list2.setText(TextUtils.join(", ", pkResult.getPartialKnittingRowsList()));
                     holder.help2.setVisibility(View.VISIBLE);
                     break;
                 case SAMPLE_KNITTING:
-                    holder.title.setText(R.string.sample_calculate_menu);
                     holder.list1.setText(TextUtils.join(", ", row.subList(1, row.size())));
                     holder.help1.setText(R.string.sample_density);
                     holder.help2.setVisibility(View.GONE);
@@ -199,10 +219,10 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
 
     static class GroupHolder {
         TextView text;
+        TextView group;
     }
 
     static class ChildHolder {
-        TextView title;
         TextView help1;
         TextView list1;
         TextView help2;

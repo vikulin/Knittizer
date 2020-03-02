@@ -3,6 +3,7 @@
     <color name="colorPrimary">#F44336</color>
     <color name="colorPrimaryDark">#F44336</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorGroupHelp">#555</color>
     <color name="colorDelimiter">#777</color>
     <color name="colorHelperText">#999</color>
     <color name="colorPrimaryText">#212121</color>
