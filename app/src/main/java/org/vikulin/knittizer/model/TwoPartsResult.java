@@ -6,6 +6,16 @@ import java.io.Serializable;
 
 public class TwoPartsResult implements Serializable {
 
+    public int startFromRow;
+
+    public int getStartFromRow() {
+        return startFromRow;
+    }
+
+    public void setStartFromRow(int startFromRow) {
+        this.startFromRow = startFromRow;
+    }
+
     public int getFirstNumber() {
         return firstNumber;
     }

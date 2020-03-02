@@ -18,7 +18,7 @@ public class TwoSideFasonCalculationActivity extends AlertActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two_side_calculation);
-        getSupportActionBar().setTitle(R.string.two_side_menu);
+        getSupportActionBar().setTitle(R.string.double_knitting);
         final EditText rowNEdit = findViewById(R.id.editRowN);
         final EditText rowKEdit = findViewById(R.id.editRowK);
         final EditText rowsEdit = findViewById(R.id.editRows);

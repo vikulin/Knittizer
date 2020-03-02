@@ -61,7 +61,7 @@
             android:paddingRight="15dp"
             android:adjustViewBounds="true"
             android:src="@drawable/rukav_1"
-            android:contentDescription="@string/double_side" />
+            android:contentDescription="@string/two_side_menu" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -71,7 +71,7 @@
             android:textAlignment="gravity"
             android:textSize="16sp"
             android:textAllCaps="true"
-            android:text="@string/double_side"
+            android:text="@string/two_side_menu"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:layout_marginBottom="1dp"
@@ -129,7 +129,7 @@
             android:paddingRight="15dp"
             android:adjustViewBounds="true"
             android:src="@drawable/rukav_1"
-            android:contentDescription="@string/two_side_menu" />
+            android:contentDescription="@string/double_knitting" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -139,7 +139,7 @@
             android:textAlignment="gravity"
             android:textSize="16sp"
             android:textAllCaps="true"
-            android:text="@string/two_side_menu"
+            android:text="@string/double_knitting"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:layout_marginBottom="1dp"

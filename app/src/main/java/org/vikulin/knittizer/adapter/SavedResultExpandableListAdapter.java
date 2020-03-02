@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.database.DataSetObserver;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -22,6 +21,7 @@ import com.google.gson.reflect.TypeToken;
 import org.vikulin.knittizer.R;
 import org.vikulin.knittizer.SavedListActivity;
 import org.vikulin.knittizer.model.PartialKnittingResult;
+import org.vikulin.knittizer.model.TwoPartsResult;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -144,38 +144,45 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
             Type listType = new TypeToken<ArrayList<String>>(){}.getType();
             List<String> row = gson.fromJson((String)getChild(groupPosition, childPosition), listType);
             int activity = Integer.parseInt(row.get(0));
+            String r = row.get(1);
+            TwoPartsResult twoPartsResult = null;
+            List<String> rows = null;
             switch (activity) {
                 case ONE_SIDE_KNITTING:
                     holder.title.setText(R.string.one_side_menu);
-                    holder.list1.setText(TextUtils.join(", ", row.subList(1, row.size())));
-                    holder.help1.setVisibility(View.GONE);
+                    twoPartsResult = gson.fromJson(r, TwoPartsResult.class);
+                    rows = (List<String>) TwoPartsResultExpandableListAdapter.getRows(twoPartsResult, twoPartsResult.getStartFromRow());
+                    holder.help1.setText(twoPartsResult.toString());
+                    holder.list1.setText(TextUtils.join(", ", rows));
                     holder.help2.setVisibility(View.GONE);
                     break;
                 case TWO_SIDE_KNITTING:
                     holder.title.setText(R.string.two_side_menu);
-                    holder.list1.setText(TextUtils.join(", ", row.subList(1, row.size())));
-                    holder.help1.setVisibility(View.GONE);
+                    twoPartsResult = gson.fromJson(r, TwoPartsResult.class);
+                    rows = (List<String>) TwoPartsResultExpandableListAdapter.getRows(twoPartsResult, twoPartsResult.getStartFromRow());
+                    holder.help1.setText(twoPartsResult.toString());
+                    holder.list1.setText(TextUtils.join(", ", rows));
                     holder.help2.setVisibility(View.GONE);
                     break;
                 case DOUBLE_KNITTING:
-                    holder.title.setText(R.string.double_side);
-                    holder.list1.setText(TextUtils.join(", ", row.subList(1, row.size())));
-                    holder.help1.setVisibility(View.GONE);
+                    holder.title.setText(R.string.double_knitting);
+                    twoPartsResult = gson.fromJson(r, TwoPartsResult.class);
+                    rows = (List<String>) TwoPartsResultExpandableListAdapter.getRows(twoPartsResult, twoPartsResult.getStartFromRow());
+                    holder.help1.setText(twoPartsResult.toString());
+                    holder.list1.setText(TextUtils.join(", ", rows));
                     holder.help2.setVisibility(View.GONE);
                     break;
                 case PARTIAL_KNITTING:
                     holder.title.setText(R.string.partial_knitting);
-                    String r = row.get(1);
                     PartialKnittingResult pkResult = gson.fromJson(r, PartialKnittingResult.class);
                     holder.list1.setText(TextUtils.join(", ", pkResult.getPartialKnittingStitchesList()));
                     holder.list2.setText(TextUtils.join(", ", pkResult.getPartialKnittingRowsList()));
-                    holder.help1.setVisibility(View.VISIBLE);
                     holder.help2.setVisibility(View.VISIBLE);
                     break;
                 case SAMPLE_KNITTING:
                     holder.title.setText(R.string.sample_calculate_menu);
                     holder.list1.setText(TextUtils.join(", ", row.subList(1, row.size())));
-                    holder.help1.setVisibility(View.GONE);
+                    holder.help1.setText(R.string.sample_density);
                     holder.help2.setVisibility(View.GONE);
                     break;
                 // You can have any number of case statements.

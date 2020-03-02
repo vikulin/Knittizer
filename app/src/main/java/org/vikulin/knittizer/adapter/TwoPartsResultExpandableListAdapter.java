@@ -11,7 +11,8 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.vikulin.knittizer.PartialKnittingResultActivity;
+import com.google.gson.Gson;
+
 import org.vikulin.knittizer.R;
 import org.vikulin.knittizer.ResultActivity;
 import org.vikulin.knittizer.SavingActivity;
@@ -131,8 +132,9 @@ public class TwoPartsResultExpandableListAdapter extends BaseExpandableListAdapt
                     Intent intent = new Intent(context, SavingActivity.class);
                     ArrayList<String> list = new ArrayList<>();
                     TwoPartsResult r = TwoPartsResultExpandableListAdapter.this.list.get(groupPosition);
-                    list.add(r.toString());
-                    list.add(rows.toString());
+                    r.setStartFromRow(startFromRow);
+                    Gson gson = new Gson();
+                    list.add(gson.toJson(r));
                     intent.putStringArrayListExtra(SavingActivity.RES, list);
                     intent.putExtra(SavingActivity.ACTIVITY, activity);
                     ((ResultActivity)context).startActivityForResult(intent, activity);

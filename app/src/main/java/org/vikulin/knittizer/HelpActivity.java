@@ -31,11 +31,11 @@ public class HelpActivity extends AlertActivity {
                         base64 = Base64.encodeToString(readResource(R.raw.one_side_knitting), Base64.DEFAULT);
                         break;
                     case SavingActivity.TWO_SIDE_KNITTING:
-                        setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.two_side_menu).toLowerCase());
+                        setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.double_knitting).toLowerCase());
                         base64 = Base64.encodeToString(readResource(R.raw.two_side_fason_knitting), Base64.DEFAULT);
                         break;
                     case SavingActivity.DOUBLE_KNITTING:
-                        setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.double_side).toLowerCase());
+                        setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.two_side_menu).toLowerCase());
                         base64 = Base64.encodeToString(readResource(R.raw.double_knitting), Base64.DEFAULT);
                         break;
                     case SavingActivity.PARTIAL_KNITTING:

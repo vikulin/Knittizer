@@ -7,12 +7,9 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
-
 import com.google.gson.Gson;
-
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.Set;
+
 
 public class SavingActivity extends Activity {
 
