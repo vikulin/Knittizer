@@ -100,7 +100,7 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
         } else {
             holder = (GroupHolder)row.getTag();
         }
-        holder.text.setText(r.toString());
+        holder.text.setText(r);
         return row;
     }
 

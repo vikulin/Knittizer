@@ -53,8 +53,12 @@ public class TwoPartsResultExpandableListAdapter extends BaseExpandableListAdapt
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        List<String> rows = new ArrayList<>();
         TwoPartsResult r = this.list.get(groupPosition);
+        return getRows(r, startFromRow);
+    }
+
+    public static Object getRows(TwoPartsResult r, int startFromRow){
+        List<String> rows = new ArrayList<>();
         int fr = r.getFirstRowPeriod();
         int fn = r.getFirstNumber();
         int rowNumber = startFromRow;
