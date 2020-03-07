@@ -74,11 +74,14 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
             row = inflater.inflate(R.layout.list_result, parent, false);
             holder = new GroupHolder();
             holder.text = row.findViewById(R.id.text);
+            holder.group = row.findViewById(R.id.group);
             row.setTag(holder);
         } else {
             holder = (GroupHolder)row.getTag();
         }
         holder.text.setText(getGroup(position).toString());
+        holder.group.setText(context.getResources().getString(R.string.partial_knitting));
+        
         return row;
     }
 
@@ -125,5 +128,6 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
 
     static class GroupHolder {
         TextView text;
+        TextView group;
     }
 }

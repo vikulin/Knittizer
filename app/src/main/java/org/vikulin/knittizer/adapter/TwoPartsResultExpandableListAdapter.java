@@ -96,20 +96,18 @@ public class TwoPartsResultExpandableListAdapter extends BaseExpandableListAdapt
 
     @Override
     public View getGroupView(int position, boolean b, View row, ViewGroup parent) {
-        GroupHolder holder = null;
+        ResultHolder holder = null;
         TwoPartsResult r = this.list.get(position);
         if(row == null) {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
             row = inflater.inflate(R.layout.list_result, parent, false);
-            holder = new GroupHolder();
+            holder = new ResultHolder();
             holder.text = row.findViewById(R.id.text);
-            holder.group = row.findViewById(R.id.group);
             row.setTag(holder);
         } else {
-            holder = (GroupHolder)row.getTag();
+            holder = (ResultHolder)row.getTag();
         }
         holder.text.setText(r.toString());
-        holder.group.setText(context.getResources().getString(R.string.partial_knitting));
         return row;
     }
 
@@ -147,12 +145,6 @@ public class TwoPartsResultExpandableListAdapter extends BaseExpandableListAdapt
     @Override
     public boolean isChildSelectable(int i, int i1) {
         return true;
-    }
-
-
-    static class GroupHolder {
-        TextView text;
-        TextView group;
     }
 
     static class ResultHolder {
