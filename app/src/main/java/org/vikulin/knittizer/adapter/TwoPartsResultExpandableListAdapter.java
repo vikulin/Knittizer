@@ -65,11 +65,7 @@ public class TwoPartsResultExpandableListAdapter extends BaseExpandableListAdapt
         int rowNumber = startFromRow;
         for (int i = 1; i <= fn; i++) {
             rowNumber = rowNumber + fr;
-            if(r.getFirstStitchesNumber()>1){
-                rows.add(rowNumber+"x"+r.getFirstStitchesNumber());
-            } else {
-                rows.add(rowNumber+"");
-            }
+            rows.add(rowNumber+"("+r.getFirstStitchesNumber()+")");
         }
         if(!r.isPartEquals()) {
             fr = r.getSecondRowPeriod();
@@ -77,11 +73,7 @@ public class TwoPartsResultExpandableListAdapter extends BaseExpandableListAdapt
             rowNumber = startFromRow + r.getFirstRowPeriod() * r.getFirstNumber();
             for (int i = 1; i <= fn; i++) {
                 rowNumber = rowNumber + fr;
-                if (r.getSecondStitchesNumber() > 1) {
-                    rows.add(rowNumber + "x" + r.getSecondStitchesNumber());
-                } else {
-                    rows.add(rowNumber + "");
-                }
+                rows.add(rowNumber + "(" + r.getSecondStitchesNumber()+")");
             }
         }
         return rows;
@@ -104,18 +96,20 @@ public class TwoPartsResultExpandableListAdapter extends BaseExpandableListAdapt
 
     @Override
     public View getGroupView(int position, boolean b, View row, ViewGroup parent) {
-        ResultHolder holder = null;
+        GroupHolder holder = null;
         TwoPartsResult r = this.list.get(position);
         if(row == null) {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
             row = inflater.inflate(R.layout.list_result, parent, false);
-            holder = new ResultHolder();
+            holder = new GroupHolder();
             holder.text = row.findViewById(R.id.text);
+            holder.group = row.findViewById(R.id.group);
             row.setTag(holder);
         } else {
-            holder = (ResultHolder)row.getTag();
+            holder = (GroupHolder)row.getTag();
         }
         holder.text.setText(r.toString());
+        holder.group.setText(context.getResources().getString(R.string.partial_knitting));
         return row;
     }
 
@@ -153,6 +147,12 @@ public class TwoPartsResultExpandableListAdapter extends BaseExpandableListAdapt
     @Override
     public boolean isChildSelectable(int i, int i1) {
         return true;
+    }
+
+
+    static class GroupHolder {
+        TextView text;
+        TextView group;
     }
 
     static class ResultHolder {

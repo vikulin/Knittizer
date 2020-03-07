@@ -90,8 +90,7 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
     public View getGroupView(int position, boolean b, View view, ViewGroup parent) {
         GroupHolder holder = null;
         String name = this.keys.get(position);
-        if(view == null)
-        {
+        if(view == null) {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
             view = inflater.inflate(R.layout.list_result, parent, false);
             holder = new GroupHolder();
@@ -174,19 +173,7 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
             int activity = Integer.parseInt(row.get(0));
             switch (activity) {
                 case ONE_SIDE_KNITTING:
-                    twoPartsResult = gson.fromJson(r, TwoPartsResult.class);
-                    rows = (List<String>) TwoPartsResultExpandableListAdapter.getRows(twoPartsResult, twoPartsResult.getStartFromRow());
-                    holder.help1.setText(twoPartsResult.toString());
-                    holder.list1.setText(TextUtils.join(", ", rows));
-                    holder.help2.setVisibility(View.GONE);
-                    break;
                 case TWO_SIDE_KNITTING:
-                    twoPartsResult = gson.fromJson(r, TwoPartsResult.class);
-                    rows = (List<String>) TwoPartsResultExpandableListAdapter.getRows(twoPartsResult, twoPartsResult.getStartFromRow());
-                    holder.help1.setText(twoPartsResult.toString());
-                    holder.list1.setText(TextUtils.join(", ", rows));
-                    holder.help2.setVisibility(View.GONE);
-                    break;
                 case DOUBLE_KNITTING:
                     twoPartsResult = gson.fromJson(r, TwoPartsResult.class);
                     rows = (List<String>) TwoPartsResultExpandableListAdapter.getRows(twoPartsResult, twoPartsResult.getStartFromRow());
