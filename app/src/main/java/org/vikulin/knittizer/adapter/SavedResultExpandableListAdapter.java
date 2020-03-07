@@ -25,6 +25,7 @@ import org.vikulin.knittizer.model.TwoPartsResult;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -180,17 +181,33 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
                     holder.help1.setText(twoPartsResult.toString());
                     holder.list1.setText(TextUtils.join(", ", rows));
                     holder.help2.setVisibility(View.GONE);
+                    holder.help3.setVisibility(View.GONE);
+                    holder.list3.setVisibility(View.GONE);
                     break;
                 case PARTIAL_KNITTING:
                     PartialKnittingResult pkResult = gson.fromJson(r, PartialKnittingResult.class);
                     holder.list1.setText(TextUtils.join(", ", pkResult.getPartialKnittingStitchesList()));
                     holder.list2.setText(TextUtils.join(", ", pkResult.getPartialKnittingRowsList()));
                     holder.help2.setVisibility(View.VISIBLE);
+
+                    if(pkResult.getDeckerRowsList().size()>0) {
+                        Iterator<String> d = pkResult.getDeckerRowsList().iterator();
+                        Iterator<String> u = pkResult.getDeckerKnittingStitchesList().iterator();
+                        List<String> dString = new ArrayList<>();
+                        while (d.hasNext()) {
+                            dString.add(d.next() + "(" + u.next() + ")");
+                        }
+                        holder.list3.setText(TextUtils.join(", ", dString));
+                        holder.help3.setVisibility(View.VISIBLE);
+                        holder.list3.setVisibility(View.VISIBLE);
+                    }
                     break;
                 case SAMPLE_KNITTING:
                     holder.list1.setText(TextUtils.join(", ", row.subList(1, row.size())));
                     holder.help1.setText(R.string.sample_density);
                     holder.help2.setVisibility(View.GONE);
+                    holder.help3.setVisibility(View.GONE);
+                    holder.list3.setVisibility(View.GONE);
                     break;
                 // You can have any number of case statements.
                 default:
@@ -214,5 +231,7 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
         TextView list1;
         TextView help2;
         TextView list2;
+        TextView help3;
+        TextView list3;
     }
 }

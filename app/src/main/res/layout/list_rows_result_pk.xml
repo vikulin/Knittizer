@@ -52,6 +52,27 @@
             android:padding="3dp"
             android:layout_below="@+id/help2"
             android:text=""/>
+        <TextView android:id="@+id/help3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textStyle="normal"
+            android:textSize="13sp"
+            android:textColor="@color/colorDelimiter"
+            android:padding="3dp"
+            android:layout_below="@+id/list2"
+            android:text="@string/decker_do"
+            />
+        <TextView android:id="@+id/list3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textStyle="normal"
+            android:textSize="13sp"
+            android:textColor="@color/colorPrimaryText"
+            android:padding="3dp"
+            android:layout_below="@+id/help3"
+            />
     </RelativeLayout>
 
     <Button

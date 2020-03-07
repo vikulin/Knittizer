@@ -52,4 +52,5 @@
     <string name="decker_stitches">2 раза по 1 петле в каждом</string>
     <string name="in_row">ряду</string>
     <string name="s_do">убавить(прибавить) указанное количество петель</string>
+    <string name="decker_do">убавить(прибавить) деккером</string>
 </resources>

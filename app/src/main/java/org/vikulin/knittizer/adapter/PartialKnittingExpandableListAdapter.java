@@ -18,6 +18,8 @@ import org.vikulin.knittizer.SavingActivity;
 import org.vikulin.knittizer.model.PartialKnittingResult;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdapter {
 
@@ -81,7 +83,7 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
         }
         holder.text.setText(getGroup(position).toString());
         holder.group.setText(context.getResources().getString(R.string.partial_knitting));
-        
+
         return row;
     }
 
@@ -107,12 +109,29 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
             holder = new PkResultHolder();
             holder.pkStitchesList = convertView.findViewById(R.id.list1);
             holder.pkRows = convertView.findViewById(R.id.list2);
+            holder.decker = convertView.findViewById(R.id.list3);
+            holder.dHelp = convertView.findViewById(R.id.help3);
             convertView.setTag(holder);
         } else {
             holder = (PkResultHolder) convertView.getTag();
         }
         holder.pkStitchesList.setText(TextUtils.join(", ", result.getPartialKnittingStitchesList()));
         holder.pkRows.setText(TextUtils.join(", ", result.getPartialKnittingRowsList()));
+        if(result.getDeckerRowsList().size()>0) {
+            Iterator<String> d = result.getDeckerRowsList().iterator();
+            Iterator<String> u = result.getDeckerKnittingStitchesList().iterator();
+            List<String> dString = new ArrayList<>();
+            while (d.hasNext()) {
+                dString.add(d.next() + "(" + u.next() + ")");
+            }
+            try {
+                holder.decker.setText(TextUtils.join(", ", dString));
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+            holder.decker.setVisibility(View.VISIBLE);
+            holder.dHelp.setVisibility(View.VISIBLE);
+        }
         return convertView;
     }
 
@@ -124,6 +143,8 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
     static class PkResultHolder {
         TextView pkStitchesList;
         TextView pkRows;
+        TextView decker;
+        TextView dHelp;
     }
 
     static class GroupHolder {
