@@ -18,7 +18,7 @@ public class HelpActivity extends AlertActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             LinearLayout ll = findViewById(R.id.content);
-            WebView help = new WebView(this);
+            WebView help = new WebView(getApplicationContext());
             ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             help.setLayoutParams(lp);
             ll.addView(help);
