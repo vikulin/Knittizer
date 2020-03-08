@@ -3,6 +3,7 @@ package org.vikulin.knittizer.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,8 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.vikulin.knittizer.PartialKnittingResultActivity;
+import com.google.gson.Gson;
+
 import org.vikulin.knittizer.R;
 import org.vikulin.knittizer.ResultActivity;
 import org.vikulin.knittizer.SavingActivity;
@@ -19,7 +21,7 @@ import org.vikulin.knittizer.model.TwoPartsResult;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultExpandableListAdapter extends BaseExpandableListAdapter {
+public class TwoPartsResultExpandableListAdapter extends BaseExpandableListAdapter {
 
     private final List<TwoPartsResult> list;
     private final Context context;
@@ -27,7 +29,7 @@ public class ResultExpandableListAdapter extends BaseExpandableListAdapter {
     private final int numberOfRowSeries;
     private final int activity;
 
-    public ResultExpandableListAdapter(final Context context, List<TwoPartsResult> list, int startFromRow, int numberOfRowSeries, int activity){
+    public TwoPartsResultExpandableListAdapter(final Context context, List<TwoPartsResult> list, int startFromRow, int numberOfRowSeries, int activity){
         this.context = context;
         this.list = list;
         this.startFromRow = startFromRow;
@@ -52,18 +54,18 @@ public class ResultExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        List<String> rows = new ArrayList<>();
         TwoPartsResult r = this.list.get(groupPosition);
+        return getRows(r, startFromRow);
+    }
+
+    public static Object getRows(TwoPartsResult r, int startFromRow){
+        List<String> rows = new ArrayList<>();
         int fr = r.getFirstRowPeriod();
         int fn = r.getFirstNumber();
         int rowNumber = startFromRow;
         for (int i = 1; i <= fn; i++) {
             rowNumber = rowNumber + fr;
-            if(r.getFirstStitchesNumber()>1){
-                rows.add(rowNumber+"x"+r.getFirstStitchesNumber());
-            } else {
-                rows.add(rowNumber+"");
-            }
+            rows.add(rowNumber+"("+r.getFirstStitchesNumber()+")");
         }
         if(!r.isPartEquals()) {
             fr = r.getSecondRowPeriod();
@@ -71,11 +73,7 @@ public class ResultExpandableListAdapter extends BaseExpandableListAdapter {
             rowNumber = startFromRow + r.getFirstRowPeriod() * r.getFirstNumber();
             for (int i = 1; i <= fn; i++) {
                 rowNumber = rowNumber + fr;
-                if (r.getSecondStitchesNumber() > 1) {
-                    rows.add(rowNumber + "x" + r.getSecondStitchesNumber());
-                } else {
-                    rows.add(rowNumber + "");
-                }
+                rows.add(rowNumber + "(" + r.getSecondStitchesNumber()+")");
             }
         }
         return rows;
@@ -120,17 +118,18 @@ public class ResultExpandableListAdapter extends BaseExpandableListAdapter {
         final List<Integer> rows = (List<Integer>) getChild(groupPosition, childPosition);
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.list_rows_result, parent, false);
-            Button saveButton = (Button) convertView.findViewById(R.id.saveButton);
+            Button saveButton = convertView.findViewById(R.id.saveButton);
             saveButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent((ResultActivity)context, SavingActivity.class);
+                    Intent intent = new Intent(context, SavingActivity.class);
                     ArrayList<String> list = new ArrayList<>();
-                    TwoPartsResult r = ResultExpandableListAdapter.this.list.get(groupPosition);
-                    list.add(r.toString());
-                    list.add(rows.toString());
+                    TwoPartsResult r = TwoPartsResultExpandableListAdapter.this.list.get(groupPosition);
+                    r.setStartFromRow(startFromRow);
+                    Gson gson = new Gson();
+                    list.add(gson.toJson(r));
                     intent.putStringArrayListExtra(SavingActivity.RES, list);
                     intent.putExtra(SavingActivity.ACTIVITY, activity);
-                    ((ResultActivity)context).startActivityForResult(intent, PartialKnittingResultActivity.SAVE);
+                    ((ResultActivity)context).startActivityForResult(intent, activity);
                 }
             });
             holder = new ResultHolder();
@@ -139,9 +138,7 @@ public class ResultExpandableListAdapter extends BaseExpandableListAdapter {
         } else {
             holder = (ResultHolder) convertView.getTag();
         }
-
-
-        holder.text.setText(rows.toString());
+        holder.text.setText(TextUtils.join(", ", rows));
         return convertView;
     }
 

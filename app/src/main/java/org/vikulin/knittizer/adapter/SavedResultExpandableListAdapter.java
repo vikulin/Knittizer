@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +15,25 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 
-import org.vikulin.knittizer.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.vikulin.knittizer.R;
+import org.vikulin.knittizer.SavedListActivity;
+import org.vikulin.knittizer.model.PartialKnittingResult;
+import org.vikulin.knittizer.model.TwoPartsResult;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+
+import static org.vikulin.knittizer.SavingActivity.DOUBLE_KNITTING;
+import static org.vikulin.knittizer.SavingActivity.ONE_SIDE_KNITTING;
+import static org.vikulin.knittizer.SavingActivity.PARTIAL_KNITTING;
+import static org.vikulin.knittizer.SavingActivity.SAMPLE_KNITTING;
+import static org.vikulin.knittizer.SavingActivity.TWO_SIDE_KNITTING;
 
 public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter {
 
@@ -41,7 +54,7 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
 
     @Override
     public int getChildrenCount(int i) {
-        return ((Set<String>)map.get(this.keys.get(i))).size();
+        return 1;
     }
 
     @Override
@@ -51,9 +64,9 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        Set<String> savedResults = (Set<String>) map.get(this.keys.get(groupPosition));
+        String savedResults = (String)map.get(this.keys.get(groupPosition));
         if(savedResults!=null){
-            return new ArrayList<>(savedResults).get(childPosition);
+            return savedResults;
         } else {
             return "";
         }
@@ -75,65 +88,134 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
     }
 
     @Override
-    public View getGroupView(int position, boolean b, View row, ViewGroup parent) {
-        ResultHolder holder = null;
-        String r = this.keys.get(position);
-        if(row == null)
-        {
+    public View getGroupView(int position, boolean b, View view, ViewGroup parent) {
+        GroupHolder holder = null;
+        String name = this.keys.get(position);
+        if(view == null) {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-            row = inflater.inflate(R.layout.list_result, parent, false);
-            holder = new ResultHolder();
-            holder.text = row.findViewById(R.id.text);
-            row.setTag(holder);
+            view = inflater.inflate(R.layout.list_result, parent, false);
+            holder = new GroupHolder();
+            holder.text = view.findViewById(R.id.text);
+            holder.group = view.findViewById(R.id.group);
+            view.setTag(holder);
         } else {
-            holder = (ResultHolder)row.getTag();
+            holder = (GroupHolder)view.getTag();
         }
-        holder.text.setText(r.toString());
-        return row;
+
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<String>>(){}.getType();
+        List<String> child = gson.fromJson((String)getChild(position, 0), listType);
+        int activity = Integer.parseInt(child.get(0));
+        switch (activity) {
+            case ONE_SIDE_KNITTING:
+                holder.group.setText(R.string.one_side_menu);
+                break;
+            case TWO_SIDE_KNITTING:
+                holder.group.setText(R.string.two_side_menu);
+                break;
+            case DOUBLE_KNITTING:
+                holder.group.setText(R.string.double_knitting);
+                break;
+            case PARTIAL_KNITTING:
+                holder.group.setText(R.string.partial_knitting);
+                break;
+            case SAMPLE_KNITTING:
+                holder.group.setText(R.string.sample_calculate_menu);
+                break;
+            // You can have any number of case statements.
+            default:
+                // Statements
+        }
+        holder.text.setText(name);
+        return view;
     }
 
     @Override
     public View getChildView(final int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
-        ResultHolder holder;
-        final String row = (String)getChild(groupPosition, childPosition);
+        ChildHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.list_rows_saved_result, parent, false);
-            Button deleteButton = convertView.findViewById(R.id.deleteButton);
-            deleteButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-
-                    new AlertDialog.Builder(context)
-                            .setTitle(context.getResources().getString(R.string.dialog_title))
-                            .setMessage(context.getResources().getString(R.string.confirm_delete))
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(((Activity)context).getBaseContext());
-                                    String r = SavedResultExpandableListAdapter.this.keys.get(groupPosition);
-                                    Set<String> set = preferences.getStringSet(r, new HashSet());
-                                    set.remove(row);
-                                    if(set.size()==0){
+                convertView = LayoutInflater.from(context).inflate(R.layout.list_rows_saved_result_pk, parent, false);
+                Button deleteButton = convertView.findViewById(R.id.deleteButton);
+                deleteButton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        new AlertDialog.Builder(context)
+                                .setTitle(context.getResources().getString(R.string.dialog_title))
+                                .setMessage(context.getResources().getString(R.string.confirm_delete))
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(((Activity) context).getBaseContext());
+                                        String r = SavedResultExpandableListAdapter.this.keys.remove(groupPosition);
                                         preferences.edit().remove(r).commit();
-                                    } else {
-                                        preferences.edit().putStringSet(r, set).commit();
+                                        map = preferences.getAll();
+                                        SavedResultExpandableListAdapter.this.notifyDataSetChanged();
+                                        ((SavedListActivity) context).setAdapter();
                                     }
-                                    map = preferences.getAll();
-                                    SavedResultExpandableListAdapter.this.keys = new ArrayList<>(map.keySet());
-                                    SavedResultExpandableListAdapter.this.notifyDataSetChanged();
-                                }})
-                            .setNegativeButton(android.R.string.no, null).show();
-                }
-            });
-            holder = new ResultHolder();
-            holder.text = convertView.findViewById(R.id.text);
-            convertView.setTag(holder);
-        } else {
-            holder = (ResultHolder) convertView.getTag();
-        }
+                                })
+                                .setNegativeButton(android.R.string.no, null).show();
+                    }
+                });
+                holder = new ChildHolder();
+                holder.help1 = convertView.findViewById(R.id.help1);
+                holder.list1 = convertView.findViewById(R.id.list1);
+                holder.help2 = convertView.findViewById(R.id.help2);
+                holder.list2 = convertView.findViewById(R.id.list2);
+                holder.help3 = convertView.findViewById(R.id.help3);
+                holder.list3 = convertView.findViewById(R.id.list3);
+                convertView.setTag(holder);
+            } else {
+                holder = (ChildHolder) convertView.getTag();
+            }
+            Gson gson = new Gson();
+            Type listType = new TypeToken<ArrayList<String>>(){}.getType();
+            List<String> row = gson.fromJson((String)getChild(groupPosition, childPosition), listType);
+            String r = row.get(1);
+            TwoPartsResult twoPartsResult = null;
+            List<String> rows = null;
+            int activity = Integer.parseInt(row.get(0));
+            switch (activity) {
+                case ONE_SIDE_KNITTING:
+                case TWO_SIDE_KNITTING:
+                case DOUBLE_KNITTING:
+                    twoPartsResult = gson.fromJson(r, TwoPartsResult.class);
+                    rows = (List<String>) TwoPartsResultExpandableListAdapter.getRows(twoPartsResult, twoPartsResult.getStartFromRow());
+                    holder.help1.setText(twoPartsResult.toString());
+                    holder.list1.setText(TextUtils.join(", ", rows));
+                    holder.help2.setVisibility(View.GONE);
+                    holder.help3.setVisibility(View.GONE);
+                    holder.list3.setVisibility(View.GONE);
+                    break;
+                case PARTIAL_KNITTING:
+                    PartialKnittingResult pkResult = gson.fromJson(r, PartialKnittingResult.class);
+                    holder.list1.setText(TextUtils.join(", ", pkResult.getPartialKnittingStitchesList()));
+                    holder.list2.setText(TextUtils.join(", ", pkResult.getPartialKnittingRowsList()));
+                    holder.help2.setVisibility(View.VISIBLE);
 
-        holder.text.setText(row);
-        return convertView;
+                    if(pkResult.getDeckerRowsList().size()>0) {
+                        Iterator<String> d = pkResult.getDeckerRowsList().iterator();
+                        Iterator<String> u = pkResult.getDeckerKnittingStitchesList().iterator();
+                        List<String> dString = new ArrayList<>();
+                        while (d.hasNext()) {
+                            dString.add(d.next() + "(" + u.next() + ")");
+                        }
+                        holder.list3.setText(TextUtils.join(", ", dString));
+                        holder.help3.setVisibility(View.VISIBLE);
+                        holder.list3.setVisibility(View.VISIBLE);
+                    }
+                    break;
+                case SAMPLE_KNITTING:
+                    holder.list1.setText(TextUtils.join(", ", row.subList(1, row.size())));
+                    holder.help1.setText(R.string.sample_density);
+                    holder.help2.setVisibility(View.GONE);
+                    holder.help3.setVisibility(View.GONE);
+                    holder.list3.setVisibility(View.GONE);
+                    break;
+                // You can have any number of case statements.
+                default:
+                    // Statements
+            }
+            return convertView;
     }
 
     @Override
@@ -141,7 +223,17 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
         return true;
     }
 
-    static class ResultHolder {
+    static class GroupHolder {
         TextView text;
+        TextView group;
+    }
+
+    static class ChildHolder {
+        TextView help1;
+        TextView list1;
+        TextView help2;
+        TextView list2;
+        TextView help3;
+        TextView list3;
     }
 }

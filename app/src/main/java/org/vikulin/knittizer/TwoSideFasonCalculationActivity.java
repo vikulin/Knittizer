@@ -18,7 +18,7 @@ public class TwoSideFasonCalculationActivity extends AlertActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two_side_calculation);
-        getSupportActionBar().setTitle(R.string.two_side_menu);
+        getSupportActionBar().setTitle(R.string.double_knitting);
         final EditText rowNEdit = findViewById(R.id.editRowN);
         final EditText rowKEdit = findViewById(R.id.editRowK);
         final EditText rowsEdit = findViewById(R.id.editRows);
@@ -97,7 +97,7 @@ public class TwoSideFasonCalculationActivity extends AlertActivity {
             return;
         }
         int rows = 0;
-        int startFromRow = 0;
+        int startFromRow = 1;
         if(rowNEdit.length()>0 || rowKEdit.length()>0){
             int r1 = Integer.parseInt(rowNEdit.getText().toString());
             int r2 = Integer.parseInt(rowKEdit.getText().toString());
@@ -137,7 +137,7 @@ public class TwoSideFasonCalculationActivity extends AlertActivity {
             resultList.add(object);
             Intent intent = new Intent(this, ResultActivity.class);
             intent.putExtra(ResultActivity.RES, resultList);
-            intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.TWO_SIDE_KNITTING);
+            intent.putExtra(SavingActivity.ACTIVITY, SavingActivity.DOUBLE_KNITTING);
             intent.putExtra(ResultActivity.NUMBER_OF_ROW_SERIES, 1);
             startActivity(intent);
             return;

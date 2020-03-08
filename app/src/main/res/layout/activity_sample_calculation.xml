@@ -12,7 +12,6 @@
         android:orientation="vertical"
         android:layout_above="@id/button">
         <ImageView
-            android:id="@+id/imageView"
             android:paddingStart="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,112 +35,97 @@
         android:layout_height="wrap_content">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
-            <TextView
-                android:id="@+id/A"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="42dp"
-                android:text="@string/a"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/editW"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/B"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/b"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/editH"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/A" />
-
-            <TextView
-                android:id="@+id/AN"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/an"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/editU"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/B"/>
-
-            <EditText
-                android:id="@+id/editU"
-                android:layout_width="50dp"
-                android:layout_height="42dp"
-                android:layout_marginStart="76dp"
-                android:ems="10"
-                android:hint="@string/num"
-                android:inputType="number"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editH"
-                android:importantForAutofill="no" />
-
-            <EditText
-                android:id="@+id/editW"
-                android:layout_width="50dp"
-                android:layout_height="42dp"
-                android:layout_marginStart="76dp"
-                android:layout_marginTop="32dp"
-                android:ems="10"
-                android:hint="@string/cm"
-                android:inputType="number"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="wrap_content">
+            <View
+                android:id="@+id/view"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
                 app:layout_constraintTop_toTopOf="parent"
-                android:importantForAutofill="no" />
-
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/a"
+                android:textSize="@dimen/text_size"
+                app:layout_constraintBottom_toBottomOf="@+id/editW"
+                app:layout_constraintEnd_toStartOf="@+id/editW"
+                app:layout_constraintTop_toTopOf="@+id/editW" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/b"
+                android:textSize="@dimen/text_size"
+                app:layout_constraintBottom_toTopOf="@+id/editH"
+                app:layout_constraintEnd_toStartOf="@+id/editH"
+                app:layout_constraintTop_toBottomOf="@+id/editH" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/an"
+                android:textSize="@dimen/text_size"
+                app:layout_constraintBottom_toBottomOf="@+id/editU"
+                app:layout_constraintEnd_toStartOf="@+id/editU"
+                app:layout_constraintTop_toTopOf="@+id/editU" />
             <EditText
                 android:id="@+id/editH"
-                android:layout_width="50dp"
+                android:layout_width="@dimen/short_fields_size"
                 android:layout_height="42dp"
-                android:layout_marginStart="76dp"
                 android:ems="10"
                 android:hint="@string/cm"
                 android:inputType="number"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="@dimen/text_size"
+                android:layout_marginEnd="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/view"
                 app:layout_constraintTop_toBottomOf="@+id/editW"
                 android:importantForAutofill="no" />
-
             <EditText
-                android:id="@+id/editR"
-                android:layout_width="50dp"
+                android:id="@+id/editW"
+                android:layout_width="@dimen/short_fields_size"
                 android:layout_height="42dp"
-                android:layout_marginStart="76dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:hint="@string/cm"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textSize="@dimen/text_size"
+                app:layout_constraintBottom_toTopOf="@+id/view"
+                app:layout_constraintEnd_toStartOf="@+id/view" />
+            <EditText
+                android:id="@+id/editU"
+                android:layout_width="@dimen/short_fields_size"
+                android:layout_height="42dp"
                 android:ems="10"
                 android:hint="@string/num"
                 android:inputType="number"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="@dimen/text_size"
+                android:layout_marginEnd="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/view"
+                app:layout_constraintTop_toBottomOf="@+id/editH"
+                android:importantForAutofill="no" />
+            <EditText
+                android:id="@+id/editR"
+                android:layout_width="@dimen/short_fields_size"
+                android:layout_height="42dp"
+                android:ems="10"
+                android:hint="@string/num"
+                android:inputType="number"
+                android:textSize="@dimen/text_size"
+                android:layout_marginEnd="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/view"
                 app:layout_constraintTop_toBottomOf="@+id/editU"
                 android:importantForAutofill="no" />
-
             <TextView
-                android:id="@+id/BA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:text="@string/bn"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size"
+                app:layout_constraintBottom_toBottomOf="@+id/editR"
                 app:layout_constraintEnd_toStartOf="@+id/editR"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/AN" />
-
+                app:layout_constraintTop_toTopOf="@+id/editR" />
             <ImageButton
-                android:id="@+id/helpButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/ic_launcher_background"
@@ -151,7 +135,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/help" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </RelativeLayout>

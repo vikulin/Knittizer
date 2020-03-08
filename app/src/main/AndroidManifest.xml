@@ -30,8 +30,6 @@
         </activity>
         <activity
             android:name=".ResultActivity"
-            android:label="@string/title_activity_result"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+            android:label="@string/title_activity_result"/>
     </application>
 </manifest>

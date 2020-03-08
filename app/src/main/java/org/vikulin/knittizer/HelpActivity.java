@@ -18,7 +18,7 @@ public class HelpActivity extends AlertActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             LinearLayout ll = findViewById(R.id.content);
-            WebView help = new WebView(this);
+            WebView help = new WebView(getApplicationContext());
             ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             help.setLayoutParams(lp);
             ll.addView(help);
@@ -31,11 +31,11 @@ public class HelpActivity extends AlertActivity {
                         base64 = Base64.encodeToString(readResource(R.raw.one_side_knitting), Base64.DEFAULT);
                         break;
                     case SavingActivity.TWO_SIDE_KNITTING:
-                        setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.two_side_menu).toLowerCase());
+                        setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.double_knitting).toLowerCase());
                         base64 = Base64.encodeToString(readResource(R.raw.two_side_fason_knitting), Base64.DEFAULT);
                         break;
                     case SavingActivity.DOUBLE_KNITTING:
-                        setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.double_side).toLowerCase());
+                        setTitle(getResources().getString(R.string.help)+": "+getResources().getString(R.string.two_side_menu).toLowerCase());
                         base64 = Base64.encodeToString(readResource(R.raw.double_knitting), Base64.DEFAULT);
                         break;
                     case SavingActivity.PARTIAL_KNITTING:

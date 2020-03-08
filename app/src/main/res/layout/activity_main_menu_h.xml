@@ -1,44 +1,34 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_menu"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="2"
-    android:orientation="horizontal"
-    android:layout_gravity="start"
-    android:choiceMode="singleChoice"
-    android:divider="@color/colorDelimiter"
-    android:dividerHeight="1dp"
-    android:background="#fff"
-    android:baselineAligned="false">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:layout_weight="1"
+        android:id="@+id/clPart1"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:weightSum="3"
         android:orientation="vertical"
-        android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:divider="@color/colorDelimiter"
-        android:dividerHeight="1dp"
-        android:background="#fff">
-        <LinearLayout
+        android:visibility="visible"
+        android:weightSum="3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/clPart2">
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:background="@drawable/button"
             android:clickable="true"
-            android:weightSum="12"
             android:onClick="onSampleCalculationActivity"
-            android:paddingEnd="10dp"
             android:focusable="true">
             <ImageView
+                android:id="@+id/sample_calculation"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:padding="5dp"
-                android:scaleType="fitCenter"
-                android:layout_weight="9"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:adjustViewBounds="true"
                 android:src="@drawable/sample_icon"
                 android:contentDescription="@string/sample_calculate_menu" />
             <TextView
@@ -50,29 +40,30 @@
                 android:textAlignment="gravity"
                 android:textSize="16sp"
                 android:textAllCaps="true"
-                android:layout_weight="3"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_toEndOf="@+id/sample_calculation"
                 android:text="@string/sample_calculate_menu"
                 />
-        </LinearLayout>
-        <LinearLayout
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:background="@drawable/button"
             android:clickable="true"
-            android:weightSum="12"
             android:onClick="onTwoSideCalculationActivity"
-            android:paddingEnd="10dp"
             android:focusable="true">
             <ImageView
+                android:id="@+id/two_side_calculation"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:padding="5dp"
-                android:scaleType="fitCenter"
-                android:layout_weight="9"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:adjustViewBounds="true"
                 android:src="@drawable/rukav_1"
-                android:contentDescription="@string/double_side"/>
+                android:contentDescription="@string/two_side_menu"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -82,27 +73,27 @@
                 android:textAlignment="gravity"
                 android:textSize="16sp"
                 android:textAllCaps="true"
-                android:layout_weight="3"
-                android:text="@string/double_side"
-                />
-        </LinearLayout>
-        <LinearLayout
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_toEndOf="@+id/two_side_calculation"
+                android:text="@string/two_side_menu"/>
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:background="@drawable/button"
             android:clickable="true"
-            android:weightSum="12"
             android:onClick="onOneSideCalculationActivity"
-            android:paddingEnd="10dp"
             android:focusable="true">
             <ImageView
+                android:id="@+id/one_side_calculation"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:padding="5dp"
-                android:scaleType="fitCenter"
-                android:layout_weight="9"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:adjustViewBounds="true"
                 android:src="@drawable/spinka_1"
                 android:contentDescription="@string/one_side_menu" />
             <TextView
@@ -114,71 +105,73 @@
                 android:textAlignment="gravity"
                 android:textSize="16sp"
                 android:textAllCaps="true"
-                android:layout_weight="3"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_toEndOf="@+id/one_side_calculation"
                 android:text="@string/one_side_menu" />
-        </LinearLayout>
+        </RelativeLayout>
+
     </LinearLayout>
+
     <LinearLayout
-        android:layout_weight="1"
+        android:id="@+id/clPart2"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:weightSum="3"
         android:orientation="vertical"
-        android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:divider="@color/colorDelimiter"
-        android:dividerHeight="1dp"
-        android:background="#fff">
-        <LinearLayout
+        android:visibility="visible"
+        android:weightSum="3"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/clPart1">
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:background="@drawable/button"
             android:clickable="true"
-            android:weightSum="12"
             android:onClick="onDoubleFasonCalculationActivity"
-            android:paddingEnd="10dp"
             android:focusable="true">
             <ImageView
+                android:id="@+id/double_fason_calculation"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:padding="5dp"
-                android:scaleType="fitCenter"
-                android:layout_weight="9"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:adjustViewBounds="true"
                 android:src="@drawable/rukav_1"
-                android:contentDescription="@string/two_side_menu" />
+                android:contentDescription="@string/double_knitting" />
             <TextView
-                android:id="@+id/mainTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif"
                 android:textColor="@color/colorPrimaryText"
                 android:textAlignment="gravity"
                 android:textSize="16sp"
-                android:layout_weight="3"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:gravity="center_vertical"
                 android:textAllCaps="true"
-                android:text="@string/two_side_menu"/>
-        </LinearLayout>
+                android:layout_toEndOf="@+id/double_fason_calculation"
+                android:text="@string/double_knitting"/>
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:background="@drawable/button"
             android:clickable="true"
-            android:weightSum="12"
             android:onClick="onPartialKnittingCalculationActivity"
-            android:paddingEnd="10dp"
             android:focusable="true">
             <ImageView
+                android:id="@+id/partial_knitting_calculation"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:padding="5dp"
-                android:scaleType="fitCenter"
-                android:layout_weight="9"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:adjustViewBounds="true"
                 android:src="@drawable/partial_1"
                 android:contentDescription="@string/partial_knitting" />
             <TextView
@@ -190,25 +183,26 @@
                 android:textAlignment="gravity"
                 android:textSize="16sp"
                 android:textAllCaps="true"
-                android:layout_weight="3"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_toEndOf="@+id/partial_knitting_calculation"
                 android:text="@string/partial_knitting"
                 />
-        </LinearLayout>
-        <LinearLayout
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:background="@drawable/button"
-            android:weightSum="12"
-            android:onClick="onSavedListActivity"
-            android:paddingEnd="10dp">
+            android:onClick="onSavedListActivity">
             <ImageView
+                android:id="@+id/fav"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:padding="5dp"
-                android:scaleType="fitCenter"
-                android:layout_weight="9"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:adjustViewBounds="true"
                 android:src="@drawable/save_1"
                 android:contentDescription="@string/favorites"/>
             <TextView
@@ -220,11 +214,11 @@
                 android:textAlignment="gravity"
                 android:textSize="16sp"
                 android:textAllCaps="true"
-                android:layout_weight="3"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_toEndOf="@+id/fav"
                 android:text="@string/favorites"
                 />
-        </LinearLayout>
-
+        </RelativeLayout>
     </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

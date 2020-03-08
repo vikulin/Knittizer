@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="text_size">14sp</dimen>
+    <dimen name="short_fields_merging_start">25dp</dimen>
+    <dimen name="row_fields_size">110dp</dimen>
+    <dimen name="long_field_size">175dp</dimen>
+    <dimen name="short_fields_size">40dp</dimen>
+</resources>

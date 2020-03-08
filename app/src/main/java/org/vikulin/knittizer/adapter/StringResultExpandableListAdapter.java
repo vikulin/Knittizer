@@ -23,6 +23,7 @@ public class StringResultExpandableListAdapter extends BaseExpandableListAdapter
     private final Context context;
     private final String groupTitle;
     private final int activity;
+
     public StringResultExpandableListAdapter(final Context context, List<String> list, String groupTitle, final int activity){
         this.context = context;
         this.list = list;
@@ -67,7 +68,7 @@ public class StringResultExpandableListAdapter extends BaseExpandableListAdapter
 
     @Override
     public View getGroupView(int position, boolean b, View row, ViewGroup parent) {
-        ResultHolder holder = null;
+        ResultHolder holder;
         if(row == null)
         {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
@@ -84,7 +85,6 @@ public class StringResultExpandableListAdapter extends BaseExpandableListAdapter
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-
         ResultHolder holder;
         final ArrayList<String> rows = (ArrayList<String>) getChild(groupPosition, childPosition);
         if (convertView == null) {
@@ -104,8 +104,6 @@ public class StringResultExpandableListAdapter extends BaseExpandableListAdapter
         } else {
             holder = (ResultHolder) convertView.getTag();
         }
-
-
         holder.text.setText(TextUtils.join(", ", rows));
         return convertView;
     }
