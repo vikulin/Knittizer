@@ -161,6 +161,8 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
                 holder.list1 = convertView.findViewById(R.id.list1);
                 holder.help2 = convertView.findViewById(R.id.help2);
                 holder.list2 = convertView.findViewById(R.id.list2);
+                holder.help3 = convertView.findViewById(R.id.help3);
+                holder.list3 = convertView.findViewById(R.id.list3);
                 convertView.setTag(holder);
             } else {
                 holder = (ChildHolder) convertView.getTag();
