@@ -103,7 +103,7 @@ public class PartialKnittingCalculationActivity extends AlertActivity {
             rowsEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
         }
-        int startFromRow = 0;
+        int startFromRow = 1;
         if(rowNEdit.length()>0 || rowKEdit.length()>0){
             int r1 = Integer.parseInt(rowNEdit.getText().toString());
             int r2 = Integer.parseInt(rowKEdit.getText().toString());
