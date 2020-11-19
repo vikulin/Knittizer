@@ -4,17 +4,18 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.ExpandableListView;
-import androidx.appcompat.app.AppCompatActivity;
 import org.vikulin.knittizer.adapter.SavedResultExpandableListAdapter;
 
 import java.util.Map;
 
-public class SavedListActivity extends AppCompatActivity {
+public class SavedListActivity extends AlertActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(R.string.saved_calculations);
         setAdapter();
     }

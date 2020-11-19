@@ -10,8 +10,8 @@
     <string name="sample_calculate_menu">Расчёт образца</string>
     <string name="description_two_side_schema">Схема для прибавок или убавок</string>
     <string name="double_knitting">Фасонная убавка или прибавка</string>
-    <string name="one_side_menu">Непарная убавка или прибавка</string>
-    <string name="two_side_menu">Двойная убавка или прибавка</string>
+    <string name="one_side_menu">С одной стороны прибавка или убавка</string>
+    <string name="two_side_menu">С двух сторон прибавка или убавка</string>
     <string name="partial_knitting">Частичное вязание</string>
     <string name="a_n">единовременная убавка</string>
     <string name="save_name">Введите имя расчёта</string>

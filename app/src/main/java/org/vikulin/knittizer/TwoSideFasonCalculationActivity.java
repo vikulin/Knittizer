@@ -18,6 +18,8 @@ public class TwoSideFasonCalculationActivity extends AlertActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two_side_calculation);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(R.string.double_knitting);
         final EditText rowNEdit = findViewById(R.id.editRowN);
         final EditText rowKEdit = findViewById(R.id.editRowK);
@@ -119,7 +121,7 @@ public class TwoSideFasonCalculationActivity extends AlertActivity {
         //Убавки
 
         //}
-        int u = (int)Math.abs(ur)/4;
+        int u = (int)Math.abs(ur)/2;
         if(u==0){
             showAlertDialog(getResources().getString(R.string.error),getResources().getString(R.string.division_by_zero_error));
             return;
@@ -129,6 +131,8 @@ public class TwoSideFasonCalculationActivity extends AlertActivity {
             //String result = "Убавлять в каждом "+(rows / u)+" ряду";
 
             TwoPartsResult object = new TwoPartsResult();
+            object.setFirstStitchesNumber(2);
+            object.setSecondStitchesNumber(2);
             object.setFirstNumber(u);
             object.setFirstRowPeriod(rows / u);
             object.setSecondNumber(u);

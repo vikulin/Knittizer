@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import static org.vikulin.knittizer.SavingActivity.ACTIVITY;
 
-public class ResultActivity extends AppCompatActivity {
+public class ResultActivity extends AlertActivity {
 
     public static final String RES = "result";
     public static final String START_FROM_ROW = "start_from_row";
@@ -26,6 +26,8 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             ExpandableListView resultListView = findViewById(R.id.resultList);

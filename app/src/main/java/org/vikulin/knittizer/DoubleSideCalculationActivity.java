@@ -18,6 +18,8 @@ public class DoubleSideCalculationActivity extends AlertActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_double_side_calculation);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(R.string.two_side_menu);
         final EditText rowNEdit = findViewById(R.id.editRowN);
         final EditText rowKEdit = findViewById(R.id.editRowK);

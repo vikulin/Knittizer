@@ -15,6 +15,8 @@ public class HelpActivity extends AlertActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             LinearLayout ll = findViewById(R.id.content);

@@ -15,6 +15,8 @@ public class PartialKnittingCalculationActivity extends AlertActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partial_knitting_calculation);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(R.string.partial_knitting);
         final EditText rowNEdit = findViewById(R.id.editRowN);
         final EditText rowKEdit = findViewById(R.id.editRowK);

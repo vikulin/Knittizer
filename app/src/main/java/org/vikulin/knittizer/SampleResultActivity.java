@@ -12,7 +12,7 @@ import org.vikulin.knittizer.adapter.StringResultExpandableListAdapter;
 
 import java.util.ArrayList;
 
-public class SampleResultActivity extends AppCompatActivity {
+public class SampleResultActivity extends AlertActivity {
 
     public static final String DW = "dw";
     public static final String DH = "dh";
@@ -22,6 +22,8 @@ public class SampleResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample_result);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             ExpandableListView resultListView = findViewById(R.id.resultList);

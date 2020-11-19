@@ -34,6 +34,8 @@ public class PartialKnittingResultActivity extends AlertActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partial_knitting_result);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(R.string.title_activity_result);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
