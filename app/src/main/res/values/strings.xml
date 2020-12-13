@@ -10,7 +10,7 @@
     <string name="sample_calculate_menu">Расчёт образца</string>
     <string name="description_two_side_schema">Схема для прибавок (убавок)</string>
     <string name="double_knitting">Фасонная прибавка (убавка)</string>
-    <string name="one_side_menu">С одной стороны прибавка (убавка)</string>
+    <string name="one_side_menu">Прибавка или убавка</string>
     <string name="two_side_menu">С двух сторон прибавка (убавка)</string>
     <string name="partial_knitting">Частичное вязание</string>
     <string name="a_n">единовременная убавка</string>
@@ -53,4 +53,5 @@
     <string name="in_row">ряду</string>
     <string name="s_do">убавить(прибавить) указанное количество петель</string>
     <string name="decker_do">убавить(прибавить) деккером</string>
+    <string name="view">просмотр</string>
 </resources>

@@ -129,21 +129,21 @@ public class OneSideCalculationActivity extends AlertActivity {
         if(rows % u==0){
             //String result = "Убавлять в каждом "+(rows / u)+" ряду";
 
-            TwoPartsResult object = new TwoPartsResult();
-            object.setFirstNumber(u);
-            object.setFirstRowPeriod(rows / u);
-            object.setSecondNumber(u);
-            object.setSecondRowPeriod(rows / u);
-            if(object.getFirstRowPeriod()==1){
-                object.setFirstNumber(object.getFirstNumber()/2);
-                object.setFirstRowPeriod(2);
-                object.setFirstStitchesNumber(2);
-                object.setSecondNumber(object.getSecondNumber()/2);
-                object.setSecondRowPeriod(2);
-                object.setSecondStitchesNumber(2);
+            TwoPartsResult object1 = new TwoPartsResult();
+            object1.setFirstNumber(u);
+            object1.setFirstRowPeriod(rows / u);
+            object1.setSecondNumber(u);
+            object1.setSecondRowPeriod(rows / u);
+            if(object1.getFirstRowPeriod()==1){
+                object1.setFirstNumber(object1.getFirstNumber()/2);
+                object1.setFirstRowPeriod(2);
+                object1.setFirstStitchesNumber(2);
+                object1.setSecondNumber(object1.getSecondNumber()/2);
+                object1.setSecondRowPeriod(2);
+                object1.setSecondStitchesNumber(2);
             }
-            object.setStartStitchLessEndStitch(isStartStitchLessEndStitch);
-            resultList.add(object);
+            object1.setStartStitchLessEndStitch(isStartStitchLessEndStitch);
+            resultList.add(object1);
             Intent intent = new Intent(this, ResultActivity.class);
             intent.putExtra(ResultActivity.RES, resultList);
             intent.putExtra(ResultActivity.START_FROM_ROW, startFromRow);

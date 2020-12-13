@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="visible"
-        android:weightSum="3"
+        android:weightSum="2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/clPart2">
         <RelativeLayout
@@ -53,38 +53,6 @@
             android:orientation="horizontal"
             android:background="@drawable/button"
             android:clickable="true"
-            android:onClick="onTwoSideCalculationActivity"
-            android:focusable="true">
-            <ImageView
-                android:id="@+id/two_side_calculation"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/rukav_1"
-                android:contentDescription="@string/two_side_menu"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="sans-serif"
-                android:textColor="@color/colorPrimaryText"
-                android:gravity="center_vertical"
-                android:textAlignment="gravity"
-                android:textSize="16sp"
-                android:textAllCaps="true"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_toEndOf="@+id/two_side_calculation"
-                android:text="@string/two_side_menu"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:background="@drawable/button"
-            android:clickable="true"
             android:onClick="onOneSideCalculationActivity"
             android:focusable="true">
             <ImageView
@@ -119,42 +87,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="visible"
-        android:weightSum="3"
+        android:weightSum="2"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/clPart1">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:background="@drawable/button"
-            android:clickable="true"
-            android:onClick="onDoubleFasonCalculationActivity"
-            android:focusable="true">
-            <ImageView
-                android:id="@+id/double_fason_calculation"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/rukav_1"
-                android:contentDescription="@string/double_knitting" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="sans-serif"
-                android:textColor="@color/colorPrimaryText"
-                android:textAlignment="gravity"
-                android:textSize="16sp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:gravity="center_vertical"
-                android:textAllCaps="true"
-                android:layout_toEndOf="@+id/double_fason_calculation"
-                android:text="@string/double_knitting"/>
-        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

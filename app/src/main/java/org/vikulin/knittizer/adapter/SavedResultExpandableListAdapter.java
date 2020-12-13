@@ -3,6 +3,7 @@ package org.vikulin.knittizer.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -20,6 +21,8 @@ import com.google.gson.reflect.TypeToken;
 
 import org.vikulin.knittizer.R;
 import org.vikulin.knittizer.SavedListActivity;
+import org.vikulin.knittizer.SavingActivity;
+import org.vikulin.knittizer.ViewActivity;
 import org.vikulin.knittizer.model.PartialKnittingResult;
 import org.vikulin.knittizer.model.TwoPartsResult;
 
@@ -110,12 +113,6 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
             case ONE_SIDE_KNITTING:
                 holder.group.setText(R.string.one_side_menu);
                 break;
-            case TWO_SIDE_KNITTING:
-                holder.group.setText(R.string.two_side_menu);
-                break;
-            case DOUBLE_KNITTING:
-                holder.group.setText(R.string.double_knitting);
-                break;
             case PARTIAL_KNITTING:
                 holder.group.setText(R.string.partial_knitting);
                 break;
@@ -133,7 +130,7 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
     @Override
     public View getChildView(final int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
-        ChildHolder holder;
+        final ChildHolder holder;
         if (convertView == null) {
                 convertView = LayoutInflater.from(context).inflate(R.layout.list_rows_saved_result_pk, parent, false);
                 Button deleteButton = convertView.findViewById(R.id.deleteButton);
@@ -173,7 +170,8 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
             String r = row.get(1);
             TwoPartsResult twoPartsResult = null;
             List<String> rows = null;
-            int activity = Integer.parseInt(row.get(0));
+            List<String> rows1 = null;
+            final int activity = Integer.parseInt(row.get(0));
             switch (activity) {
                 case ONE_SIDE_KNITTING:
                 case TWO_SIDE_KNITTING:
@@ -182,7 +180,12 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
                     rows = (List<String>) TwoPartsResultExpandableListAdapter.getRows(twoPartsResult, twoPartsResult.getStartFromRow());
                     holder.help1.setText(twoPartsResult.toString());
                     holder.list1.setText(TextUtils.join(", ", rows));
-                    holder.help2.setVisibility(View.GONE);
+
+                    TwoPartsResult twoPartsResult1 = new TwoPartsResult(twoPartsResult);
+                    twoPartsResult1.inverse();
+                    holder.help2.setText("или\n\n"+twoPartsResult1.toString());
+                    rows1 = (List<String>) TwoPartsResultExpandableListAdapter.getRows(twoPartsResult1, twoPartsResult1.getStartFromRow());
+                    holder.list2.setText(TextUtils.join(", ", rows1));
                     holder.help3.setVisibility(View.GONE);
                     holder.list3.setVisibility(View.GONE);
                     break;
@@ -215,6 +218,18 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
                 default:
                     // Statements
             }
+            Button viewButton = convertView.findViewById(R.id.viewButton);
+            viewButton.setOnClickListener(new View.OnClickListener() {
+                      public void onClick(View v) {
+                          Intent intent = new Intent(context, ViewActivity.class);
+                          intent.putExtra(ViewActivity.help1, holder.help1.getText());
+                          intent.putExtra(ViewActivity.list1, holder.list1.getText());
+                          intent.putExtra(ViewActivity.help2, holder.help2.getText());
+                          intent.putExtra(ViewActivity.list2, holder.list2.getText());
+                          SavedResultExpandableListAdapter.this.context.startActivity(intent);
+                      }
+                  }
+            );
             return convertView;
     }
 

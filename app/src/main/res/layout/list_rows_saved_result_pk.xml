@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -73,15 +74,36 @@
             android:layout_below="@+id/help3"
             />
     </RelativeLayout>
-    <Button
-        android:id="@+id/deleteButton"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_weight="6"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:scaleType="fitCenter"
-        android:background="@drawable/button_bg"
-        android:textColor="@color/ic_launcher_background"
-        android:drawablePadding="3dp"
-        android:text="@string/delete"/>
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/viewButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_bg"
+            android:drawablePadding="3dp"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:text="@string/view"
+            android:textColor="@color/ic_launcher_background"
+            app:layout_constraintBottom_toTopOf="@+id/deleteButton"
+            app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_bg"
+            android:drawablePadding="3dp"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:text="@string/delete"
+            android:textColor="@color/ic_launcher_background"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>

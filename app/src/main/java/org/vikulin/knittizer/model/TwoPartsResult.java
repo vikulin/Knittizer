@@ -6,7 +6,24 @@ import java.io.Serializable;
 
 public class TwoPartsResult implements Serializable {
 
+    public TwoPartsResult(){
+
+    }
+
+    public TwoPartsResult(TwoPartsResult that){
+        this(that.getFirstNumber(), that.getSecondNumber(), that.getFirstRowPeriod(), that.getSecondRowPeriod(), that.getStartFromRow(), that.isStartStitchLessEndStitch());
+    }
+
     public int startFromRow;
+
+    public TwoPartsResult(int firstNumber, int secondNumber, int firstRowPeriod, int secondRowPeriod, int startFromRow, boolean isStartStitchLessEndStitch) {
+        this.firstNumber = firstNumber;
+        this.secondNumber = secondNumber;
+        this.firstRowPeriod = firstRowPeriod;
+        this.secondRowPeriod = secondRowPeriod;
+        this.startFromRow = startFromRow;
+        this.isStartStitchLessEndStitch = isStartStitchLessEndStitch;
+    }
 
     public int getStartFromRow() {
         return startFromRow;
@@ -74,6 +91,15 @@ public class TwoPartsResult implements Serializable {
 
     public void setSecondStitchesNumber(int secondStitchesNumber) {
         this.secondStitchesNumber = secondStitchesNumber;
+    }
+
+    public void inverse(){
+        int firstNumber = getFirstNumber();
+        setFirstNumber(getSecondNumber());
+        setSecondNumber(firstNumber);
+        int firstRowPeriod = getFirstRowPeriod();
+        setFirstRowPeriod(getSecondRowPeriod());
+        setSecondRowPeriod(firstRowPeriod);
     }
 
     private int firstNumber;

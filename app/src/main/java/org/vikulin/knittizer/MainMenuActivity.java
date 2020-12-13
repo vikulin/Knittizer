@@ -22,18 +22,8 @@ public class MainMenuActivity extends AppCompatActivity {
         }
     }
 
-    public void onTwoSideCalculationActivity(View view) {
-        Intent intent = new Intent(this, DoubleSideCalculationActivity.class);
-        startActivity(intent);
-    }
-
     public void onOneSideCalculationActivity(View view) {
         Intent intent = new Intent(this, OneSideCalculationActivity.class);
-        startActivity(intent);
-    }
-
-    public void onDoubleFasonCalculationActivity(View view) {
-        Intent intent = new Intent(this, TwoSideFasonCalculationActivity.class);
         startActivity(intent);
     }
 

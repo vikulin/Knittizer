@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.vikulin.knittizer">
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HelpActivity"/>
+        <activity android:name=".ViewActivity"></activity>
+        <activity android:name=".HelpActivity" />
         <activity android:name=".SampleResultActivity" />
         <activity android:name=".SampleCalculationActivity" />
         <activity android:name=".SavedListActivity" />
@@ -19,17 +20,17 @@
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity android:name=".PartialKnittingResultActivity" />
         <activity android:name=".PartialKnittingCalculationActivity" />
-        <activity android:name=".TwoSideFasonCalculationActivity" />
         <activity android:name=".OneSideCalculationActivity" />
-        <activity android:name=".DoubleSideCalculationActivity" />
         <activity android:name=".MainMenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ResultActivity"
-            android:label="@string/title_activity_result"/>
+            android:label="@string/title_activity_result" />
     </application>
+
 </manifest>
