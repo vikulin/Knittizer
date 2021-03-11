@@ -74,7 +74,7 @@
                 android:layout_height="42dp"
                 android:ems="10"
                 android:hint="@string/cm"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:textSize="@dimen/text_size"
                 android:layout_marginEnd="60dp"
                 app:layout_constraintEnd_toStartOf="@+id/view"
@@ -89,7 +89,7 @@
                 android:ems="10"
                 android:hint="@string/cm"
                 android:importantForAutofill="no"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:textSize="@dimen/text_size"
                 app:layout_constraintBottom_toTopOf="@+id/view"
                 app:layout_constraintEnd_toStartOf="@+id/view" />
