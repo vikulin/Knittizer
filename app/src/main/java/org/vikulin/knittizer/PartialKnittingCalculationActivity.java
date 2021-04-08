@@ -71,6 +71,14 @@ public class PartialKnittingCalculationActivity extends AlertActivity {
         EditText rowsEdit = findViewById(R.id.editRows);
         EditText wEdit = findViewById(R.id.editW);
         EditText rEdit = findViewById(R.id.editH);
+        int un = 0;
+        if(rEdit.length()>0) {
+            un = Integer.parseInt(rEdit.getText().toString());
+            if(un==1){
+                rEdit.setError(getResources().getString(R.string.one_value_error));
+                return;
+            }
+        }
         if(wEdit.length()==0){
             wEdit.setError(getResources().getString(R.string.empty_value_error));
             return;
@@ -140,10 +148,7 @@ public class PartialKnittingCalculationActivity extends AlertActivity {
         intent.putExtra(PartialKnittingResultActivity.START_FROM_ROW, startFromRow);
         intent.putExtra(PartialKnittingResultActivity.U, u);
         intent.putExtra(PartialKnittingResultActivity.ROWS, rows);
-        if(rEdit.length()>0) {
-            int un = Integer.parseInt(rEdit.getText().toString());
-            intent.putExtra(PartialKnittingResultActivity.UN, un);
-        }
+        intent.putExtra(PartialKnittingResultActivity.UN, un);
         startActivity(intent);
     }
 

@@ -119,7 +119,22 @@ public class PartialKnittingResultActivity extends AlertActivity {
                     pkResult.addPartialKnittingStitch(new Integer(base).toString());
                     resultList.add(base);
                 }
-                s = resultList.size()*2;
+                //s = resultList.size()*2;
+                s = startFromRow;
+                for(int i:resultList) {
+                    pkResult.addPartialKnittingRow(s+"");
+                    s += 2;
+                }
+                if((phases-resultList.size())>5) {
+                    int delta = (phases - resultList.size());
+                    //resultString.add(getResources().getString(R.string.decker_stitches)+" "+delta+" "+getResources().getString(R.string.in_row)+ " (2x1*" +delta+")");
+                    s += delta;
+                    pkResult.addDeckerRow(s+"");
+                    pkResult.addDeckerKnittingStitch("1");
+                    s += delta;
+                    pkResult.addDeckerRow(s+"");
+                    pkResult.addDeckerKnittingStitch("1");
+                }
             }
             if(resultList.size()==0){
                 resultListView.setVisibility(View.GONE);
