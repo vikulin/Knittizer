@@ -185,6 +185,8 @@ public class OneSideCalculationActivity extends AlertActivity {
                         object.setFirstRowPeriod(2);
                         object.setFirstStitchesNumber(2);
                     }
+                    //calculate total rows
+                    int actualRows = object.getFirstNumber()*object.getFirstRowPeriod()+object.getSecondNumber()*object.getSecondRowPeriod();
                     resultList.add(object);
                 }
             }

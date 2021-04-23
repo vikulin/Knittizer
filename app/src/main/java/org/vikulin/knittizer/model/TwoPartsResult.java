@@ -70,7 +70,7 @@ public class TwoPartsResult implements Serializable {
     }
 
     public boolean isPartEquals(){
-        return firstNumber==secondNumber && firstRowPeriod==secondRowPeriod;
+        return firstNumber==secondNumber && firstRowPeriod==secondRowPeriod && firstStitchesNumber==secondStitchesNumber;
     }
 
     public void setStartStitchLessEndStitch(boolean startStitchLessEndStitch) {
@@ -120,7 +120,7 @@ public class TwoPartsResult implements Serializable {
     @Override
     public String toString() {
         if(isStartStitchLessEndStitch) {
-            if(firstNumber==secondNumber && firstRowPeriod==secondRowPeriod) {
+            if(firstNumber==secondNumber && firstRowPeriod==secondRowPeriod && firstStitchesNumber==secondStitchesNumber) {
                 if(firstStitchesNumber>1) {
                     return "Прибавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду по "+firstStitchesNumber+" петли";
                 } else {
@@ -134,7 +134,7 @@ public class TwoPartsResult implements Serializable {
                 }
             }
         } else {
-            if(firstNumber==secondNumber && firstRowPeriod==secondRowPeriod) {
+            if(firstNumber==secondNumber && firstRowPeriod==secondRowPeriod && firstStitchesNumber==secondStitchesNumber) {
                 if(firstStitchesNumber>1) {
                     return "Убавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду по "+firstStitchesNumber+" петли";
                 } else {
