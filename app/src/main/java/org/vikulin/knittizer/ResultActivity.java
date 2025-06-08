@@ -35,7 +35,7 @@ public class ResultActivity extends AlertActivity {
 
             ArrayList<String> stringResults = new ArrayList<>();
             for(TwoPartsResult r:result){
-                stringResults.add(r.toString());
+                stringResults.add(r.toString(this.getBaseContext()));
             }
             int startFromRow = extras.getInt(START_FROM_ROW,0);
             int numberOfRowSeries = extras.getInt(NUMBER_OF_ROW_SERIES,1);

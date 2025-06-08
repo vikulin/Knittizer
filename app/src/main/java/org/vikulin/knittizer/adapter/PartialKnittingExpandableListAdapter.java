@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import org.vikulin.knittizer.R;
 import org.vikulin.knittizer.SavingActivity;
 import org.vikulin.knittizer.model.PartialKnittingResult;
+import org.vikulin.knittizer.model.TwoPartsResult;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -81,7 +82,8 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
         } else {
             holder = (GroupHolder)row.getTag();
         }
-        holder.text.setText(getGroup(position).toString());
+        TwoPartsResult result = (TwoPartsResult) getGroup(position);
+        holder.text.setText(result.toString(context));
         holder.group.setText(context.getResources().getString(R.string.partial_knitting));
 
         return row;

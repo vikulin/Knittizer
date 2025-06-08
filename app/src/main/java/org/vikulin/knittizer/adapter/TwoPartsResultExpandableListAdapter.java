@@ -107,7 +107,7 @@ public class TwoPartsResultExpandableListAdapter extends BaseExpandableListAdapt
         } else {
             holder = (ResultHolder)row.getTag();
         }
-        holder.text.setText(r.toString());
+        holder.text.setText(r.toString(context));
         return row;
     }
 
