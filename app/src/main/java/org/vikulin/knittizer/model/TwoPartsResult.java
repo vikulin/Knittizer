@@ -1,150 +1,116 @@
 package org.vikulin.knittizer.model;
 
+import android.content.Context;
 import androidx.annotation.NonNull;
+
+import org.vikulin.knittizer.R;
 
 import java.io.Serializable;
 
 public class TwoPartsResult implements Serializable {
 
-    public TwoPartsResult(){
+    public TwoPartsResult() {}
 
+    public TwoPartsResult(TwoPartsResult that) {
+        this.firstNumber = that.getFirstNumber();
+        this.secondNumber = that.getSecondNumber();
+        this.firstRowPeriod = that.getFirstRowPeriod();
+        this.secondRowPeriod = that.getSecondRowPeriod();
+        this.startFromRow = that.getStartFromRow();
+        this.isStartStitchLessEndStitch = that.isStartStitchLessEndStitch();
+        this.firstStitchesNumber = that.getFirstStitchesNumber();
+        this.secondStitchesNumber = that.getSecondStitchesNumber();
     }
 
-    public TwoPartsResult(TwoPartsResult that){
-        this(that.getFirstNumber(), that.getSecondNumber(), that.getFirstRowPeriod(), that.getSecondRowPeriod(), that.getStartFromRow(), that.isStartStitchLessEndStitch());
-    }
+    private int startFromRow;
+    private int firstNumber;
+    private int secondNumber;
+    private int firstRowPeriod;
+    private int secondRowPeriod;
+    private boolean isStartStitchLessEndStitch;
+    private int firstStitchesNumber = 1;
+    private int secondStitchesNumber = 1;
 
-    public int startFromRow;
+    public int getStartFromRow() { return startFromRow; }
+    public void setStartFromRow(int startFromRow) { this.startFromRow = startFromRow; }
 
-    public TwoPartsResult(int firstNumber, int secondNumber, int firstRowPeriod, int secondRowPeriod, int startFromRow, boolean isStartStitchLessEndStitch) {
-        this.firstNumber = firstNumber;
-        this.secondNumber = secondNumber;
-        this.firstRowPeriod = firstRowPeriod;
-        this.secondRowPeriod = secondRowPeriod;
-        this.startFromRow = startFromRow;
-        this.isStartStitchLessEndStitch = isStartStitchLessEndStitch;
-    }
+    public int getFirstNumber() { return firstNumber; }
+    public void setFirstNumber(int firstNumber) { this.firstNumber = firstNumber; }
 
-    public int getStartFromRow() {
-        return startFromRow;
-    }
+    public int getSecondNumber() { return secondNumber; }
+    public void setSecondNumber(int secondNumber) { this.secondNumber = secondNumber; }
 
-    public void setStartFromRow(int startFromRow) {
-        this.startFromRow = startFromRow;
-    }
+    public int getFirstRowPeriod() { return firstRowPeriod; }
+    public void setFirstRowPeriod(int firstRow) { this.firstRowPeriod = firstRow; }
 
-    public int getFirstNumber() {
-        return firstNumber;
-    }
+    public int getSecondRowPeriod() { return secondRowPeriod; }
+    public void setSecondRowPeriod(int secondRow) { this.secondRowPeriod = secondRow; }
 
-    public void setFirstNumber(int firstNumber) {
-        this.firstNumber = firstNumber;
-    }
+    public boolean isStartStitchLessEndStitch() { return isStartStitchLessEndStitch; }
+    public void setStartStitchLessEndStitch(boolean value) { this.isStartStitchLessEndStitch = value; }
 
-    public int getSecondNumber() {
-        return secondNumber;
-    }
+    public int getFirstStitchesNumber() { return firstStitchesNumber; }
+    public void setFirstStitchesNumber(int value) { this.firstStitchesNumber = value; }
 
-    public void setSecondNumber(int secondNumber) {
-        this.secondNumber = secondNumber;
-    }
-
-    public int getFirstRowPeriod() {
-        return firstRowPeriod;
-    }
-
-    public void setFirstRowPeriod(int firstRow) {
-        this.firstRowPeriod = firstRow;
-    }
-
-    public int getSecondRowPeriod() {
-        return secondRowPeriod;
-    }
-
-    public void setSecondRowPeriod(int secondRow) {
-        this.secondRowPeriod = secondRow;
-    }
-
-    public boolean isStartStitchLessEndStitch() {
-        return isStartStitchLessEndStitch;
-    }
+    public int getSecondStitchesNumber() { return secondStitchesNumber; }
+    public void setSecondStitchesNumber(int value) { this.secondStitchesNumber = value; }
 
     public boolean isPartEquals(){
-        return firstNumber==secondNumber && firstRowPeriod==secondRowPeriod && firstStitchesNumber==secondStitchesNumber;
-    }
-
-    public void setStartStitchLessEndStitch(boolean startStitchLessEndStitch) {
-        isStartStitchLessEndStitch = startStitchLessEndStitch;
-    }
-
-    public int getFirstStitchesNumber() {
-        return firstStitchesNumber;
-    }
-
-    public void setFirstStitchesNumber(int firstStitchesNumber) {
-        this.firstStitchesNumber = firstStitchesNumber;
-    }
-
-    public int getSecondStitchesNumber() {
-        return secondStitchesNumber;
-    }
-
-    public void setSecondStitchesNumber(int secondStitchesNumber) {
-        this.secondStitchesNumber = secondStitchesNumber;
+        return firstNumber == secondNumber &&
+                firstRowPeriod == secondRowPeriod &&
+                firstStitchesNumber == secondStitchesNumber;
     }
 
     public void inverse(){
-        int firstNumber = getFirstNumber();
-        setFirstNumber(getSecondNumber());
-        setSecondNumber(firstNumber);
-        int firstRowPeriod = getFirstRowPeriod();
-        setFirstRowPeriod(getSecondRowPeriod());
-        setSecondRowPeriod(firstRowPeriod);
+        int tempNumber = firstNumber;
+        firstNumber = secondNumber;
+        secondNumber = tempNumber;
+
+        int tempRow = firstRowPeriod;
+        firstRowPeriod = secondRowPeriod;
+        secondRowPeriod = tempRow;
     }
 
-    private int firstNumber;
-
-    private int secondNumber;
-
-    private int firstRowPeriod;
-
-    private int secondRowPeriod;
-
-    private boolean isStartStitchLessEndStitch;
-
-    private int firstStitchesNumber = 1;
-
-    private int secondStitchesNumber = 1;
-
     @NonNull
-    @Override
-    public String toString() {
-        if(isStartStitchLessEndStitch) {
-            if(firstNumber==secondNumber && firstRowPeriod==secondRowPeriod && firstStitchesNumber==secondStitchesNumber) {
-                if(firstStitchesNumber>1) {
-                    return "Прибавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду по "+firstStitchesNumber+" петли";
+    public String toString(Context context) {
+        if (isStartStitchLessEndStitch) {
+            if (isPartEquals()) {
+                if (firstStitchesNumber > 1) {
+                    return context.getString(R.string.add_n_times_every_m_rows_k_stitches,
+                            firstNumber, firstRowPeriod, firstStitchesNumber);
                 } else {
-                    return "Прибавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду";
+                    return context.getString(R.string.add_n_times_every_m_rows,
+                            firstNumber, firstRowPeriod);
                 }
             } else {
-                if(firstStitchesNumber>1) {
-                    return "Прибавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду по "+firstStitchesNumber+" петли и " + secondNumber + " раз в каждом " + secondRowPeriod + " ряду по "+secondStitchesNumber+" петле";
+                if (firstStitchesNumber > 1) {
+                    return context.getString(R.string.add_complex_n_m_k_p_q_r,
+                            firstNumber, firstRowPeriod, firstStitchesNumber,
+                            secondNumber, secondRowPeriod, secondStitchesNumber);
                 } else {
-                    return "Прибавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду и " + secondNumber + " раз в каждом " + secondRowPeriod + " ряду";
+                    return context.getString(R.string.add_complex_n_m_p_q_r,
+                            firstNumber, firstRowPeriod,
+                            secondNumber, secondRowPeriod);
                 }
             }
         } else {
-            if(firstNumber==secondNumber && firstRowPeriod==secondRowPeriod && firstStitchesNumber==secondStitchesNumber) {
-                if(firstStitchesNumber>1) {
-                    return "Убавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду по "+firstStitchesNumber+" петли";
+            if (isPartEquals()) {
+                if (firstStitchesNumber > 1) {
+                    return context.getString(R.string.sub_n_times_every_m_rows_k_stitches,
+                            firstNumber, firstRowPeriod, firstStitchesNumber);
                 } else {
-                    return "Убавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду";
+                    return context.getString(R.string.sub_n_times_every_m_rows,
+                            firstNumber, firstRowPeriod);
                 }
             } else {
-                if(firstStitchesNumber>1) {
-                    return "Убавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду по "+firstStitchesNumber+" петли и " + secondNumber + " раз в каждом " + secondRowPeriod + " ряду по "+secondStitchesNumber+" петле";
+                if (firstStitchesNumber > 1) {
+                    return context.getString(R.string.sub_complex_n_m_k_p_q_r,
+                            firstNumber, firstRowPeriod, firstStitchesNumber,
+                            secondNumber, secondRowPeriod, secondStitchesNumber);
                 } else {
-                    return "Убавить " + firstNumber + " раз в каждом " + firstRowPeriod + " ряду и " + secondNumber + " раз в каждом " + secondRowPeriod + " ряду";
+                    return context.getString(R.string.sub_complex_n_m_p_q_r,
+                            firstNumber, firstRowPeriod,
+                            secondNumber, secondRowPeriod);
                 }
             }
         }

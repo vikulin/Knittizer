@@ -144,7 +144,7 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
                                     public void onClick(DialogInterface dialog, int whichButton) {
                                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(((Activity) context).getBaseContext());
                                         String r = SavedResultExpandableListAdapter.this.keys.remove(groupPosition);
-                                        preferences.edit().remove(r).commit();
+                                        preferences.edit().remove(r).apply();
                                         map = preferences.getAll();
                                         SavedResultExpandableListAdapter.this.notifyDataSetChanged();
                                         ((SavedListActivity) context).setAdapter();
@@ -178,12 +178,12 @@ public class SavedResultExpandableListAdapter extends BaseExpandableListAdapter 
                 case DOUBLE_KNITTING:
                     twoPartsResult = gson.fromJson(r, TwoPartsResult.class);
                     rows = (List<String>) TwoPartsResultExpandableListAdapter.getRows(twoPartsResult, twoPartsResult.getStartFromRow());
-                    holder.help1.setText(twoPartsResult.toString());
+                    holder.help1.setText(twoPartsResult.toString(context));
                     holder.list1.setText(TextUtils.join(", ", rows));
 
                     TwoPartsResult twoPartsResult1 = new TwoPartsResult(twoPartsResult);
                     twoPartsResult1.inverse();
-                    holder.help2.setText("или\n\n"+twoPartsResult1.toString());
+                    holder.help2.setText(context.getString(R.string.or_with_newlines, twoPartsResult1.toString(context)));
                     rows1 = (List<String>) TwoPartsResultExpandableListAdapter.getRows(twoPartsResult1, twoPartsResult1.getStartFromRow());
                     holder.list2.setText(TextUtils.join(", ", rows1));
                     holder.help3.setVisibility(View.GONE);

@@ -55,4 +55,14 @@
     <string name="s_do">убавить(прибавить) указанное количество петель</string>
     <string name="decker_do">убавить(прибавить) деккером</string>
     <string name="view">просмотр</string>
+    <string name="add_n_times_every_m_rows">Прибавить %1$d раз в каждом %2$d ряду</string>
+    <string name="add_n_times_every_m_rows_k_stitches">Прибавить %1$d раз в каждом %2$d ряду по %3$d петли</string>
+    <string name="add_complex_n_m_p_q_r">Прибавить %1$d раз в каждом %2$d ряду и %3$d раз в каждом %4$d ряду</string>
+    <string name="add_complex_n_m_k_p_q_r">Прибавить %1$d раз в каждом %2$d ряду по %3$d петли и %4$d раз в каждом %5$d ряду по %6$d петле</string>
+    <string name="sub_n_times_every_m_rows">Убавить %1$d раз в каждом %2$d ряду</string>
+    <string name="sub_n_times_every_m_rows_k_stitches">Убавить %1$d раз в каждом %2$d ряду по %3$d петли</string>
+    <string name="sub_complex_n_m_p_q_r">Убавить %1$d раз в каждом %2$d ряду и %3$d раз в каждом %4$d ряду</string>
+    <string name="sub_complex_n_m_k_p_q_r">Убавить %1$d раз в каждом %2$d ряду по %3$d петли и %4$d раз в каждом %5$d ряду по %6$d петле</string>
+    <string name="or_with_newlines">или\n\n%s</string>
+
 </resources>
