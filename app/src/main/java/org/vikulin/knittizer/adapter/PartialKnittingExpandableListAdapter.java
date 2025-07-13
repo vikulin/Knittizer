@@ -44,7 +44,7 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
     }
 
     @Override
-    public Object getGroup(int i) {
+    public String getGroup(int i) {
         return this.groupTitle;
     }
 
@@ -82,8 +82,7 @@ public class PartialKnittingExpandableListAdapter extends BaseExpandableListAdap
         } else {
             holder = (GroupHolder)row.getTag();
         }
-        TwoPartsResult result = (TwoPartsResult) getGroup(position);
-        holder.text.setText(result.toString(context));
+        holder.text.setText(getGroup(position));
         holder.group.setText(context.getResources().getString(R.string.partial_knitting));
 
         return row;
